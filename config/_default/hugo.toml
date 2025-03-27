@@ -1,0 +1,54 @@
+# set `baseurl` to your root domain
+# if you set it to "/" share icons won't work properly on production
+#baseurl = "https://example.com/"  # Include trailing slash
+baseurl = "https://tarj8253.github.io/"  # Include trailing slash
+# title = "Clarity"  # Edit directly from config/_default/languages.toml # alternatively, uncomment this and remove `title` entry from the aforemention file.
+#copyright = "Copyright © 2008–2018, Steve Francia and the Hugo Authors; all rights reserved."
+#commentにしたら、勝手にcopyright 瀧山'spageとなった
+# canonifyurls = true
+
+
+#theme = "hugo-clarity"
+theme = ["github.com/chipzoller/hugo-clarity"]
+disqusShortname = ""
+
+DefaultContentLanguage = "ja"
+#DefaultContentLanguage = "en"
+# [languages]
+# config/_default/languages.toml
+
+hasCJKLanguage = true
+#configureでは、hasCJKLanguage(本文frontmatterではisCJK*)
+#.Summary, .WordCountで有効
+
+#https://gohugo.io/getting-started/configuration/
+#https://stysk.com/posts/2023/12/07/hugo_summary/
+
+
+#[menus]
+# config/_default/menus/menu.xx.toml
+#config/_default/menus/menu.ja.toml
+
+
+# public生成時にこれらのdirが生成される。
+# 分類されるのかな??,aliasesもdefault.mdにはあり
+[taxonomies]
+category = "categories"
+tag = "tags"
+series = "series"
+
+[outputs]	
+home = ["HTML", "RSS", "JSON"]
+
+[pagination]
+pagerSize = 10
+
+
+#secutity.execにasciidoctorとrubylibを追加
+#他の項目は設定済みみたい。なくてもok
+
+#https://discourse.gohugo.io/t/hugo-asciidoc-on-windows-triggering-warn-messages-about-gemrc-not-being-found/48061
+[security.exec]
+allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^npx$', '^postcss$','^asciidoctor$']
+osEnv = ['.*']
+

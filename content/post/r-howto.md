@@ -1,0 +1,1019 @@
+---
+#content/post/に置くファイルの雛形!
+#---はyamlの書式.+++はtoml
+title: "Rの使い方" # Title of the blog post.
+date: 2025-03-04T15:46:46+09:00 # Date of post creation.
+description: "R linux" # Description used for search engine.
+featured: true # sidebarのおすすめの投稿, sets if post is a featured post, making appear on the home page side bar.
+draft: false #true # Sets whether to render this page. Draft of true will not be rendered.
+toc: false # Controls if a table of contents should be generated for first-level links automatically.
+# menu: main # when uncomment, display on manu bar
+#usePageBundles: false # Set to true to group assets like images in the same folder as this post.
+usePageBundles: true # Set to true to group assets like images in the same folder as this post.
+#featureImage: "/images/path/file.jpg" # Sets featured image on blog post.
+#featureImageAlt: 'Description of image' # Alternative text for featured image.
+#featureImageCap: 'This is the featured image.' # Caption (optional).
+#thumbnailはstatic/images/*.pngを
+#thumbnail: "/images/path/thumbnail.png" # Sets thumbnail image appearing inside card on homepage.
+#shareImage: "/images/path/share.png" # Designate a separate image for social media sharing.
+codeMaxLines: 10 # Override global value for how many lines within a code block before auto-collapsing.
+codeLineNumbers: false # Override global value for showing of line numbers within code block.
+figurePositionShow: true # Override global value for showing the figure label.
+# hugo.tomlのtaxonomiesで分類あり
+categories:
+  - tool
+tags:
+  - R
+#series :
+#  - Enjoy Linux
+#aliases : 
+#  - migrate-from-jekyl
+# Create redirects from old URLs to new URLs with aliases:
+
+# comment: false # Disable comment if false.
+# date: 2023-07-28/2024-01-05
+lang: ja
+
+---
+
+
+## 基本
+
+
+-   変数名は英数字、ドット . 、先頭に数字は不可、大文字小文字は別
+-   アンダーバー \_ は避ける(昔代入記号として使われていた)。
+	今は使えなくもないが、混乱を避けるために使わないほうがいいかも。
+-   コメント
+
+<!--more-->
+
+``` {.r org-language="R"}
+先頭#
+
+または
+
+if(0){}
+で囲う
+```
+
+-   代入
+
+``` {.r org-language="R"}
+<-
+x<- 6
+y<- x+2
+```
+
+-   べき乗
+
+``` {.r org-language="R"}
+^ あるいは　** 
+```
+
+-   割り算と余り
+
+``` {.r org-language="R"}
+%/% 整数除算
+%% 剰余
+```
+
+-   演算の優先順位
+
+:の優先順位が一番高いので、
+
+1:3-1と1:(3-1)は違うよ!!
+
+a\[1:4-1\]とa\[1:(4-1)\]の違いに注意!!
+
+-   まいなす記号
+
+\< \<= ::
+-記号をつけるときは、代入と間違われないように、空白をきちんとつける
+
+-   論理演算
+
+``` {.r org-language="R"}
+!
+& && 論理積
+| ||　論理和
+xor()
+TRUE, FALSE (T,F)
+```
+
+-   分岐と繰り返し
+
+``` {.r org-language="R"}
+if(条件式){式1}else{式2}
+switch(条件式,ケース)
+repeat{式}
+while(条件){式}
+for(i in M){式}
+next : 
+break
+```
+
+-   関数
+
+``` {.r org-language="R"}
+max(),min()
+abs
+sqrt()
+round(),floor(),ceiling() 丸め、切り捨て、切り上げ
+sum(), prod() ベクトルの要素の総和、要素の総積
+log(), log10(), log2()
+exp()
+sin(),cos(),tan()
+asin(),acos(),atan()
+pi
+Inf,-Inf
+
+mode()
+attributes(),attr(), structure() 属性
+typeof()
+
+ls()で登録されている名前一覧表示
+
+rm(hoge)で名前hoge削除
+```
+
+## help
+
+``` {.r org-language="R"}
+help(hoge)
+```
+
+## 初期化
+
+``` {.r org-language="R"}
+rm(list=ls(all=TRUE)) #初期化
+setwd("/media/takiyama/m2sata/docs/Research/AUT_ENG/imep_ana")
+```
+
+## 型
+
+-   character:文字列
+-   numeric:実数
+-   integer:整数
+-   logical:論理値
+
+# データ構造
+
+## ベクトル:c()
+
+<font color="red"><b> 関数c(): combine,あるいはconcatenateの略</b></font>
+
+``` {.r org-language="R"}
+x<-c(4,1,5)とすると処理だけ 
+(x<-c(4,1,5))とかっこで囲むと表示までしてくれる
+```
+
+### 中身が空のベクトル
+
+``` {.r org-language="R"}
+#直接大きさ指定はできないので以下のようにする
+a<-c()
+a[1:100]<-NA
+```
+
+### 差の変化が規則正しいベクトル
+
+``` {.r org-language="R"}
+seq(2, -5, by=-0.5)で2,1.5,1,...-4.5,-5が得られる
+
+#rep()である一定パターンの繰り返し
+rep(c(3,2,1),3)で、3,2,1,3,2,1,3,2,1が得られる。
+```
+
+## 行列:matrix
+
+二次元 :defaultは列方向に値が設定される
+
+``` {.r org-language="R"}
+matrix(c(要素),nrow=nr,byrow=TRUE)#こうしたら行(row)方向に値が設定
+```
+
+### 中身が空の行列:
+
+``` {.r org-language="R"}
+matrix()::中身,大きさが空
+matrix(nrow=2,ncol=3),行数(nrow)列数(ncol)指定
+matrix(要素,nrow=2,ncol=3)
+```
+
+大きさ指定したいならば要素必要
+
+``` {.r org-language="R"}
+mm<-matrix(0,2,3)#なら空行列できる
+mm<-matrix(NA,2,3)#なら空行列できる
+行列zをベクトルとすると
+dim(z)<-c(2,3)で2行3列の行列
+```
+
+### 要素を行方向に設定
+
+``` {.r org-language="R"}
+a<-c(1,2,3,4,5,6)
+matrix(a, ncol=3)で(2行)3列のmatrix
+matrix(a,nrow=3)で3行(2列)のmatrixができる。
+
+matrix(a,nrow=2,byrow=T) :: byrow=Tで左から右へ行方向に要素が埋められ、
+指定がない時は、上から下へ列方向に要素が設定
+
+matrix(data, nrow,ncol,byrow=FALSE)
+
+t(a)で転置行列
+```
+
+### 単位行列はdiag(4)
+
+## 配列:array
+
+多次元
+
+arrayは行列の拡張版
+
+m行,n列の行列を重ねたもの
+
+``` {.r org-language="R"}
+array(1:20,c(4,5))で4行5列の行列、列から1,2..と埋めていく
+
+1 5 ... 17
+2 6 ... 18
+3 7 ... 19
+4 8 ... 20
+```
+
+となるデータができる。
+
+以上の構造中の要素はすべて同じ型。 数値、文字などを混在できない。
+自動で変換されてしまう。
+
+## 配列の大きさを調べる
+
+-   length(hoge)で長さ
+
+-   dim(hoge)で行列の大きさ
+
+## 配列のアクセス
+
+-   要素の抽出
+
+``` {.r org-language="R"}
+a[2,3]
+a[2,]---二行目
+a[,3]---三列目
+```
+
+-   1:10 で1から10まで。
+
+:の優先順位が一番高いので、 1:3-1と1:(3-1)は違うよ!!
+
+## data.frame()
+
+列ごとに異なる型を持たせることができる
+
+<https://htsuda.net/stats/data-basics.html>
+
+つまり1行方向はあるものの特性
+
+``` {.r org-language="R"}
+id  name    age     sex     married
+1   Alice   10  Female  FALSE
+2   Bob     15  Male    FALSE
+3   Charlotte   20  Female  FALSE
+4   Dick    35  Male    TRUE
+```
+
+## list()
+
+様々な種類のデータ
+
+配列の要素に配列など
+
+リストを取り出すのは二重鉤括弧\[\[\]\]や\$記号
+
+## table(x)
+
+配列に含まれる値の出現数をカウント
+
+<https://www.marketechlabo.com/r-time-series-analysis/>
+
+## ts
+
+ts:
+Rの基本の時系列オブジェクト。ほとんどの時系列ライブラリはこの形式の時系列データを扱う
+
+## xts
+
+xts:
+データフレームとtsの間に位置づけられる、時系列データを便利に扱えるようにした形式
+
+## zoo
+
+zoo: データフレームとxtsの間の形式
+
+## 少し高度な型
+
+-   factor(因子型)
+
+-   factorは因子型:カテゴリカルなデータを扱うときに使う
+
+<https://htsuda.net/stats/data-basics.html>
+
+-   factor()はベクトルを因子にする。
+
+-   gl()は水準パターンを与えて因子を作る
+
+[http://www.okadajp.org/RWiki/?因子Tips大全](http://www.okadajp.org/RWiki/?因子Tips大全)
+
+# データ変換
+
+## 一次元データを二次元に変換
+
+``` {.r org-language="R"}
+#dをnrow行,byrow=Tで左から右へ行方向に要素が埋められる
+#d(col*DATA_NUM)をs(DATA.NUM行,col列)に変換
+s<-matrix(d,nrow=DATA.NUM,byrow=T)
+s<-matrix(d,ncol=col,byrow=T)#列方向指定しても同じ
+```
+
+## 型とデータ構造の変換
+
+### 型変換:as.\*\*\*\*\*()
+
+``` {.r org-language="R"}
+as.numeric()
+as.character()
+as.vector()
+as.matrix()
+as.data.frame()
+```
+
+### 問い合わせ
+
+``` {.r org-language="R"}
+is.*****()
+```
+
+問い合わせ::ifなどの判断で用いる
+
+(==, != \< \>などの比較演算子以外に利用可)
+
+### データ型の確認
+
+``` {.r org-language="R"}
+class(hoge)
+```
+
+# 配列の加工と操作::データ構造の演算
+
+大きさを指定した配列の変数に代入という考え方はできない。
+
+すべて、ベクトルの結合(リスト)、という考え方。
+
+結合後に操作する。
+
+## コマンド
+
+### ベクトルx,yの結合
+
+``` {.r org-language="R"}
+c(x,y)xの後ろにyを結合
+append(x,y)xの後ろにyを結合
+append(x,y,after=2),xの2番目以降にyを挿入
+```
+
+### 置換
+
+``` {.r org-language="R"}
+replace(x,y,z)
+x:置換対象
+y:置換位置
+z:置換内容
+```
+
+``` {.r org-language="R"}
+x<-c(1,2,3,4,5,6)
+y<-c(2,4)
+z<-c(10,20)
+w<-replace(x,y,z)
+w:(1,10,3,20,5,6)
+```
+
+### sort(x)昇順で並べ替え
+
+``` {.r org-language="R"}
+sort(x,decreasing)降順で並べ替え
+```
+
+### orderで,大きさ順がわかる
+
+``` {.r org-language="R"}
+s<-c(1,10,2)
+order(s)
+1 3 2
+rev(order(s))
+```
+
+以上 <https://stats.biopapyrus.jp/r/basic/vector.html> 参考
+
+## ベクトルの結合
+
+-   rbind:row(行)要素としてbind
+-   cbind:col(列)要素としてbind
+
+``` {.r org-language="R"}
+> a<-c(1,2,3)
+> b<-c(5,6,7)
+> d<-cbind(a,b)
+> d
+     a b
+[1,] 1 5
+[2,] 2 6
+[3,] 3 7
+> e<-rbind(a,b)
+> e
+  [,1] [,2] [,3]
+a    1    2    3
+b    5    6    7
+```
+
+-   data.frame(元,追加):行データを追加
+
+-   list:大きさが異なっても結合できる
+
+クラスを保持したまま結合するのはlistがおすすめ by:
+<https://www.karada-good.net/analyticsr/r-317/>
+
+データフレームに行追加をしないほうがいい::型が変わってしまう
+<https://www.jaysong.net/RBook/datastructure.html>
+
+## ベクトルに名前つける
+
+``` {.r org-language="R"}
+names(x)<-c("a","v")
+names(x)=NULL
+```
+
+## データフレームの列方向毎に名前をつける
+
+``` {.r org-language="R"}
+FU<-1
+IMEP<-2
+
+colnames(sd)<-c(
+"FU",
+"IMEP")#列変数名
+```
+
+1列目にFU,2列目にIMEPと名前がついた
+
+# 名前を用いた演算
+
+## 変数名\$データ名で取り出せる
+
+``` {.r org-language="R"}
+IMEP.mean<-mean(sd$IMEP)
+ymax<-max(sd$IMEP)
+
+j<-1
+#IMEP.fil<-array(0,dim=c(DATA.NUM))
+IMEP.fil<-c()#大きさを指定しない
+for (i in 1:DATA.NUM){
+    if(sd$IMEP[i] < IMEP.mean+150){
+        IMEP.fil[j] <- sd$IMEP[i]#ベクトルに追加
+        j<-j+1
+    }
+}
+```
+
+## リストを取り出すのは二重鉤括弧\[\[\]\]や\$記号
+
+## ハイテクニックな結合
+
+which(names(df2)==\"c\")
+
+で\"c\"というラベルの列を参照できる。
+
+<https://rstudio-pubs-static.s3.amazonaws.com/573963_94a58958207d44d884ab52d2f8a8ffac.html>
+
+問題:a,b,eを縦方向に結合する
+
+``` {.r org-language="R"}
+df1 <- data.frame(a = 1:3, b = c("a", "b", "c"), e = c(1, 3, 5))
+df2 <- data.frame(a = 7:9, b = c("t", "t", "t"), c = 4:6, d = c("q",
+"w", "e"), e = c(6, 6, 6))
+
+df2a <- c(which(names(df2) == "c"), which(names(df2) == "d"))
+df2b <- df2[ , -df2a]
+rbind(df1, df2b)
+```
+
+-   df2からcとdを削除::
+-   df2aにcとdを集めて、それをdf2から引く-\>df2bとする
+-   その後df1とdf2bを結合
+
+# データ読込
+
+``` {.r org-language="R"}
+read.table("ファイル名",header=ヘッダ行有無,sep="区切り文字")
+
+read.csv("hoge") はread.table("hoge",header=T,sep=",")
+read.delim("hoge")はread.table("hoge",sep="\t")
+
+headerつきがdefault
+大規模なデータはscanのほうが効率いいらしい
+
+scan("hoge",list(No,,l,l,l),skip=1,sep=",")
+
+skipはヘッダ行を読み飛ばしと、開始行を指定。
+```
+
+## CSVデータ読み込み
+
+``` {.r org-language="R"}
+d<-read.csv("ファイル名",header=F,skip=")
+```
+
+## バイナリデータ読み込み
+
+``` {.r org-language="R"}
+DATA.NUM <- 2500 #行数
+col <- 9 #列数
+
+con <- file("../data/2023_0712/w_IMEP/AF_const/data_2023_0712_143906","rb")
+d <- readBin(con, what=double(), n=col*DATA.NUM, size=8)
+close (con)
+#配列に放り込むoptionなし,すべて1次元データとして読み込み
+s<-matrix(d,ncol=col,byrow=T)#col列の二次元データに変換
+sd<-as.data.frame(s)#データフレームに変換
+```
+
+# データ保存
+
+大きさが異なる変数はwrite.{table,csv}で保存できない
+
+``` {.r org-language="R"}
+library("dplyr")
+bind_rows()
+```
+
+NAで補完してサイズを合わせてくれる
+
+<https://a-habakiri.hateblo.jp/entry/2019/11/07/203512>
+
+# コマンド
+
+``` {.r org-language="R"}
+getwd() 現在ディレクトリの設定
+setwd() WorhDirの設定
+デリミタは　\\ または /
+source("hoge.R")でソースの読み込みと実行
+dump("hoge.R")でRのオブジェクトをダンプ
+
+save.image("h")でデータ、関数の保存
+load("h")でデータ、関数の読み込み
+```
+
+# データフレーム
+
+data.frame() フレームでいろいろ変えられる
+
+## read.tableのようにデータフレームに変換したいときは
+
+``` {.r org-language="R"}
+as.data.frame(オブジェクト名)
+
+a<-read.csv("hoge")
+data.entry(a)
+
+または
+
+fix(a)
+
+```
+
+とすると、読み込んだデータが表形式で現れる。
+
+(データエディタといい、編集もできるそうである)
+
+## 名前を用いた参照
+
+``` {.r org-language="R"}
+      year abc
+Japan 2006, 2
+USA   2000, 3
+```
+
+とすると
+
+``` {.r org-language="R"}
+a<-read.table("hoge")
+a$year
+```
+
+で列ごと
+
+``` {.r org-language="R"}
+a["Japan",]
+```
+
+で行ごと 参照できる。
+
+``` {.r org-language="R"}
+attach(a)
+```
+
+とすると
+
+``` {.r org-language="R"}
+year
+abc
+```
+
+だけで参照できる
+
+``` {.r org-language="R"}
+colnames(a)<- c("hoge","fuga")
+```
+
+で追加しても良いし、
+
+``` {.r org-language="R"}
+x1<-c(1,2)
+x2<-c(2,3)
+xx<-data.frame(hoge=x1,fuga=x2)
+```
+
+とすると名前hoge,fugaの列ができる!
+-列要素の足し算で、データが構成できる。!!
+
+## 列要素の加工
+
+``` {.r org-language="R"}
+a1<-2
+a2<-7
+a<-a[,-c((a1-1),(a1+1):(a2-1),(a2+1))]
+```
+
+とすると aから,1,3:6,8行を取り除く行列の出来上がり!
+
+``` {.r org-language="R"}
+a[1:3]とすると1列から3列
+a[1:3,]と,をつけないと、行指定の選択にならない
+:の優先順位が一番高いので、()をつけること!!
+```
+
+# 図を描く
+
+``` {.r org-language="R"}
+plot(sd$IMEP,xlim=c(0,DATA.NUM),ylim=c(0,ymax),col='black',ann=F)
+par(new=T)#上書きするおまじない
+#plot(IMEP.fil,type="l",xlim=c(0,DATA.NUM),ylim=c(0,ymax),col='blue')
+plot(IMEP.fil,type="o",xlim=c(0,DATA.NUM),ylim=c(0,ymax),col='blue')
+#type::l:線,o:点と線,p(点,default),b,cなどあり
+```
+
+## par(...)
+
+グラフィックパラメータの設定
+
+help(par)で参照 <http://takenaka-akio.org/doc/r_auto/chapter_05.html>
+
+``` {.r org-language="R"}
+lheight(line height)
+lwd(line width)
+lty(line type)
+xlog
+```
+
+## 新しい画面を開く
+
+``` {.r org-language="R"}
+dev.new()
+```
+
+## 画面を分割する
+
+``` {.r org-language="R"}
+layout(matrix(1:2,2,1,byrow=TRUE))#2行1列,行方向に並ぶ
+par(mfcol=c(2,1))
+```
+
+layout(hoge)の引数は分割サイズと図の配置位置も指定できる。
+
+``` {.r org-language="R"}
+#1行目に図を1つ、2行目2列に分けて、右側に図を書く
+nf <- layout(matrix(c(1,1,0,2), 2, 2, byrow = TRUE), respect = TRUE)
+layout.show(nf)
+
+#0は図を書かない、幅3:1,高さ1:3,
+nf<-layout(matrix(c(2,0,1,3),2,2,byrow=TRUE),c(3,1),c(1,3),TRUE)
+layout.show(nf)
+#http://eau.uijin.com/advgraphs/layout.html
+```
+
+## 画面を閉じる
+
+``` {.r org-language="R"}
+dev.off()#今見ている画面
+dev.off(2)#指定画面
+graphics.off()#全画面
+```
+
+# 文字を画面に出力する
+
+``` {.r org-language="R"}
+cat("IMEP fil mean = " , IMEP.fil.mean ,"\n")
+cat("IMEP fil sd = ", IMEP.fil.sd, "\n")
+
+#printで出力できるのは1つだけ
+#または
+#sprintf("IMEP fil mean = %f " , IMEP.fil.mean): 使えない
+```
+
+# lmを使う
+
+## lmの返すオブジェクト
+
+Rstat.pdf,p132.
+
+``` {.r org-language="R"}
+plot(ans$fitted.values,df$AirPassengers)#回帰データと元データをplot
+xlab="x axis name",
+ylab="y axis name",
+xlim=(0, 600), ylim=(0, 600),#描画範囲
+asp=1)
+abline(0,1)#傾き1の直線,fitしてたら一致するはず
+abline(ans)#回帰直線
+
+layout(matrix(1:4, 2, 2, byrow=TRUE))#一画面に複数の図を出す時のおまじない
+par(mar=c(4, 4.5, 1.5, 0.5), mgp=c(2.1, 0.8, 0))
+plot(ans, cex=0.7)
+plot(ans) # 回帰診断グラフ
+```
+
+## p.135(149)　図7.4(p.136) は，以下のようにして描くことができる。
+
+``` {.r org-language="R"}
+> plot(x, y, pch=19, cex=1.5) # 元のデータの散布図
+> x1 <- seq(0, 10, by=0.05) # 新しいデータ
+> new.data <- data.frame(x=x1) # データフレームにする
+> y1 <- predict(ans1, new.data) # 新しいデータに対する予測値
+> y3 <- predict(ans3, new.data)
+> y5 <- predict(ans5, new.data)
+> matlines(x1, cbind(y1, y3, y5), # 3 種類の予測値を描画
++ lty=3:1, col="black")
+> legend("bottomright", # 凡例を付ける
++ c("1 次式", "3 次式", "5 次式"), lty=3:1)
+==
+```
+
+## 低水準関数:abline
+
+``` {.r org-language="R"}
+abline(h=0,v=0)#座標軸を表示
+R-tips p.131(132)
+abline(切片,傾き,h=y,v=x)#ベクトルで与えたy座標の水平線、x座標の垂直線を引く
+abline(result)
+```
+
+result は関数lm() で直線回帰を行った結果が入ったオブジェクト
+で，回帰直線が描かれる．
+
+
+## lm()が返すオブジェクトobj
+
+-   obj\<-lm()とすると
+
+summary(obj),AIC(obj),coefficient(obj)などで値を取り出すことができる
+r-tips p.188(190)
+
+-   obj\$coeffciant, obj\$residuals, obj\$fitted.valuesなどもあり
+
+(Rstat, p,123(137)にしか説明はなし
+--\>helpにfited.valuesあり。グラフ表示もできた! )
+
+-   R-intro-1.7.0,p.53(59)にはcoeffients(obj)などのみの説明
+
+(\$coeffientsの説明はなし)
+
+-   formula(obj)#モデル式を抽出
+
+coefficients(obj)でも、obj\$coefficientsでも同じ結果が表示されるけど、
+lmの場合だけできる特典。coefficients(obj)が一般的
+
+
+## 
+
+``` {.r org-language="R"}
+Y . X1 + X2 + X3 + X4 # モデル式
+
+Df Sum of Sq RSS AIC # 独立変数を除いたモデルのAIC
+- X4 1 3.233 72.763 27.846 # X4 を除くとAIC が小さくなる
+< none > 69.531 29.392 # 何も取り除かないモデルのAIC
+- X1 1 41.797 111.328 32.099
+- X2 1 43.966 113.497 32.292
+- X3 1 165.279 234.810 39.562
+
+Step: AIC=27.85 # このステップでのAIC
+Y . X1 + X2 + X3 # モデル式
+Df Sum of Sq RSS AIC # 独立変数を除いたモデルのAIC
+< none > 72.763 27.846 # 今のモデルのAIC が最小
+- X1 1 39.909 112.673 30.219 # 以下のどれを取り除いても
+- X2 1 84.007 156.770 33.522 # AIC は大きくなる
+- X3 1 168.982 241.746 37.853
+```
+
+step で最小のAIC を持つ重回帰モデルlm(formula = Y 〜 X1 + X2 + X3, data
+
+;;Rstat.pdf,p.128(142)
+
+
+## stepの挙動;
+
+1.  そのバラメータを取り除いたときのAICを計算し、 小さい順に並べる
+2.  何も取り除かない時 \< none \>
+    のAICと比較し、それよりもAICが小さい時は
+    そのパラメータを取り除くことで、AICがよくなる(AICが小さくなる)ことを示しているので、そのパラメータを取り除くことにする。
+3.  一番小さいAICから順に、1つずつ(2)を繰り返す。
+4.  \<none\>の時のAICが一番小さい値になるまで繰り返す。
+5.  こうして残ったパラメータが有効なパラメータである。これについてPrなどを計算している
+
+# 時系列解析
+
+[Rの基本パッケージ中の時系列オブジェクト一覧](http://www.okadajp.org/RWiki/?Rの基本パッケージ中の時系列オブジェクト一覧)
+
+## AIC()
+
+## ar()
+
+# Rの標準パッケージに含まれる時系列データの型としてts(time series)がある
+
+<https://qiita.com/YM_DSKR/items/2528548913378bfbf9bc>
+
+[https://logics-of-blue.com/時系列解析_理論編](https://logics-of-blue.com/時系列解析_理論編)
+
+## AR
+
+y(t)=a1\*y(t-1)+a2\*y(t-2)+...+ap\*y(t-p)+eps
+
+## MA
+
+y(t)=mu+b1\*eps(t-1)+b2\*eps(t-2)+...+bq\*eps(t-q)+eps(t)
+
+## ARMA
+
+y(t)=a1\*y(t-1)+a2\*y(t-2)+...+ap\*y(t-p)+b1\*eps(t-1)+...
+
+Autoregressive Moving Avarage yとepsで回帰
+
+## ARIMA
+
+Autoregressive integrated Moving Avarage
+
+y(t)-y(t-d)=c+a1\*y(t-1)+a2\*y(t-2)+...+ap\*y(t-p)
+データの差分を取ってからARMAを適用したモデルです。
+
+# コレログラム
+
+<https://qiita.com/nash_efp/items/a35c1796e249277ec43f>
+
+## acf(IMEP.fil)#自己相関.1,2,3
+
+## pacf(IMEP.fil)#偏自己相関:注目している時以外を無視した自己相関係数
+
+acf pacf
+
+コレログラムとはそれぞれのラグについての自己相関係数を表した図です。
+
+日ごとのある株の収益率データを使って見ていきましょう。
+
+ラグ0は現在の自分と現在の自分の相関を表しているので当然1.0です。
+
+右にいくほど下がっている、つまり過去にいくほど現在との相関が弱くなって
+いることがわかります。
+
+# varモデル
+
+library(vars) VARモデル
+今年のサンマ　　　＝　去年のサンマ×傾きA　＋　去年のプランクトン×傾きB　　　＋切片C
+今年のプランクトン＝　去年のプランクトン×傾きD　＋　去年のサンマ×傾きE　　
+＋切片F
+[https://logics-of-blue.com/varモデル](https://logics-of-blue.com/varモデル)
+
+arxと同等???
+
+# Rの移動平均は
+
+## statsパッケージに含まれるfilterを利用
+
+dplyrとかぶるので、stats::filterとする library(tidyverse)
+<https://datasciencehenomiti.com/programing/r/dplyr_moving_average/>
+mutate( stats::filter(data,rep(1,n)/n,sides=1) )
+
+## filterという関数を用いて書く
+
+<http://tips-r.blogspot.com/2015/01/r_1.html> filter(x,c(1,1,1))/n
+c:時点n-1,現時点n,時点n+1,の重み c(1,1,1)とrep(1,3)は意味同じ
+rep(1,n)は1をn回繰り返し
+
+## dplyr
+
+RcppRoll:roll_sum(x,) RcppRoll:roll_mean(x,)
+
+zoo::rollapply()もあり
+<https://qiita.com/Sickle-Sword/items/d93aff1d29e1176e25fe>
+
+時系列データを扱うパッケージ zoo dplyr tidyr purrr tibble などあり
+<https://rstudio-pubs-static.s3.amazonaws.com/640203_28880d5e47b44029b9279d8e24385fba.html>
+
+mutate() データセットに変数を追加する関数
+<https://kazutan.github.io/kazutanR/hands_on_170730/mutate.html>
+mutate(iris,k=S.len\*2) irisのS.lenを2倍したkをirisの最後列に追加
+名前が同じなら、上書きする 行数が同じでないとだめ
+
+data.frameの仕様と同じ!?!?
+
+# パッケージ
+
+## package(library)のインストール
+
+tseries,statsはdebianのパッケージになし
+
+suしてRを起動 Rのコンソールから install.packages(\"tseries\",
+dependencies=TRUE) <https://stats.biopapyrus.jp/r/basic/package.html>
+libの指定がないので /usr/local/lib/R/site-library にinstall
+依存対象::TTR,curl,jsonlite,quadprog,quantmod,xts,zooも入った
+
+## library(tseries)
+
+tseriesにadfある
+
+## library(gvlma)
+
+#fit1=lm(sa\~a+b+c) #fit2=lm(sa\~a+b)
+
+#AIC(fit1,fit2) #https://htsuda.net/stats/regression.html
+
+## library(MASS)
+
+#stepAIC(fit,direction=\"backward\")
+
+<https://qiita.com/purple_jp/items/b5b36bc78a4ccfb42027>
+
+dev.new() acf(IMEP.fil)#自己相関.1,2,3
+pacf(IMEP.fil)#偏自己相関:注目している時以外を無視した自己相関係数
+
+imep.ar \<- ar(IMEP.fil)#係数表示,31次!!
+
+# 参考文献、URL
+
+## forecast
+
+パッケージforecastは、自動SARIMA推定だけでなく、色々な便利な関数が付い
+ています
+
+[https://logics-of-blue.com/時系列解析_理論編](https://logics-of-blue.com/時系列解析_理論編)
+
+[https://logics-of-blue.com/時系列分析_実践編](https://logics-of-blue.com/時系列分析_実践編)
+
+## TSstudio
+
+今回は、「MLmetrics」（精度評価用のライブラリー）と「forecast」（時系
+列解析のライブラリー）も利用するので、インストールされていない方は、イ
+ンストールしておいてください。
+<https://www.salesanalytics.co.jp/datascience/datascience011/>
+
+## ts\_ R1.pdf
+
+<http://user.keio.ac.jp/~nagakura/R/ts_R1.pdf>
+
+## lbrts.pdf
+
+リトルブック　関西大学
+<http://www.ec.kansai-u.ac.jp/user/arakit/documents/lbrts.pdf>
+
+## 統計解析ソフトRのスクリプト集
+
+<https://www.educa.nagoya-u.ac.jp/~ishii-h/materials/Rscripts_ishii.pdf>
+
+R 制御　モデルでgoogleした結果
+
+## 北川源四郎
+
+Rによる　時系列モデリング入門　岩波
+
+代表的な手法と応用へのポイントを、RパッケージTSSSを用いた分析により実
+践的に学ぶ。
+
+統計数理研究所で開発されたRパッケージTSSSの使用法と解析例を新たに多数
+追加した。
+
+### 時系列解析(6) --ARモデルの推定
+
+東京大学　数理・情報教育研究センター
+[http://www.mi.u-tokyo.ac.jp/mds-oudan/lecture_document_2019_math7/時系列解析（６）\_2019.pdf](http://www.mi.u-tokyo.ac.jp/mds-oudan/lecture_document_2019_math7/時系列解析（６）_2019.pdf)
+
+北川源四郎
+<http://www.mi.u-tokyo.ac.jp/mds-oudan/lecture_document_2019_math7/%E6%99%82%E7%B3%BB%E5%88%97%E8%A7%A3%E6%9E%90%EF%BC%88%EF%BC%96%EF%BC%89_2019.pdf>

@@ -1,0 +1,16 @@
+---
+title: "{{ replace .TranslationBaseName "-" " " | title }}"
+date: {{ .Date }}
+draft: true
+aliases:
+categories:
+tags:
+comments: false
+description: ""
+keywords:
+isCJKLanguage: true
+---
+
+= タイトル
+
+== セクション

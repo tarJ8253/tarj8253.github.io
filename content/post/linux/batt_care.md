@@ -1,0 +1,110 @@
+---
+#content/post/に置くファイルの雛形!
+#---はyamlの書式.+++はtoml
+title: "Linuxノートのバッテリメンテ" # Title of the blog post.
+date: 2025-03-04T15:46:46+09:00 # Date of post creation.
+description: "NOTE PC battery settings" # Description used for search engine.
+featured: false #true # sidebarのおすすめの投稿, sets if post is a featured post, making appear on the home page side bar.
+draft: false #true # Sets whether to render this page. Draft of true will not be rendered.
+toc: false # Controls if a table of contents should be generated for first-level links automatically.
+# menu: main # when uncomment, display on manu bar
+usePageBundles: false # Set to true to group assets like images in the same folder as this post.
+#featureImage: "/images/path/file.jpg" # Sets featured image on blog post.
+#featureImageAlt: 'Description of image' # Alternative text for featured image.
+#featureImageCap: 'This is the featured image.' # Caption (optional).
+#thumbnailはstatic/images/*.pngを
+#thumbnail: "/images/path/thumbnail.png" # Sets thumbnail image appearing inside card on homepage.
+#shareImage: "/images/path/share.png" # Designate a separate image for social media sharing.
+codeMaxLines: 10 # Override global value for how many lines within a code block before auto-collapsing.
+codeLineNumbers: false # Override global value for showing of line numbers within code block.
+figurePositionShow: true # Override global value for showing the figure label.
+# hugo.tomlのtaxonomiesで分類あり
+categories:
+  - linux settings
+tags:
+  - note pc
+  - battery 
+#series :
+#  - Enjoy Linux
+#aliases : 
+#  - migrate-from-jekyl
+# Create redirects from old URLs to new URLs with aliases:
+
+# comment: false # Disable comment if false.
+
+lang: ja
+#2023.2.27 初稿
+---
+
+<!--# Linuxノートのバッテリメンテ-->
+
+
+u937/Pにbullseye入れてます。
+
+<!--more-->
+
+## バッテリの状態を調べる
+
+upowerでわかります。\
+使い方:
+
+```
+    upower -d
+```
+
+いろいろ現れてその中に
+
+```
+    Device: /org/freedesktop/UPower/devices/battery_CMB1
+```
+
+とあります。\
+最後のCMB1がBAT0になるpcもあるようです。\
+バッテリの劣化程度などもわかるようです(percentage)。\
+energy-full,energy-full-design\
+現在の満充電可能量、設計量の割合がpercentageになるようです。
+
+## バッテリの充電制御をする
+
+```
+	#apt install tlp
+```
+
+Synapticからtlpをinstallしてもok(tlp-rdwもいるのかな??)\
+
+設定ファイルは
+
+```
+	/etc/tlp.conf
+```
+
+\# Battery charge thresholds (ThinkPad only).
+とかいていますが、u937でも使えるようです。\
+先頭の#を外して有効にします。
+
+```
+    START_CHARGE_THRESH_BAT0=75
+    STOP_CHARGE_THRESH_BAT0=80
+```
+
+末尾のBAT0を先程のデバイス名CMB1にしなくても使えるようです。\
+\
+vaioでは
+
+```
+    /sys/devices/platform/sony-laptop/battery_care_limiter
+```
+
+に80と書いたようです。
+
+u937には\
+/sys/devices/platform/fujitu-laptop/\
+にはバッテリ関連の設定ファイルはなさそう。
+
+## バッテリ使用量を調べる
+
+```
+    #powertop
+```
+
+あちこちのデバイスでの電力使用量がわかるようです。
