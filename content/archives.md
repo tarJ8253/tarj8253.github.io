@@ -29,6 +29,7 @@ layout: "archives"
 ## いろいろTips
 
 - [PDF文書を編集する](/post/linux/pdf-edit)
+- [pandocを用いたテキスト変換](/post/text_trans)
 - [Rの使い方メモ](/post/r-howto)
 - [maximaの使い方メモ](/post/linux/maxima-howto)
 - [Linuxのコマンド](/post/linux/lin_tips)
