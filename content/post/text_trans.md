@@ -164,7 +164,7 @@ pandocで変換時にリンクタグのアンダーバーのせいでおかし�
     <<tag>>
     ```
 
-    の形式で適当な箇所に手動追加。custom_idのブロックも削除。
+    の形式で適当な箇所に手動追加。custom_idのpropertyブロックも削除。
     exampleをsrcなどに加筆修正。
 
 その後、Emacs-pandoc-gfmとして変換。

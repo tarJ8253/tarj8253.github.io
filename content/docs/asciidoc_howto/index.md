@@ -42,7 +42,6 @@ isCJKLanguage: true
 #v.1.0, 2024.9.9
 ---
 
-
 <span id="header"></span>
 
 # **Asciidoc** の始めかた
@@ -59,7 +58,7 @@ md(マークダウン)より方言が少なく、表(table)の表現能力は高
 ``` example
 環境 bookwarm (debian 12.6)
 ```
-
+<!--more-->
 ``` example
 $ asciidoctor -v
 Asciidoctor 2.0.18 [https://asciidoctor.org]
@@ -807,9 +806,9 @@ description: "GAOOO"
     プリアンブルに :doctype: book 指定?  
     または変換オプション\`-d book\`指定
 
-<span id="変換出力"></span>
-
 ## 2.変換出力
+
+<span id="環境構築"></span>
 
 ### 2.1 環境構築
 
