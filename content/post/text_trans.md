@@ -93,15 +93,14 @@ Emacs上では、htmlにexportできます。
 
 ## org形式で書かれたテキスト
 
-### md形式に変更
+### md形式に変更 github-actionsで用いるため
 
 Emacsからexportします。
 
 -   方法1::
     Hugo/github-actionsで用いるため、ox-pandoc(Emacs)経由でgfm形式として出力するのが平和!  
 
-src Rが \`\`\`
-rとなり、多分プログラム言語としての扱いになるはず。frontmatterがつく
+src Rが \`\`\`rとなり、プログラム言語として表記。frontmatterがつく
 
 アンダーバーや大小の記号にはバックスラッシュが付けられる
 
