@@ -25,7 +25,6 @@ layout: "archives"
 - [Octave,データファイルの読み込み](/control/octave-data)
 - [Octave,配列に注意!](/control/octave-hairetu)
 
-
 ## いろいろTips
 
 - [PDF文書を編集する](/post/linux/pdf-edit)
