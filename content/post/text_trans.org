@@ -33,10 +33,9 @@ tags:
 # comment: false # Disable comment if false.
 #+language: ja
 #+options: toc:nil timestamp:nil ^:{}
+# * マークアップ形式テキストの変換-->
 ---
 
-
-* マークアップ形式テキストの変換
 
 いろいろなマークアップ形式で書かれたテキストを、
 目的に応じたテキストに変換するためのメモ
@@ -74,7 +73,7 @@ pandoc -f markdown -t pptx -o hogeFUGA.pptx src.md
 --reference-doc=template.pptx
 #+end_example
 
-(2)beamer形式:一旦texに落としてから、ブリアンブル編集してcompileする方が平和のようです。
+(2)beamer形式:一旦TeXに落としてから、ブリアンブル編集してcompileする方が平和のようです。
 
 #+begin_src bash
 pandoc -f markdown -t beamer -o hogeFUGA.tex src.md 
@@ -93,16 +92,17 @@ Emacs上では、htmlにexportできます。
 
 ** org形式で書かれたテキスト
 
-*** md形式に変更 github-actionsで対応するようになったので変換不要!!!!Happy!!
+*** (md形式に変更) github-actionsで対応するようになったので変換不要!!!!Happy!!
 
 Emacsからexportします。
 
-- 方法1:: Hugo/github-actionsで用いるため、ox-pandoc(Emacs)経由でgfm形式として出力するのが平和!\\
+- 方法1:: Hugo/github-actionsで用いるため、ox-pandoc(Emacs)経由でgfm形式として出力するのが平和!
 src Rが ``` rとなり、プログラム言語として表記。frontmatterがつく
 
 アンダーバーや大小の記号にはバックスラッシュが付けられる
 
-- 方法2::  Hugo-compatible-markdownでexport\\ frontmatterに#+HUGO_BASE_DIR: ./の指定必要
+- 方法2::  Hugo-compatible-markdownでexport
+   frontmatterに#+HUGO_BASE_DIR: ./の指定必要
   
 セクションヘッドにlinkがつけられる。\\
 セクション記号のアスタリスクが1つずつ増える(セクションレベル下がる)。\\
@@ -117,19 +117,22 @@ example環境がtext環境として出力される\\
 
 *** スライドを作成する
 
-- EmacsのexportでLatex/Beamer形式で出力\\
+- EmacsのexportでLatex/Beamer形式で出力
+  
 exportされたファイルのコンパイルオプションを変更。(pdfLaTeX用で出力されているため)\\
 必要なpackage追加や必要な修正加筆を行って、コンパイル
 - pandocを使って出力先にpptxとしたらできると思いますが未検証
 
 ** html形式で書かれたテキスト
 
-*** md形式に変更する
+*** (md形式に変更する):Github/actionsでOrg対応できるようになったので、不要かも..
 
 昔htmlタグを用いて作成したファイルをHugo/Githubで用いるためにmdに変換する。
 - 方法1:: pandoc -t markdownで出力。gfmはidタグ落ちるので不適,m*{_strict|mmd}も不適
 - 方法2:: 言語ソースを指定したいときはorgに一旦変換して、必要な編集を加筆実行。
 preタグはexampleになっているので、src hogeと変更する。その後orgを上記Emacs:pandoc/gfmで出力。
+
+org形式にして、手動で編集しましょう。
 
 ** asciidoc形式で書かれたテキスト
 

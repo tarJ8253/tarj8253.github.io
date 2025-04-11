@@ -43,8 +43,9 @@ lang: ja
 #title: ORGの使い方メモ
 #date: 2023/1/9
 #+LANGUAGE: ja
-#+options: toc:nil author:nil  timestamp:nil ^:{}
+#+options: toc:nil author:nil  timestamp:nil ^:{} 
 ##@@html:<hr>@@
+#+HTML_MATHJAX: align: left indent: 5em tagside: left font: Neo-Euler
 ---
 ORG使いましょ
 
@@ -330,6 +331,19 @@ C-c C-l tabで リンク補完が効くので
 #+end_example
 
 
+** Github/action使用時のリンク
+
+htmlのタグを書きました。
+
+#+begin_example
+リンク元
+@@html:<a href="#tojump">@@ここからジャンプ@@html:</a>@@
+
+リンク先
+@@html:<div id="tojump">@@ジャンプ受け@@html:</div>@@
+#+end_example
+
+
 * 特殊文字
 
 バッファ中での設定の要約
@@ -344,7 +358,7 @@ LATEX_HEADER
 などなど、
 たくさんある
 
-** TeXの数式を書く
+** TeXの数式を書く(検討中)
 
 [[https://orgmode.org/manual/Math-formatting-in-HTML-export.html][13.9.11 Math formatting in HTML export]]
 
@@ -361,6 +375,8 @@ LATEX_HEADER
 
 $\int _0^\infty f(x) \dfrac{d g(t)}{dt}dx$
 
+単なるOrg_2_html出力ならなんとかなっていますが、
+Hugo/github-actions時ではまだ知識が足りないようです。
 
 org文書中にinline表記するには、dvipngが必要です。
 
@@ -503,13 +519,13 @@ M-x org-latex-export-as-latex
 #+DATE: 1999/9/9
 #+EMAIL: hoge@fuga
 #+LANGUAGE: ja
-#+OPTIONS: author:nil email:nil creator:nil toc:nil timestamp:nil 
+#+OPTIONS: author:nil email:nil creator:nil toc:nil timestamp:nil ^:{} \n:t
 #+end_example
 
 OPTIONS行は以下をよく用います。
 
 #+begin_example
-#+OPTIONS: toc:nil ^:{} timestamp:nil
+#+OPTIONS: toc:nil ^:{} timestamp:nil \n:t
 #+end_example
 
 ^:{}はアンダーバーをそのまま表示する(下付き上付きを行わない。混在する

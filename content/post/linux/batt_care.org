@@ -33,78 +33,83 @@ tags:
 # comment: false # Disable comment if false.
 
 lang: ja
-#2023.2.27 初稿
+##2023.2.27 初稿
+##Linuxノートのバッテリメンテ
 ---
-
-<!--# Linuxノートのバッテリメンテ-->
 
 
 u937/Pにbullseye入れてます。
 
 <!--more-->
 
-## バッテリの状態を調べる
-
-upowerでわかります。\
+** バッテリの状態を調べる
+    :PROPERTIES:
+    :CUSTOM_ID: バッテリの状態を調べる
+    :END:
+upowerでわかります。\\
 使い方:
 
-```
-    upower -d
-```
+#+begin_src bash
+#upower -d
+#+end_src
 
 いろいろ現れてその中に
 
-```
-    Device: /org/freedesktop/UPower/devices/battery_CMB1
-```
+#+begin_exmaple
+Device: /org/freedesktop/UPower/devices/battery_CMB1
+#+end_exmaple
 
-とあります。\
-最後のCMB1がBAT0になるpcもあるようです。\
-バッテリの劣化程度などもわかるようです(percentage)。\
-energy-full,energy-full-design\
+とあります。\\
+最後のCMB1がBAT0になるpcもあるようです。\\
+バッテリの劣化程度などもわかるようです(percentage)。\\
+energy-full,energy-full-design\\
 現在の満充電可能量、設計量の割合がpercentageになるようです。
 
-## バッテリの充電制御をする
+** バッテリの充電制御をする
+    :PROPERTIES:
+    :CUSTOM_ID: バッテリの充電制御をする
+    :END:
 
-```
-	#apt install tlp
-```
+    #+begin_src bash
+#apt install tlp
+    #+end_src
 
-Synapticからtlpをinstallしてもok(tlp-rdwもいるのかな??)\
-
+Synapticからtlpをinstallしてもok(tlp-rdwもいるのかな??)\\
 設定ファイルは
 
-```
-	/etc/tlp.conf
-```
+#+begin_example
+/etc/tlp.conf\\
+# Battery charge thresholds (ThinkPad only).
+#+end_example
 
-\# Battery charge thresholds (ThinkPad only).
-とかいていますが、u937でも使えるようです。\
+とかいていますが、u937でも使えるようです。\\
 先頭の#を外して有効にします。
 
-```
-    START_CHARGE_THRESH_BAT0=75
-    STOP_CHARGE_THRESH_BAT0=80
-```
+#+begin_exmaple
+START_CHARGE_THRESH_BAT0=75
+STOP_CHARGE_THRESH_BAT0=80
+#+end_exmaple
 
-末尾のBAT0を先程のデバイス名CMB1にしなくても使えるようです。\
-\
+末尾のBAT0を先程のデバイス名CMB1にしなくても使えるようです。
+
 vaioでは
-
-```
-    /sys/devices/platform/sony-laptop/battery_care_limiter
-```
-
+#+begin_exmaple
+/sys/devices/platform/sony-laptop/battery_care_limiter
+#+end_exmaple
 に80と書いたようです。
 
-u937には\
-/sys/devices/platform/fujitu-laptop/\
+u937には
+#+begin_example
+/sys/devices/platform/fujitu-laptop/
+#+end_example
 にはバッテリ関連の設定ファイルはなさそう。
 
-## バッテリ使用量を調べる
-
-```
-    #powertop
-```
+** バッテリ使用量を調べる
+    :PROPERTIES:
+    :CUSTOM_ID: バッテリ使用量を調べる
+    :END:
+#+begin_src bash
+#powertop
+#+end_src
 
 あちこちのデバイスでの電力使用量がわかるようです。

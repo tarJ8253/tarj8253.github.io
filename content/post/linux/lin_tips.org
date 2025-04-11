@@ -1,0 +1,269 @@
+---
+#content/post/に置くファイルの雛形!
+#---はyamlの書式.+++はtoml
+title: "Linux tips" # Title of the blog post.
+date: 2025-02-22T01:08:48+09:00 # Date of post creation.
+description: "Linux,find,diff" # Description used for search engine.
+featured: true # sidebarのおすすめの投稿, sets if post is a featured post, making appear on the home page side bar.
+draft: false #true # Sets whether to render this page. Draft of true will not be rendered.
+toc: false # Controls if a table of contents should be generated for first-level links automatically.
+# menu: main # when uncomment, display on manu bar
+usePageBundles: false # Set to true to group assets like images in the same folder as this post.
+#featureImage: "/images/path/file.jpg" # Sets featured image on blog post.
+#featureImageAlt: 'Description of image' # Alternative text for featured image.
+#featureImageCap: 'This is the featured image.' # Caption (optional).
+#thumbnailはstatic/images/*.pngを
+#thumbnail: "/images/path/thumbnail.png" # Sets thumbnail image appearing inside card on homepage.
+#shareImage: "/images/path/share.png" # Designate a separate image for social media sharing.
+codeMaxLines: 10 # Override global value for how many lines within a code block before auto-collapsing.
+codeLineNumbers: false # Override global value for showing of line numbers within code block.
+figurePositionShow: true # Override global value for showing the figure label.
+# hugo.tomlのtaxonomiesで分類あり
+categories:
+  - linux tips
+tags:
+  - find
+  - diff
+#series :
+#  - Enjoy Linux
+#aliases : 
+#  - migrate-from-jekyl
+# Create redirects from old URLs to new URLs with aliases:
+
+# comment: false # Disable comment if false.
+###+title: Linux tips
+---
+
+
+個人的備忘録です。
+
+* 実行時間の計測(gcc, icc ,ifc)
+
+- -pg をつけてcompile,linkして実行 
+@@html:<font color="red">@@CFLAGS,FFLAGS,LDFLAGS全てに -pg をつけること!!@@html:</font>@@
+- プログラムを実行して終了すると、gmon.outができる
+- gprof ./prog-name gmon.out　として
+  プログラムとgmon.outからさまざまなものを計算される
+- このときは画面に流れるだけなので > としてリダイレクトしてファイル
+  に落とす
+
+* profile を使った最適化 (intel)
+
+for-ug_lnx.htm/optimizations/Profile-guided Optimizations
+
+1.-prof_gen をつけてcompileして実行
+
+#+begin_src bash
+$ifc -prof_gen hoge.f a.out
+#+end_src
+
+2.プログラムを実行して終了すると、****.dynができる。 ***は16進random
+
+3.以下を実行。
+#+begin_src bash
+$ifc -prof_use -options hoge.f
+#+end_src
+ として pgopti.dpiが出来上がる。
+
+4.これをfeefbackする
+
+* logout しても実行
+
+#+begin_src bash
+$nohup hoge &
+#+end_src
+  とするとhogeが実行\\
+  logout 後はプロセスとして実行するそうです。\\
+  &をつけてバックグランドに放り込んだほうがよいそうです。
+
+* コンソール画面をファイルへ出力
+
+#+begin_src bash
+$ hoge > fuga.txt 2>&1
+$ hoge 2>&1 | tee fuga.txt
+#+end_src
+ 2が標準エラー出力、1が標準出力
+
+* atコマンドの使いかた
+
+#+begin_src bash
+#at 10:20 Nov 11  > /sbin/hogefuga
+ Ctrl-D で抜ける
+ /var/lib/spool/at にあり
+#+end_src
+
+atqで確認できる
+
+* atコマンドで予定を知らせる!!!
+
+ポカよけに予定の時間が来たら、スクリーン上になにか表示するようにします。
+
+** 1. atでスクリプトファイル指定
+
+   #+begin_src bash
+   $at "16:00" -f /home/user/hoge/fuga.sh
+   #+end_src
+
+   時間の表記は\\
+   "10:50 日.月.西暦(下二桁)"\\
+   ("10:50 01.04.17")とか\\
+   10:50 Apr 1\\
+   とするそうです。\\
+   \\
+   "10:30 20200311" (2020年3月11日)でもok\\
+   \\
+   fuga.shの中身は
+
+   #+begin_example
+   #!/bin/bash 
+   DISPLAY=:0.0 \
+   eog /home/user/hoge/hoge.jpg
+   #+end_example
+
+   eog(eye of gnome)でpngなりjpgのファイルを表示します。\\
+   実行可能ファイルならなんでもokのようです。\\
+  @@html:<font color="red">@@ DISPLAYの最後のバックスラッシュ必須です。@@html:</font>@@\\
+   一行にしないとダメなのでしょう。
+  
+
+** 2. 端末上からechoをatに食わせる
+
+   #+begin_src bash
+   echo 'DISPLAY=:0.0 /home/user/hore.sh' | at now+1minute
+   #+end_src
+
+   hore.shの中身は上と同じです(DISPLAY無くても大丈夫です)
+   
+
+notify-send(libnotify-bin install)を用いてもできるようですが、
+今の環境(wheezy/gnome)では、表示アイコンが沈んでしまうので、使いませんでした。
+
+* diffのオプション
+
+#+begin_export ascii
+ Nar{uc}=Newfile,text,recursive,output num line{unified,copied}context
+#+end_export
+- ディレクトリ内ファイルの比較
+#+begin_src bash
+$diff -qr FROM_DIR TARGET_DIR
+#+end_src
+- ディレクトリ以下全パッチ(ファイル名書かんでも済む!!)
+#+begin_src bash
+$diff -cr FROM_DIR TARGET_DIR > PATCH
+#+end_src
+- ディレクトリ以下全パッチ, 一方にしか存在しないファイルも対象にする時
+#+begin_src bash
+$diff -crN FROM_DIR TARGET_DIR > PATCH
+#+end_src
+
+* bashでのパターン照合
+
+hogeに文字列が設定されているとする
+
+#+begin_example
+- ${hoge#pattern}--hogeの最初の部分と、patternが一致する場合、最も短い一致部分を削除し、残りの部分を返す。
+- ${hoge##pattern}--hogeの最初の部分と、patternが一致する場合、最も長い一致部分を削除し、残りの部分を返す。
+- ${hoge%pattern}--hogeの最後の部分と、patternが一致する場合、最も短い一致部分を削除し、残りの部分を返す。
+- ${hoge%%pattern}--hogeの最後の部分と、patternが一致する場合、最も長い一致部分を削除し、残りの部分を返す。
+#+end_example
+  @@html:<font color="red">@@newname=${hoge%.tex}.txtとすると拡張子の変換が一括でできる。便利!。
+  ただし、マッチしない場合は、単純に後ろに付け加わるので、注意 !@@html:</font>@@
+  
+* gnome メニューから電源offが消えた!
+
+gnome-shell-extensionsは入っているが、どのようにしたらいいかわからん?!
+
+** システムメニューの高度な設定
+GNOME Shell extension 拡張機能の中のAlternative Status Menu拡張機能　をON\\
+なおった!!!
+
+http://maguro.2ch.sc/test/read.cgi/linux/1402722086/
+
+* findの使い方
+
+**  基本
+
+#+begin_example
+-atime n: access
+-ctime n: changestatus
+-mtime n: modify
+#+end_example
+
+-nでn日より後、
++nでn日より前
+
+time=>minで分指定
+
+#+begin_example
+-type {b,c,d,f,l}:block file ,caracter file, dir, file, symlink
+#+end_example
+
+#+begin_src bash
+$find ./docs -mtime -1
+$find ./docs -mmin -600
+$find ./docs -mmin -600 | xargs ls -al
+#+end_src
+
+** ある日時指定
+
+#+begin_src bash
+$find ./docs/ -newerct '2015/2/5 0:0:0' -and ! -newerct '2015/2/6 0:0:0'
+#+end_src
+
+すごい!
+
+** 文字列のあるファイル
+
+#+begin_src bash
+$find ./ -type f -print | xargs grep 'hoge'
+#+end_src
+
+すごい!!!!
+
+
+
+
+* プロセスhogeをまとめてkill
+
+#+begin_src bash
+$pgrep hoge | xargs kill -9
+または
+$pkill hoge
+#+end_src
+
+とってもらくーーー
+
+
+* unzipで文字化け
+
+windowsのアーカイブをもらってunzipすると、
+cp932のままutf8にならないので、ファイル名が化けてます。\\
+unar を使います。(要 apt install)
+
+#+begin_src bash
+$unar ファル名
+#+end_src
+
+無事に文字化けしない日本語が読めます。
+
+#+begin_src bash
+$unzip -Ocp932\\
+#+end_src
+
+もあるそうですが、私の環境では-Oは使えませんでした。\\
+unarでもファイル名が化けた場合は、encodingを直接指定します。
+
+#+begin_src bash
+$unar -e cp932 ファル名
+#+end_src
+
+
+* Windowsの日本語ファイル名かつパスワード付きzipの解凍
+
+上記unarでできました!Happy!(unzipの -Pではcheckdir errorと怒られました)
+
+#+begin_src bash
+$unar -p password filename
+#+end_src
+
+password中に&が入って怒られたときは、\&で切り抜けました。(バックスラッシュ神)

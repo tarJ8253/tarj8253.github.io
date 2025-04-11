@@ -1,0 +1,306 @@
+---
+#content/post/に置くファイルの雛形!
+#---はyamlの書式.+++はtoml
+title: "maximaおぼえがき" # Title of the blog post.
+date: 2025-03-04T15:46:46+09:00 # Date of post creation.
+description: "maxima つかいかた" # Description used for search engine.
+featured: false #true # sidebarのおすすめの投稿, sets if post is a featured post, making appear on the home page side bar.
+draft: false #true # Sets whether to render this page. Draft of true will not be rendered.
+toc: false # Controls if a table of contents should be generated for first-level links automatically.
+# menu: main # when uncomment, display on manu bar
+usePageBundles: false # Set to true to group assets like images in the same folder as this post.
+#featureImage: "/images/path/file.jpg" # Sets featured image on blog post.
+#featureImageAlt: 'Description of image' # Alternative text for featured image.
+#featureImageCap: 'This is the featured image.' # Caption (optional).
+#thumbnailはstatic/images/*.pngを
+#thumbnail: "/images/path/thumbnail.png" # Sets thumbnail image appearing inside card on homepage.
+#shareImage: "/images/path/share.png" # Designate a separate image for social media sharing.
+codeMaxLines: 10 # Override global value for how many lines within a code block before auto-collapsing.
+codeLineNumbers: false # Override global value for showing of line numbers within code block.
+figurePositionShow: true # Override global value for showing the figure label.
+# hugo.tomlのtaxonomiesで分類あり
+categories:
+  - tool
+tags:
+  - maxima
+#series :
+#  - Enjoy Linux
+#aliases : 
+#  - migrate-from-jekyl
+# Create redirects from old URLs to new URLs with aliases:
+
+# comment: false # Disable comment if false.
+lang: ja
+#2007.4.13作成
+##+title: maxima-howto
+#$ maximaおぼえがき
+# *+半角spaceをつけて*の上でshift+#を押せばCOMMENTとなる: yaml error! NG
+---
+
+
+** 入力コマンド
+
+- 命令の最後には必ずセミコロン*;*をつける!!
+  
+
+- 終了は
+
+  #+begin_src maxima
+    quit();
+  #+end_src
+
+ <!--more-->
+  
+** Maximaの作法
+1.命令の最後には必ずセミコロン@@html:<font color="red">@@;@@html:</font>@@をつける!!
+
+   #+begin_src maxima
+   ;
+   #+end_src
+
+   が入力の終了
+   
+
+2.しかし、表示させたくないときは最後を$にする
+
+   $をつけると、outputは表示されないが、batch実行時のinputは表示される(勘違いしないこと)。
+   
+
+3.コロン@@html:<font color="red">@@:@@html:</font>@@ が代入演算子や変数の定義など
+
+   #+begin_src maxima
+   変数名: 変数の内容;
+   a:2;
+   #+end_src
+
+   
+4.関数の定義は@@html:<font color="red">@@:=@@html:</font>@@
+
+   #+begin_src maxima
+   勘数名f(x):=x^2+x+1;
+   #+end_src
+
+5.clear 相当は kill\\
+   変数の内容を消去するときは
+
+   #+begin_src maxima
+   kill(消去する変数名, ,...);
+   kill(a);
+   kill(all);/*全部クリア*/
+   #+end_src
+
+6.表示を整理
+
+   #+begin_src maxima
+   simplify[f[x]]の代わりはratsimp(f(x));
+   Fullsimplify[f[x]]の代わりはfullratsimp(f(x));
+   #+end_src
+
+7.コメントはC言語のように/* */
+
+   #+begin_src maxima
+   /* ここにコメントをかく */ 
+   #+end_src
+
+** 行列
+    :PROPERTIES:
+    :CUSTOM_ID: 行列
+    :END:
+1.行列の生成
+
+   #+begin_src maxima
+    A:genmatrix(a,n,m);
+   #+end_src
+
+   でn行m列の行列ができる。
+
+   #+begin_src maxima
+    (a1,1 a1,2)
+    (a1,2 a2,2)
+   #+end_src
+
+   となる。
+
+2.要素への代入は(代入演算子は*:*)
+
+   #+begin_src maxima
+    A[1][1]:5;
+   #+end_src
+
+   などとする。
+
+3.直接行列要素を入力する場合
+
+   #+begin_src maxima
+    A:matrix([1,2],[3,4]);
+   #+end_src
+
+   とすると
+
+   #+begin_src maxima
+    [1 2]
+    [3 4]
+   #+end_src
+
+   になる。
+
+4.対角行列は
+
+   #+begin_src maxima
+     A:diagmatrix(3,2);(大きさ,数値)となる
+   #+end_src
+
+   要素が変わる場合は
+
+   #+begin_src maxima
+   A:apply(matrix,makelist(ident(次数)[i]*[1, 2, 3, 4などリスト],i,1,次数));
+   #+end_src
+
+5.単位行列は
+
+   #+begin_src maxima
+     I:ident(n)
+   #+end_src
+
+6.行列の累乗は
+
+   #+begin_src maxima
+    ^^
+   #+end_src
+
+7.行列とベクトルの積はピリオド
+
+   #+begin_src maxima
+     . 
+   #+end_src
+
+   を使う
+
+** 関数,式,表示
+    :PROPERTIES:
+    :CUSTOM_ID: 関数式表示
+    :END:
+1.関数の定義
+
+   #+begin_src maxima
+    f(x,y,s,t):=x^s*y^t;
+   #+end_src
+
+2.表示 分数のまま表示されるが、展開したいときは
+
+   #+begin_src maxima
+    float(数値評価する式);
+   #+end_src
+
+3.数値解
+
+   #+begin_src maxima
+    float(solve([.....]))などのようにする。
+    solve([...])だけだと、分数のまま表示される。
+   #+end_src
+
+   定数も
+
+   #+begin_src maxima
+    float(sqrt(2));
+    float(sin(30/180));
+   #+end_src
+
+   などとする
+
+4.ratsimpで整理して表示(上を参照)
+
+5.coeffと同じ
+
+   #+begin_src maxima
+   ratcoeff(式,項)
+   #+end_src
+
+6.解を代入
+
+   #+begin_src maxima
+    solve(a*x^2+b*x+c=0,x);
+    av=ex(x, %[1]); 
+   #+end_src
+
+   で解をavに代入できる
+
+7.%piで円周率は定義されている。
+   
+
+8.文字で解きたい 連立方程式の解を求める時など、文字のまま扱いたい時は、
+   %を文字の前につける。 例えば
+
+   #+begin_src maxima
+    solve([%a1*x+%b1*y=%c1,%a2*x+%b2*y=%c2],[x,y]);
+   #+end_src
+
+   ただし%pi(円周率)と%i(虚数単位)などはいくつかの文字定数は使用済なので注意!!
+
+** miscなこと
+    :PROPERTIES:
+    :CUSTOM_ID: miscなこと
+    :END:
+1.helpは
+
+   #+begin_src maxima
+   describe(topic) or example(topic)  or ? topic
+   #+end_src
+
+2.保存はsave(`ファイル名`'',all);\\
+   ただし、全部Lisp?で書かれているのでよくわからん。
+
+3.保存時に拡張子.tmをつけるとTeXMacs用のいろんなものが入る。
+
+   拡張子無しだと、入出力結果だけ保存\\
+   ->次回TeXmcsから読み込んでも使えない ??
+   
+
+4.変数だけ保存する場合は
+
+   #+begin_src maxima
+   write_data(変数名,"ファイル名",セパレータ)
+   #+end_src
+
+   csv形式で保存されます。\\
+   セパレータは comma(","), pipe("|"), semicolon(";"),
+   'csv::(",")と同じ??
+
+5.TeXで出力する時は
+
+   #+begin_src maxima
+    tex(計算式)
+   #+end_src
+
+6.バッチファイルの実施は
+
+   #+begin_src maxima
+    batch(``ファイル名'');
+   #+end_src
+
+   ファイルの拡張子はmacを使っている例が多いようである。\\
+   \\
+   以下もあるようだが、うまく動作しない。???
+
+   #+begin_src maxima
+    loadfile(``ファイル名'');
+    playback(all);で実行表示
+   #+end_src
+
+   ファイル名はフルパスで書いたほうが平和\\
+   $MAXIMA\_DIRECTORYの　share,share1,share2,tensor
+   から読み込もうとする。
+
+7.カレントディレクトリは system("pwd");
+
+8.ディレクトリ変更はLispの関数を使用。\\
+   #+begin_src maxima
+   ?xchdir("~/hoge");
+   #+end_src
+   などとします。 冒頭の?はLispの関数であることを示します。
+
+** 参考元
+    :PROPERTIES:
+    :CUSTOM_ID: 参考元
+    :END:
+- [[./maxima-nakagawa.pdf][Maxima入門ノート(中川先生)]]
