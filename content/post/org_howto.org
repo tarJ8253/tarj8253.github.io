@@ -31,7 +31,7 @@ tags:
 #  - migrate-from-jekyl
 # Create redirects from old URLs to new URLs with aliases:
 # comment: false # Disable comment if false.
-#"2025.4.7: いろいろ整理  
+#2025.4.7: いろいろ整理  
 #2024.12.4:エクスポートオプション追記  
 #2024.9.9:(S99.9.9) 追記  
 #2024.1.5:追加修正  
@@ -40,19 +40,12 @@ tags:
 #<hr>
 lang: ja
 #title: ORGの使い方メモ
----
-#+title: ORGの使い方メモ
-#+date: 2023/1/9
+#title: ORGの使い方メモ
+#date: 2023/1/9
 #+LANGUAGE: ja
 #+options: toc:nil author:nil  timestamp:nil ^:{}
-2025.4.7: いろいろ整理\\
-2024.12.4:エクスポートオプション追記 \\
-2024.9.9:(S99.9.9) 追記 \\
-2024.1.5:追加修正 \\
-2023.4.4:追加修正 \\
-2021.8.27:初版
-@@html:<hr>@@
-
+##@@html:<hr>@@
+---
 ORG使いましょ
 
 <!--more-->
