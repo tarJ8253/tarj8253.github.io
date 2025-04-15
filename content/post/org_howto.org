@@ -129,11 +129,12 @@ v	‘#+BEGIN_VERSE’ … ‘#+END_VERSE’
 テキスト文書の中に、ソースコードも混在できます。
    
 #+begin_example
-#+begin_example
 
-#+end_exampleは<pre>
+example環境は<pre>,言語指定できない。
 
-#+BEGIN_SRC ソースコード種類
+ソースコードはsrc環境
+
+#+BEGIN_SRC ソースコード種類(言語指定)
 
 #+END_SRC
 

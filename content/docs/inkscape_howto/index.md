@@ -8,7 +8,7 @@ featured: true # sidebarのおすすめの投稿, sets if post is a featured pos
 draft: false #true # Sets whether to render this page. Draft of true will not be rendered.
 toc: false # Controls if a table of contents should be generated for first-level links automatically.
 # menu: main # when uncomment, display on manu bar
-#usePageBundles: false # Set to true to group assets like images in the same folder as this post.
+#usePageBundles: false # Set to true to group assets like images in the same folder as thigs post.
 usePageBundles: true # Set to true to group assets like images in the same folder as this post.
 #featureImage: "/images/path/file.jpg" # Sets featured image on blog post.
 #featureImageAlt: 'Description of image' # Alternative text for featured image.
@@ -191,12 +191,14 @@ shiftキーを押しながら好きな色のパレットをクリックすると
 
 ![](./figs/curve/curve-1.png)
 
-2. ノードツールアイコンを押して、ノード(制御点)を表示します。
+
+2.ノードツールアイコンを押して、ノード(制御点)を表示します。
 
 
 ![](./figs/curve/curve-2-r.png)
 
-3. ノードを左クリックしたままマウスを動かすと、任意のカーブが現れます。
+
+3.SHIFTキー押したままノードを左クリックし、マウスを動かすと、任意のカーブになります。
 
 マウスを動かした方向に現れる青い線が、接線方向を示します。
 
@@ -206,8 +208,7 @@ shiftキーを押しながら好きな色のパレットをクリックすると
 
 ![](./figs/curve/curve-fin.png)
 
-1.の段階で、フィルなし、ストロークだけにしておくと作業しやすいかもしれ
-ません。
+1.の段階で、フィルなし、ストロークだけにしておくと作業しやすいかもしれません。
 
 5. 最初から曲線を描く方法として、
 

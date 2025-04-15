@@ -29,13 +29,13 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="1.8723123"
-     inkscape:cx="224.0545"
-     inkscape:cy="164.50247"
-     inkscape:window-width="1920"
-     inkscape:window-height="1131"
+     inkscape:zoom="5.2956989"
+     inkscape:cx="151.16041"
+     inkscape:cy="45.319797"
+     inkscape:window-width="2560"
+     inkscape:window-height="1371"
      inkscape:window-x="0"
-     inkscape:window-y="32"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="g716" />
   <g
@@ -51,14 +51,14 @@
     <text
        xml:space="preserve"
        style="font-size:16px;line-height:1.2;font-family:IPAexゴシック;-inkscape-font-specification:IPAexゴシック;letter-spacing:0px;word-spacing:0px"
-       x="37.859657"
-       y="25.72743"
+       x="15.21156"
+       y="26.725439"
        id="text860"><tspan
          sodipodi:role="line"
          id="tspan858"
-         x="37.859657"
-         y="25.72743"
-         style="font-size:16px;fill:#ff0000">1.ノードを左クリック</tspan></text>
+         x="15.21156"
+         y="26.725439"
+         style="font-size:16px;fill:#ff0000">1.ノードをshift+左クリック</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:16px;line-height:1.2;font-family:IPAexゴシック;-inkscape-font-specification:IPAexゴシック;letter-spacing:0px;word-spacing:0px"
