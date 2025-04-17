@@ -234,6 +234,12 @@ File -> save
 
 ![](./figs/save/save-3-r.png)
 
+
+**必ず拡張子をmdにしてください!!**
+
+お節介焼きのMSは、拡張子がmd(markdown)としないと、働いてくれません!!
+
+
 ## html形式で表示
 
 htmlに変換して表示させます。
