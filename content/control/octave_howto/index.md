@@ -54,7 +54,7 @@ octaveしましょう。 その方が平和です。**
 	![](./octave-control/p04.pdf.png){style="align:left"}
 -->
 
-``` matlab:step1.m
+``` octave
 %% b2_control_step1.m 2023.10.31版
 clear all%変数クリア
 close all%図のwindowをすべて閉じる
@@ -231,7 +231,7 @@ octaveは数式演算ソフトなので、様々な数式を解くことがで�
 関数として簡単に各種の作業を行うことができ、
 制御系設計を容易に行うことができます。
 
-```
+```octave
     pkg load control
 ```
 
@@ -245,19 +245,19 @@ octaveは数式演算ソフトなので、様々な数式を解くことがで�
 1.  伝達関数
 
 -   伝達関数の設定
-```
+```octave
 	G=tf(\[分子の係数\],\[分母の係数\]);
 ```
 G=tf(\[1\],\[1 2 1\]);など
 
 -   極と零点で指定
-```
+```octave
 	zpk(\[z1, z2 \...\],\[p1, p2	\...\],K)
 ```
 を使います(2022.6.8,New)\
 	零点や極がないときは、\[ \]だけ必要です。
 
-```
+```octave
 	G=zpk([],[-1, -2],3);%3/(s+1)(s+2)=3/(s^2+3s+2)
 ```
 
@@ -266,7 +266,7 @@ G=tf(\[1\],\[1 2 1\]);など
 
 -   s式で指定する方法。
 
-```
+```octave
 	s=tf('s');
 	G=1/(s+p1)(s+p2);
 ```
@@ -276,19 +276,19 @@ G=tf(\[1\],\[1 2 1\]);など
 
 -   伝達関数の分母(pole)と分子(zeros)を取り出す。
 
-```
+```octave
 	[p z]=tfdata(G)
 ```
 
    p,zはセル配列なので、数値として取り出すときは
    
-```
+```octave
 	pp=p{1,1}
 ```
 
 などとします。
    
-```
+```octave
 	roots(pp)
 ```
 
@@ -297,7 +297,7 @@ G=tf(\[1\],\[1 2 1\]);など
 
 -   伝達関数の分母と分子を整理。
 
-```
+```octave
 	Gm=minreal(G)
 ```
 
@@ -307,14 +307,14 @@ minrealしないと、約分前の高次式の全ての極と零点が用いら�
 
 
 -   伝達関数の足し算:
-```
+```octave
 	G=sysadd(A,B);
 ```
 
 AとBが並列時に使います。G=A+Bと同意ですのでほとんど使わないと思います。
 
 -   伝達関数の掛け算:
-```
+```octave
 	G=sysmult(G1,G2);
 ```
 G1,G2が直列時に使います。
@@ -322,7 +322,7 @@ G=A\*Bと同意ですのでほとんど使わないと思います。
 
 -   係数どうしの掛け算
 
-```
+```octave
 	conv([a b c],[d e f]);
 ```
 
@@ -333,7 +333,7 @@ $(ax^2+bx+c)*(dx^2+ex+f)$の係数が求まります。
 
 いずれかを使います。(ただしこれも使用例をほとんど見受けられません)
 
-```
+```octave
 	GG=feedback(G,GF);
 	GG=buildssic([1 -2;2 1],[],1,1,G,GF);
 ```
@@ -343,7 +343,7 @@ Gは前向き伝達関数、GFはFB伝達関数、を負のFB結合した
         
 buildssicの引数について調べたい時は、ヘルプかソースを除いてください。
    
-```
+```octave
 	buildssic(CLIST,ULIST,OLIST,ILIST,G1,..,G8)
 ```
 http://www.ecs.shimane-u.ac.jp/~hamaguchi/class/octave/octave_9.htm
@@ -365,7 +365,7 @@ http://www.ecs.shimane-u.ac.jp/~hamaguchi/class/octave/octave_9.htm
         (<font color='red'>%から後ろはコメント</font>です)
         書き方修正しました。2023.9.1,迷惑かけた人ごめんなさい
 
-``` matlab:s.m
+``` octave
 	end_time=10;%終了時間
 	div_time=1000;%分割数
 	dt=end_time/div_time;
@@ -377,7 +377,7 @@ http://www.ecs.shimane-u.ac.jp/~hamaguchi/class/octave/octave_9.htm
 	end
 ```
 		
-``` 
+``` octave
 	[y x]=lsim(G,u,t);
 	plot(t,y)
 ```
@@ -390,7 +390,7 @@ Octave bug??? 時間応答を求める時に注意!!!
 		
 2.  時間を指定して時間応答を図示
 
-``` matlab:p.m
+``` octave
             t=0:0.01:10
             y=step(G,t)
             plot(t,G)
@@ -419,17 +419,17 @@ Octave bug??? 時間応答を求める時に注意!!!
 -   根軌跡 rlocus(伝達関数)\
 	根軌跡の場合にスケールonするのは
 
-```
+```octave
     sgrid on
 ```
 指定したzetaの補助線だけを示すときは
-```
+```octave
 	zeta=0.691;
 	sgrid(zeta,[]);
 ```
 とします。
 図の縦横比を同じにするには
-```
+```octave
 	daspect([1 1])
 ```
 を加えます。
@@ -437,12 +437,12 @@ Octave bug??? 時間応答を求める時に注意!!!
 
 -   極位置描画 pzmap(伝達関数)
 
-```
+```octave
 	[p z]=pzmap(G)
 ```
 とすると、極と零点の値が求まります。plotしたいときは
 
-```
+```octave
 	p_r=real(p(1))
 	p_i=imag(p(1))
 	plot(p_r,p_i,'m*')
@@ -451,11 +451,11 @@ Octave bug??? 時間応答を求める時に注意!!!
 などとします。 p(1)は戻り値に応じて適切なindexにしてください。\
 control	packageが3.2未満の場合、バグが現れることがあります。(零点の影響)
 
-```
+```bash
 	#apt install liboctave-dev
 ```
 して、octaveのコマンドウィンドゥから
-```
+```octave
 	>>pkg update
 ```
 してください。\
@@ -465,14 +465,14 @@ control-3.2.0とio-2.6.3が入りました。(2021.6.9)
 	
 表示の縦横比を揃えたいときは
 
-```
+```octave
 	daspect([1 1])
 ```
 	
 とします。
 三次元の場合は
 
-```
+```octave
 	daspect([1 1 1])
 ```
 とします。
@@ -488,7 +488,7 @@ plot(\[x座標データ\],\[y座標データ\])が基本ですが、
 
 -   1画面上に重ねる hold on
 
-```
+```octave
         plot(x,y);
         hold on
 ```
@@ -499,7 +499,7 @@ hold onがないと、最後に命令したplotだけが残ります。\
 
 -   画面の分割 subplot(行数、列数、描く場所)
 
-```
+```octave
 	subplot(2,1,1)
 	plot(G)
 	subplot(2,1,2)
@@ -512,7 +512,7 @@ hold onがないと、最後に命令したplotだけが残ります。\
 
 -   表示をズームする。限定したい。 x(y)lim(\[min max\])
 
-```
+```octave
 	xlim([表示するxの最小値 表示するxの最大値])
 	ylim([表示するyの最小値 表示するyの最大値])
 	axis([表示するxの最小値 表示するxの最大値 表示するyの最小値 表示するyの最大値])
@@ -533,7 +533,9 @@ octaveのグラフィックスはgnuplotを使っているので、同じ感覚�
 ます。\
 わかりにくければ、
 
+``` octave
     help 命令
+```
 
 としてください。
 
@@ -541,12 +543,14 @@ octaveのグラフィックスはgnuplotを使っているので、同じ感覚�
 
 print((fig番号),ファイル名、形式) とすれば、ファイルに落ちます。
 
+``` octave
     print("h.svg","-dsvg")
+```
 
 これで、svg形式でh.svgというファイル名で保存されました。\
 たくさんの図を一気に保存するときはloopを回しましょう
 
-``` matlab:p.m
+``` octave
     ext=".svg";
     fb="hoge";
     for i=1:n
@@ -570,14 +574,14 @@ print((fig番号),ファイル名、形式) とすれば、ファイルに落ち
 
 -   配列の設定
 
-```
+```octave
         tau=[0.01 0.1 0.5 ];%0.01と0.1と0.5を設定します。
         tau=0:0.1:5;%0か5まで0.1刻みで設定します。
 ```
 
 -   forループ
 
-```
+```octave
         for i=1:2
         ***
         end
@@ -585,7 +589,7 @@ print((fig番号),ファイル名、形式) とすれば、ファイルに落ち
 
 -   高次方程式の解を求める roots
 
-```
+```octave
 	    plot(roots([1 1 1]),"x")
 ```
    $x^2+x+1=0$の解の位置を描画します。
@@ -595,7 +599,7 @@ print((fig番号),ファイル名、形式) とすれば、ファイルに落ち
 -   コメント　% (octaveは#も可)\
     ブロックコメント%{ 〜 %}
 
-```
+```octave
         %{
         この間すべてコメントになります。
         %}
@@ -608,7 +612,7 @@ print((fig番号),ファイル名、形式) とすれば、ファイルに落ち
 
 -   関数
 
-```
+```octave
         function r=fname(hoge)
          ......
         endfunction
@@ -620,7 +624,7 @@ print((fig番号),ファイル名、形式) とすれば、ファイルに落ち
 また、octaveがインタプリタだからなのか、pathを設定しないと、怒られること
 があります。
 
-```
+```octave
 	    path (path, '/hoge/fuga/octave_source_dir');
 ```
 
@@ -630,7 +634,7 @@ print((fig番号),ファイル名、形式) とすれば、ファイルに落ち
 
 たとえばG(1),G(2),G(3)のステップ応答を重ね描きしようとして
 
-```
+```octave
 for i=1:3
  step(G(i))
  hold on
@@ -638,7 +642,7 @@ end
 ```
 
 とすると
-```
+```octave
     error: A(I):Index exceeds matrix dimension.
 ```
 
@@ -646,7 +650,7 @@ end
 **セル配列を用いましょう!!**\
 G{1},G{2},G{3}として伝達関数を定義すると
 
-```
+```octave
 for i=1:3
 step(G{i})
 hold on

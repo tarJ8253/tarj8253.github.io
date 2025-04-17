@@ -38,7 +38,7 @@ help plotなどとして、内容を調べてください。
 
 基本
 
-``` matlab:p.m
+``` octave
     plot(y)
     H=plot(x,y)
     H=plot(x,y,''option'')
@@ -92,7 +92,7 @@ help plot,doc plot
 	-   get(H)で、得られたプロパティ(属性:線の色、太さなど)が表示されます。
     そのハンドル番号に対してset命令を用いてさまざまな設定を行います。
 
-```
+``` bash
     get(H)
     ans=
       scalar structure containing the fields:
@@ -117,7 +117,7 @@ linewidth(線の太さ)の単位はpt(ポイント)のようです。\
 - 軸の設定は axis(\[xmin xmax ymin ymax\])や xlim(\[xmin xmax\]),ylim(\[ymin ymax\]),で設定もできるが、明示的にいろいろ設定したい場合は、
 軸プロパティを指定すれば良い。
 
-```
+```bash
     gca:get a handle current axes object
 
     get(gca);%プロパティが表示されます。
@@ -137,7 +137,7 @@ linewidth(線の太さ)の単位はpt(ポイント)のようです。\
 |その他、area, rose, compassなどあり|
 
 
-``` matlab:b.m
+``` octave
     N=6;
     x=linspace(1,N,N)';
     bar(x,4*[cos(x)+1.5 sin(x)+1.5 rand(N,3)+1.0])%'grouped'がdefault
@@ -420,7 +420,7 @@ svgファイルをEditorで読み込んでテキスト編集してもできま�
     軸の縦横比を揃えて「円」を円らしく表記したいときなどは、縦横比を指定します。初期
     値は auto のようです。
 
-```
+```octave
         daspect([1 1])
         daspect([1 1 1])
 ```
@@ -429,7 +429,7 @@ svgファイルをEditorで読み込んでテキスト編集してもできま�
 
 -   grid 根軌跡の場合はsgrid on
 
-```
+```octave
    zeta=0.691;
    sgrid(zeta,[]);
 ```
@@ -462,7 +462,7 @@ Hは図のハンドル番号で、 保存するfigureのウィンドウ番号を
 以下のようなmファイルを実行すれば、fig1からfig10までを連続して
 fig\_\*.svgとして出力保存されます。(\*はfig番号)
 
-``` matlab:p.m
+``` octave
     fn='fig_';
     ext='.svg';
 

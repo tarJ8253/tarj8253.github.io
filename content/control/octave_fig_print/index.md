@@ -20,7 +20,7 @@ series:
 
 1.  print 命令を使用 以下にソースコードを示します。
 
-``` matlab:p.m
+``` octave
         fig_n=1;%保存したいFigureの番号
         figur(fig_n);
         fn='fig_';%保存するファイル名

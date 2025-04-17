@@ -26,7 +26,7 @@ Octaveでは、配列の扱いが簡単になっていますが、落とし穴�
 
 例えば以下のソースでtとtiを比較します。
 
-``` matlab:t.m
+``` octave
     time_max=10;
     dt=0.1;
     time_count=time_max/dt;
@@ -42,14 +42,14 @@ Octaveでは、配列の扱いが簡単になっていますが、落とし穴�
 いずれも、0から10秒まで、0.1秒刻みの数値を設定しています。\
 ここで 以下の図を書いてみます。
 
-``` matlab:p.m
+``` octave
     plot(t,sin(ti))
 ```
 
 結果は?????
 
 
-```
+``` bash
     error: __plt2vv__: vector lengths must match
     error: called from
         __plt__>__plt2vv__ at line 487 column 5
@@ -63,7 +63,7 @@ Octaveでは、配列の扱いが簡単になっていますが、落とし穴�
 めげないで、エラーの原因を探します。\
 エラーメッセージの最初に記してあるとおり
 
-```
+``` bash
     vector lengths must match
 ```
 
@@ -81,7 +81,7 @@ Octaveでは、上記のように配列を明示しなくても、勝手に配�
 ただし、これにより、扱っている変数同士を演算に用いるときに思いもかけないエラーに出くわすことがあります。\
 たとえば以下のようにすると
 
-``` matlab:s.m
+``` octave
 	for i=1:10;
 	s(i)=i;
 	end
@@ -95,7 +95,7 @@ Octaveでは、上記のように配列を明示しなくても、勝手に配�
 
 これもまたエラーになります。
 
-```
+``` bash
 	error: operator *: nonconformant arguments (op1 is 1x10, op2 is 1x10)
 	error: called from
 ```
@@ -109,13 +109,13 @@ Octaveでは、上記のように配列を明示しなくても、勝手に配�
 
 上記の場合は
 
-```
+``` octave
 	u=zeros(10,1);
 ```
 
 を加えると、正しく演算できます。
 
-``` matlab:z.m
+``` octave
 	for i=1:10;
 	s(i)=i;
 	end

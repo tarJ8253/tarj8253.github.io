@@ -25,14 +25,14 @@ octaveは、csvファイルを読み込みがとても簡単にできます。
 ファイル名が決まっていない場合や任意のファイルを選びたい場合などでは、
 OctaveではGUIを用いて選んだファイルのファイル名を取得できます。
 
-```
+``` octave
      [fname fpath fltindex]=uigetfile();
      [fname fpath fltindex]=uiputfile();
 ```
 
 -   uigetfile()はファイル読み込みのダイアログが開きます。
 
-```
+``` octave
 	[fname fpath fltindex]=uigetfile("*.ext")
 ```
     とすれば、表示するファイルの拡張子extを指定できるようです。
@@ -41,7 +41,7 @@ OctaveではGUIを用いて選んだファイルのファイル名を取得で�
 
 読み書きするためのパスまで含んだ全ファイル名は次のようにすれば設定できます。
 
-```
+``` octave
      FILENAME=[fpath fname]
 ```
 
@@ -90,7 +90,7 @@ OctaveではGUIを用いて選んだファイルのファイル名を取得で�
 -   dlmreadはデータの区切り(デリミタ)を任意の文字に指定でき るものです。
     tabや空白を区切りに用いることが多いです。
 
-```
+``` octave
 	dlmread(FILENAME,SEP,R0,C0)
 ```
 
@@ -98,7 +98,7 @@ SEPはセパレータで、データ区切りを示します。\
 R0,C0は行と列の最初の読み飛ばし数を示します。\
 たとえば
 
-```
+``` octave
 	x=dlmread(FILENAME,',',2,0)
 ```
 
@@ -110,7 +110,7 @@ R0,C0は行と列の最初の読み飛ばし数を示します。\
     -   csvwrite(FILENAME,配列変数名);で、配列変数名の数値を、そののままのサイズで保存します。
 
 	-   読み込みは
-```
+``` octave
 	t=csvread(FILENAME);
 ```
 FILENAMEの変数値が変数名tに設定されます。
@@ -124,15 +124,15 @@ FILEの内容が既知であることが必要です。
    つまり変数名とその値をセットにして保存します。\
 	保存したファイルはascii形式ですのでエディタで内容読めます。
 
-	```
-		save FILENAME a,b,c
-	```
+``` octave
+	save FILENAME a,b,c
+```
 
 とすると、 ワークスペース内のa,b,cのみをFILENAMEに保存します。
 
-	```
-		save options　保存ファイル名　変数名
-	```
+``` octave
+	save options　保存ファイル名　変数名
+```
 
 として、さまざまなoption指定を行って保存できます。\
 例えば、-binaryとすると、バイナリ形式になります。
