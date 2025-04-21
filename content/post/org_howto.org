@@ -332,7 +332,7 @@ C-c C-l tabで リンク補完が効くので
 #+end_example
 
 
-** Github/action使用時のリンク
+** Hugo-Github/actions使用時のリンク:ページ内リンク
 
 htmlのタグを書きました。
 
@@ -343,6 +343,51 @@ htmlのタグを書きました。
 リンク先
 @@html:<div id="tojump">@@ジャンプ受け@@html:</div>@@
 #+end_example
+
+** HTMLタグを書くと、もう少し自由になります。
+
+
+*** htmlにexportした文字に色を付ける
+
+orgでの方法がわからなかったので、htmlのタグを利用
+
+htmlのタグをそのままexportするときは
+
+#+begin_example
+@@html:<font color='red'>@@ hoge @@html:</font>@@
+#+end_example
+
+@@html:<font color='red'>@@ hoge @@html:</font>@@
+
+のようにタグを
+
+#+begin_example
+@@html: tag @@
+#+end_example
+
+で囲む 。
+
+または、html環境にする?
+
+#+begin_export html
+<font color='red'>hoge fuga </font>
+#+end_export
+
+上記は以下ソース
+#+begin_example
+#+begin_export html
+<font color='red'>hoge fuga </font>
+#+end_export
+#+end_example
+
+*** 改行する。
+
+html出力時に改行したいときは上記のようにしました。
+
+#+begin_example
+@@html:<br>@@
+#+end_example
+
 
 
 * 特殊文字
@@ -546,41 +591,6 @@ init.elで(require 'ox-md)しておけば md形式、 (require 'ox-beamer)して
 ox-gfm(github flavored),ox-hugo,ox-pandoc,ox-reportなどいろいろあり
 
 
-** htmlにexportした文字に色を付ける
-
-orgでの方法がわからなかったので、htmlのタグを利用
-
-htmlのタグをそのままexportするときは
-
-#+begin_example
-@@html:<font color='red'>@@ hoge @@html:</font>@@
-#+end_example
-
-@@html:<font color='red'>@@ hoge @@html:</font>@@
-
-のようにタグを
-
-#+begin_example
-@@html: tag @@
-#+end_example
-
-で囲む 。
-
-または、html環境にする?
-
-#+begin_export html
-<font color='red'>hoge fuga </font>
-#+end_export
-
-上記は以下ソース
-#+begin_example
-#+begin_export html
-<font color='red'>hoge fuga </font>
-#+end_export
-#+end_example
-
-
-
 * あとがき
 
 2025.4.7:
@@ -591,6 +601,7 @@ htmlのタグをそのままexportするときは
 - ox-hugoを用いる場合、frontmatterに#+HUGO_BASE_DIR: ./と設定しておくと、
   content/posts/に落ちる。  frontmatterは追記されない。
 
+@@html:<br>@@
   @@html:<strike>@@このhtmlはorgで作成後、exportしたもので、cssやindexも自動で追加されている。@@html:</strike>@@
 
 
