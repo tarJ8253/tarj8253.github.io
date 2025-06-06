@@ -1,0 +1,178 @@
+---
+title: "cmakeの使い方"
+date: 2025-05-29T11:43:19+09:00
+draft: true
+description: "cmake 使い方" # Description used for search engine.
+featured: false #true # sidebarのおすすめの投稿, sets if post is a featured post, making appear on the home page side bar.
+draft: false #true # Sets whether to render this page. Draft of true will not be rendered.
+toc: false # Controls if a table of contents should be generated for first-level links automatically.
+# menu: main # when uncomment, display on manu bar
+usePageBundles: false # Set to true to group assets like images in the same folder as this post.
+#featureImage: "/images/path/file.jpg" # Sets featured image on blog post.
+#featureImageAlt: 'Description of image' # Alternative text for featured image.
+#featureImageCap: 'This is the featured image.' # Caption (optional).
+#thumbnailはstatic/images/*.pngを
+#thumbnail: "/images/path/thumbnail.png" # Sets thumbnail image appearing inside card on homepage.
+#shareImage: "/images/path/share.png" # Designate a separate image for social media sharing.
+codeMaxLines: 10 # Override global value for how many lines within a code block before auto-collapsing.
+codeLineNumbers: false # Override global value for showing of line numbers within code block.
+figurePositionShow: true # Override global value for showing the figure label.
+# hugo.tomlのtaxonomiesで分類あり
+categories:
+  - linux
+tags:
+  - cmake
+#series :
+#  - Enjoy Linux
+#aliases : 
+#  - migrate-from-jekyl
+# Create redirects from old URLs to new URLs with aliases:
+
+# comment: false # Disable comment if false.
+
+lang: ja
+#+OPTIONS: toc:nil timestamp:nil ^:{} \n:t
+#+LANGUAGE: ja
+
+---
+
+CMake Documentation:[[https://cmake.org/cmake/help/latest/index.html]]
+
+環境はbookwormです。
+
+<!--more-->
+* CMakeLists.txtを書く
+
+#+begin_src makefile
+  # CMakeのバージョンを設定
+  cmake_minimum_required(VERSION 3.8)
+  # プロジェクト名と使用する言語を設定
+  set(APP_NAME hoge)
+  project(${APP_NAME} VERSION 0.0 LANGUAGES CXX)
+
+  # C++標準の指定
+  set(CMAKE_CXX_STANDARD 17)# 11,14,17(3.8),20(3.12),23(3.20),26(3.25)
+  set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+  add_definitions("-Wall")
+
+  #makeの完全な実行コマンドを表示
+  #set(CMAKE_VERBOSE_MAKEFILE 1)
+
+  #srcファイル名を記述。hppは不要
+  set(SRC
+  main.cpp
+  huga.cpp
+  gaoo.cpp
+  )
+
+  # APP_NAMEという実行ファイルをSRCから作成
+  add_executable(${APP_NAME} ${SRC})
+#+end_src
+
+* make、実行ファイルの作成、実行
+
+#+begin_src bash
+  $ cmake -S . -B build
+  $ cmake --build
+  $ ./build/hoge
+#+end_src
+
+-S : path-to-src
+-B : path-to-build
+--build <build dir>
+
+buildという名前のdirectoryを作成し、その中で作業を全部してくれる。
+
+<build dir>を作らなくても、このスクリプトで勝手に作成してくれる。\\
+makeを叩かなくても、実行ファイルを作成(2行目のcmakeで.oを作成,link)。
+
+src修正時は、buildに入って、makeする(cmakeは不要)
+
+* srcを複数directoryに分割している場合
+
+
+directoryごとにCMakeLists.txtを用意
+
+#+begin_example
+- main.cpp,huga.cpp,gaoo.cpp
+  CMakeLists.txt
+  subdir
+    |- CMakeLists.txt
+    |- subf.cpp
+    |- subf.hpp
+#+end_example
+
+
+** subdir/CMakeLists.txt
+
+subdirをまとめて1つのLIBにする。
+
+#+begin_src makefile
+  cmake_minimum_required(VERSION 3.8)
+  set(SRC_SUB subf.cpp)
+  set(LIB sub)#subという名前をつける。
+
+  #libraryとして結合するとき
+  add_library(${LIB} STATIC ${SRC_SUB})
+  #objectとして結合するとき
+  add_library(${LIB} OBJECT ${SRC_SUB})
+#+end_src
+
+** CMakeLists.txtに以下追記
+
+subdirのLIB(sub)を結合する
+
+*** ライブラリとして結合する場合
+
+#+begin_src makefile
+  add_subdirectory(subdir)
+  target_link_libraries(${APP_NAME} PRIVATE sub)
+#+end_src
+
+*** オブジェクトとして結合する場合
+
+add_executableを修正
+
+#+begin_src makefile
+  add_subdirectory(subdir)
+  add_executable(test test.cpp $<TARGET_OBJECTS:sub>)
+#+end_src
+
+** rt pthread 調査中
+
+LDLIBS = -lm -lrt -pthread
+
+Eigenは以下
+
+#+begin_example
+find_package(Eigen3 REQUIRED)
+message(STATUS "Found Eigen-" ${EIGEN3_VERSION_STRING})
+#add_executableのあとに追加
+target_link_libraries(main Eigen3::Eigen)
+#+end_example
+
+
+* 引用元,参考サイト
+
+cmake install linux\\
+[[https://qiita.com/shohirose/items/45fb49c6b429e8b204ac]]
+
+eigen linux\\
+[[https://qiita.com/kkoba775/items/405e178f04730094b161]]
+
+# subdirにあるCMakeListsを読み込む\\
+#[[https://engineering.cocone.io/2023/11/27/cmake-beginner/]]
+#ライブラリではなく、objectを直接リンク\\
+#[[https://izadori.net/cmake_3/]]
+
+#makeの完全な実行コマンドを表示\\
+#[[https://qiita.com/termoshtt/items/539541c180dfc40a1189]]
+
+
+その他参考サイトメモ\\
+[[https://dexall.co.jp/articles/?p=1977#i-1]]
+
+[[https://htakeuchi0.github.io/docs/cpp/env/cmake/]]
+
+

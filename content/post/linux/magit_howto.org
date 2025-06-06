@@ -1,0 +1,252 @@
+---
+TITLE: "magitのつかいかた"
+date: 2025-06-06T11:43:19+09:00
+draft: true
+description: "emacs magit operatrion" # Description used for search engine.
+featured: false #true # sidebarのおすすめの投稿, sets if post is a featured post, making appear on the home page side bar.
+draft: false #true # Sets whether to render this page. Draft of true will not be rendered.
+toc: false # Controls if a table of contents should be generated for first-level links automatically.
+# menu: main # when uncomment, display on manu bar
+usePageBundles: false # Set to true to group assets like images in the same folder as this post.
+#featureImage: "/images/path/file.jpg" # Sets featured image on blog post.
+#featureImageAlt: 'Description of image' # Alternative text for featured image.
+#featureImageCap: 'This is the featured image.' # Caption (optional).
+#thumbnailはstatic/images/*.pngを
+#thumbnail: "/images/path/thumbnail.png" # Sets thumbnail image appearing inside card on homepage.
+#shareImage: "/images/path/share.png" # Designate a separate image for social media sharing.
+codeMaxLines: 10 # Override global value for how many lines within a code block before auto-collapsing.
+codeLineNumbers: false # Override global value for showing of line numbers within code block.
+figurePositionShow: true # Override global value for showing the figure label.
+# hugo.tomlのtaxonomiesで分類あり
+categories:
+  - linux
+tags:
+  - magit
+  - Emacs
+#series :
+#  - Enjoy Linux
+#aliases : 
+#  - migrate-from-jekyl
+# Create redirects from old URLs to new URLs with aliases:
+
+# comment: false # Disable comment if false.
+
+lang: ja
+#+OPTIONS: toc:nil timestamp:nil ^:{} \n:t
+#+LANGUAGE: ja
+---
+
+* ひとりでmagit
+
+2025.3.6: r1\\
+2014.2.27:初版
+
+環境はbookwormです
+
+<!--more-->
+
+** 準備
+2025.3 magitをpackage-install時
+
+#+begin_src elisp
+Emergency (magit): Magit requires ‘seq’ >= 2.24,
+#+end_src
+と言われたので
+
+#+begin_src elisp
+  M-x package-install seq
+#+end_src
+
+としてから、package-install magitした。
+
+
+** magitの作業がよくわかる。
+
+[[https://joppot.info/posts/f2721fb2-0942-4c4e-90e2-0dbdbb329bce]]
+
+
+[[https://qiita.com/maueki/items/70dbf62d8bd2ee348274]]
+
+
+** Emacsでgitを使うために、magit.elを用いた時の簡単な使い方
+
+1. M-x magit-init
+   
+   管理dirを聞かれ、Bufferには
+   ~/****/*****と現在のdirが表示される。
+    しかし~をHome直下(/home/hoge/)と認識してくれず、現在のdirを~と認識して、深いdirを掘ってしまう。
+
+   #+begin_src bash
+     ./
+   #+end_src
+
+    と指定すること
+2. M-x magit-status
+
+   通常magitへの入口
+
+   #+begin_example
+   Untracked files
+   Unstaged changes
+   #+end_example
+   などが現れる。
+   
+   #+begin_example
+   Unstaged changes
+   はファイル名が表示されているが、
+   Untracked files
+   は何も表示されていない
+   #+end_example
+
+3. gitで管理するファイルを選択する
+   
+   addのことかな?? stagingが正しい言い方のよう(SVNと混同しないようにstagingと名付けたらしい)
+
+   Untrackedにカーソル動かして
+   tabキー押すと、untrack新規ファイルが表示される。
+
+   1つずつしかstagingできないようである。
+   ファイル名表記部にカーソル動かして、sキー(staging)を押す。
+   
+   Staged changesに
+    #+begin_example
+    new file ファイル名
+    modified ファイル名
+   #+end_example
+   が表記される
+   
+    カーソルをファイル名に移してから、sキーを押すと、そのファイルはステージに上がる。
+    Sなら全ファイル指定
+    C-u-i ならignoreファイルとして指定
+    
+    ?から始めても良い。コマンド一覧が表示
+
+4. c@@html:<br>@@
+   同じ画面からcを押すとArguments/Create/EditHEADなどの画面になる。
+   もう一度cを押してCommit注釈を入力画面にする。
+   commitの注釈を入力する。
+   注釈文を書かないと、commitできない
+    
+   注釈文は1行目に主な項目、3行目以降に詳細を記述。
+   2行目には書かないこと(赤字になる)
+
+   注釈文の書き方:https://qiita.com/itosho/items/9565c6ad2ffc24c09364
+    
+5. C-c C-c@@html:<br>@@
+   注釈文を書いたあとcomitするにはC-c C-c
+    
+6. pushするには、P@@html:<br>@@
+   push先のurl登録してなければ、聞いてくる
+   git remote add origin htts://hoge/[].gitと同じ
+
+7. logを見るには@@html:<br>@@
+   #+begin_example
+   magit-log(-all)
+   magit-statusからll
+   #+end_example
+   など
+
+8. ファイル削除@@html:<br>@@
+   magit-file-delete
+9. ブランチ作成@@html:<br>@@
+    M-x magit-status@@html:<br>@@
+    としたあと、
+    bを押すとブランチ操作メニューが現れるので、
+    そこでnを押すと新規作成してくれる vはブランチ操作メニュー
+
+   分岐元を指定
+
+10. chkout@@html:<br>@@
+    mainから選択したらあちこちいける??
+
+    分岐元をmainに選ぶ。(tabで選択)
+    local brunchに変更
+
+@@html:<!--@@    #+begin_comment
+    11. ブランチ作成後、分岐前のブランチからファイル操作するとコンフリクト起こす。
+    つまりブランチ別れたら、元のブランチのファイルは触らない方が賢明。
+    新ブランチで、できてからmergeで元ブランチに反映したほうがいいのかな?
+    こんな時に、stash使うのかな????
+
+    (1).conflictは手で修正する
+    (2). stash使う,以下参照ttp://tanehp.ec-net.jp/heppoko-lab/prog/resource/magit/magit_memo.html
+
+    stash:
+    stashを使用すると、コミットしていない変更を退避することができます。
+    stashで現在の変更を退避して、今すぐやりたい他の作業をし、終了後、
+    退避させていた変更を戻して再開することができます。
+    #+end_comment
+@@html:-->@@
+
+    編集後はguthubには、pushだけでok
+
+    #+begin_src bash
+    git push -u origin main
+    #+end_src
+
+
+* miscなこと
+
+
+** keybind設定おすすめ
+https://kazuhira-r.hatenablog.com/entry/2023/11/16/001403
+
+#+begin_src emacs-lisp
+;; magit
+(define-key global-map (kbd "C-x g") 'magit-status)
+(define-key global-map (kbd "C-c g") 'magit-dispatch)
+(define-key global-map (kbd "C-c f") 'magit-file-dispatch)
+#+end_src
+
+https://magit.vc/manual/magit/Global-Bindings.html
+
+User Option: magit-define-global-key-bindings
+
+
+#+begin_src 
+    This option controls which set of Magit key bindings, if any, may be added to the global keymap, even before Magit is first used in the current Emacs session.
+
+        If the value is nil, no bindings are added.
+        If default, maybe add:
+        C-x g	magit-status
+        C-x M-g	magit-dispatch
+        C-c M-g	magit-file-dispatch
+        If recommended, maybe add:
+        C-x g	magit-status
+        C-c g	magit-dispatch
+        C-c f	magit-file-dispatch
+#+end_src
+
+
+magit-status
+magit-init
+ここではkeybind設定:不要!
+
+[[https://joppot.info/posts/f2721fb2-0942-4c4e-90e2-0dbdbb329bce]]\\
+magitはデフォルトでキーバインドされているコマンドは2つしかありません。
+"C-x g" magit-status)と("C-x M-g" magit-dispatch-popup)です
+
+
+C-h bでみたら
+magit-dispatch は?,C-c C-c, C-x M-g,hにbind済
+
+
+## Git をはじめからていねいに\\
+https://github.com/Shinpeim/introduction-to-git
+
+上記をmagitで実施した例
+Magit を使ってみる\\
+https://qiita.com/ignorant/items/86d353e3ada299f12836
+
+
+## git公式ドキュメント\\
+https://git-scm.com/book/ja/v2
+
+## magitざっくりチートシート\\
+https://qiita.com/yoshikyoto/items/fffbe1d46953d020939e
+
+amendは c a (commitはc cなので2つめのcをaにする)
+
+## magit 覚書\\
+http://tanehp.ec-net.jp/heppoko-lab/prog/resource/magit/magit_memo.html
+

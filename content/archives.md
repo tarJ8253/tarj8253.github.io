@@ -36,4 +36,7 @@ layout: "archives"
 - [LinuxNOTEのバッテリメンテ](/post/linux/batt_care)
 - [Emacs ScratchBufferで計算](/post/linux/scratch_buffer)
 
-
+- [cmakeの使い方](/post/linux/cmake_howto)
+- [Eigenをinstall](/post/linux/eigen_install)
+- [magitの簡単ガイド](/post/linux/magit_howto)
+- [ramdiskの作成](/post/linux/ramdisk)

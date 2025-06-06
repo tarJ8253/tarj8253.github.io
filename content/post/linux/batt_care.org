@@ -20,7 +20,7 @@ codeLineNumbers: false # Override global value for showing of line numbers withi
 figurePositionShow: true # Override global value for showing the figure label.
 # hugo.tomlのtaxonomiesで分類あり
 categories:
-  - linux settings
+  - linux
 tags:
   - note pc
   - battery 

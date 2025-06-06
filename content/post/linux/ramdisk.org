@@ -1,0 +1,162 @@
+---
+title: "LinuxでRT実験 ramdisk作成"
+date: 2025-06-06T11:43:19+09:00
+draft: true
+description: "linux ramdisk" # Description used for search engine.
+featured: false #true # sidebarのおすすめの投稿, sets if post is a featured post, making appear on the home page side bar.
+draft: false #true # Sets whether to render this page. Draft of true will not be rendered.
+toc: false # Controls if a table of contents should be generated for first-level links automatically.
+# menu: main # when uncomment, display on manu bar
+usePageBundles: false # Set to true to group assets like images in the same folder as this post.
+#featureImage: "/images/path/file.jpg" # Sets featured image on blog post.
+#featureImageAlt: 'Description of image' # Alternative text for featured image.
+#featureImageCap: 'This is the featured image.' # Caption (optional).
+#thumbnailはstatic/images/*.pngを
+#thumbnail: "/images/path/thumbnail.png" # Sets thumbnail image appearing inside card on homepage.
+#shareImage: "/images/path/share.png" # Designate a separate image for social media sharing.
+codeMaxLines: 10 # Override global value for how many lines within a code block before auto-collapsing.
+codeLineNumbers: false # Override global value for showing of line numbers within code block.
+figurePositionShow: true # Override global value for showing the figure label.
+# hugo.tomlのtaxonomiesで分類あり
+categories:
+  - linux
+tags:
+  - ramdisk
+  - real time
+#series :
+#  - Enjoy Linux
+#aliases : 
+#  - migrate-from-jekyl
+# Create redirects from old URLs to new URLs with aliases:
+
+# comment: false # Disable comment if false.
+
+lang: ja
+#+OPTIONS: toc:nil timestamp:nil ^:{} \n:t
+#+LANGUAGE: ja
+---
+
+* Linuxでramdisk作成
+初版:2019.8.29
+
+メモリ上にdiskのように読み書きアクセスできる領域を確保して、RT実験時の時間負荷短縮を図りました。
+
+<!--more-->
+1. ディレクトリを確保する。
+    #+begin_src bash
+    # mkdir hogeramdisk     
+    # chmod 777 hogeramdisk 
+    #+end_src   
+
+   777にするので危険が危なくないとこにしましょう!!
+
+2. fstabに書く。\\
+   昔は/dev/shmを用いていたようですが、私の環境では起動時にpanicになりました。\\
+   最近はtmpfsとするようです。
+    #+begin_example                                 
+    tmpfs /home/hogeramdisk tmpfs defaults,size=128m 0 0 
+    #+end_example                                    
+
+3. 時間計測\\
+   dbenchを用いて計測しました。(apt install dbench)\\
+   ssdを用いていますが、それでもramdiskのほうが10倍早いようです。
+
+   #+begin_src bash
+   $ dbench コア数 -t 計測時間 -D 調べるディレクトリ
+   #+end_src
+
+   defaultでは600秒計測するようなので、短くしました。\\
+   
+   まずはramdisk
+
+    #+begin_example                                                                           
+    hogefuga@hoge:~/docs$ dbench 1 -t 10 -D /home/hogeramdisk/                                    
+    dbench version 4.00 - Copyright Andrew Tridgell 1999-2004                                 
+                                                                                              
+    Running for 10 seconds with load '/usr/share/dbench/client.txt' and minimum warmup 2 secs 
+    0 of 1 processes prepared for launch   0 sec                                              
+    1 of 1 processes prepared for launch   0 sec                                              
+    releasing clients                                                                         
+       1    290361  1582.51 MB/sec  warmup   1 sec  latency 0.863 ms                          
+       1    873392  1577.45 MB/sec  execute   1 sec  latency 1.225 ms                         
+       1   1164759  1581.79 MB/sec  execute   2 sec  latency 1.290 ms                         
+       1   1455173  1581.36 MB/sec  execute   3 sec  latency 1.800 ms                         
+       1   1747269  1580.18 MB/sec  execute   4 sec  latency 1.093 ms                         
+       1   2038298  1581.30 MB/sec  execute   5 sec  latency 0.808 ms                         
+       1   2329030  1581.68 MB/sec  execute   6 sec  latency 1.211 ms                         
+       1   2620436  1579.96 MB/sec  execute   7 sec  latency 1.380 ms                         
+       1   2911169  1580.88 MB/sec  execute   8 sec  latency 1.174 ms                         
+       1   3203319  1580.10 MB/sec  execute   9 sec  latency 1.601 ms                         
+       1  cleanup  10 sec                                                                     
+       0  cleanup  10 sec                                                                     
+                                                                                              
+     Operation      Count    AvgLat    MaxLat                                                 
+     ----------------------------------------                                                 
+     NTCreateX     503497     0.004     1.209                                                 
+     Close         369812     0.001     0.731                                                 
+     Rename         21322     0.007     0.030                                                 
+     Unlink        101690     0.004     0.716                                                 
+     Deltree           12     0.676     1.539                                                 
+     Mkdir              6     0.002     0.002                                                 
+     Qpathinfo     456347     0.002     1.380                                                 
+     Qfileinfo      79948     0.001     0.680                                                 
+     Qfsinfo        83690     0.001     0.623                                                 
+     Sfileinfo      41009     0.001     0.662                                                 
+     Find          176437     0.009     1.209                                                 
+     WriteX        250882     0.004     1.595                                                 
+     ReadX         789336     0.002     1.034                                                 
+     LockX           1640     0.002     0.016                                                 
+     UnlockX         1640     0.001     0.002                                                 
+     Flush          35292     0.001     0.024                                                 
+                                                                                              
+    Throughput 1580.1 MB/sec  1 clients  1 procs  max_latency=1.800 ms                        
+    #+end_example                                                                             
+
+    次にSSD上
+
+    #+begin_example                                                                           
+    hogefuga@hoge:~/docs$ dbench 1 -t 10　-D /home/hogefuga/tmp                               
+    dbench version 4.00 - Copyright Andrew Tridgell 1999-2004                                 
+                                                                                              
+    Running for 10 seconds with load '/usr/share/dbench/client.txt' and minimum warmup 2 secs 
+    0 of 1 processes prepared for launch   0 sec                                              
+    1 of 1 processes prepared for launch   0 sec                                              
+    releasing clients                                                                         
+       1     32704   193.43 MB/sec  warmup   1 sec  latency 8.806 ms                          
+       1     93196   161.95 MB/sec  execute   1 sec  latency 6.537 ms                         
+       1    121310   157.15 MB/sec  execute   2 sec  latency 8.956 ms                         
+       1    152372   160.52 MB/sec  execute   3 sec  latency 7.086 ms                         
+       1    183893   162.92 MB/sec  execute   4 sec  latency 2.237 ms                         
+       1    213628   162.34 MB/sec  execute   5 sec  latency 8.335 ms                         
+       1    242162   160.84 MB/sec  execute   6 sec  latency 6.332 ms                         
+       1    274144   162.46 MB/sec  execute   7 sec  latency 2.182 ms                         
+       1    277379   144.45 MB/sec  execute   8 sec  latency 195.822 ms                       
+       1    307627   146.26 MB/sec  execute   9 sec  latency 201.296 ms                       
+       1  cleanup  10 sec                                                                     
+       0  cleanup  10 sec                                                                     
+                                                                                              
+     Operation      Count    AvgLat    MaxLat                                                 
+     ----------------------------------------                                                 
+     NTCreateX      47423     0.018     0.323                                                 
+     Close          34803     0.002     0.251                                                 
+     Rename          2011     0.044     0.203                                                 
+     Unlink          9593     0.030     0.341                                                 
+     Qpathinfo      42987     0.010     0.154                                                 
+     Qfileinfo       7496     0.002     0.093                                                 
+     Qfsinfo         7901     0.003     0.100                                                 
+     Sfileinfo       3850     0.010     0.055                                                 
+     Find           16627     0.039     0.236                                                 
+     WriteX         23435     0.028     0.215                                                 
+     ReadX          74526     0.005     0.123                                                 
+     LockX            156     0.006     0.111                                                 
+     UnlockX          156     0.003     0.005                                                 
+     Flush           3320     1.707   201.281                                                 
+                                                                                              
+    Throughput 146.257 MB/sec  1 clients  1 procs  max_latency=201.296 ms                     
+    #+end_example                                                                             
+
+   4コアで実行すると速度は4倍近くなりますが、速度差は10倍のままでした。
+
+4. 注意事項\\
+   reset,rebootしたらデータは当然消失しますので、
+   必要に応じて安全な場所に保存してください。

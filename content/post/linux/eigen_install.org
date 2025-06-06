@@ -1,0 +1,175 @@
+---
+TITLE: "Eigenのinstallと使い方(debian)"
+date: 2025-05-27T11:43:19+09:00
+draft: true
+description: "Eigen install " # Description used for search engine.
+featured: false #true # sidebarのおすすめの投稿, sets if post is a featured post, making appear on the home page side bar.
+draft: false #true # Sets whether to render this page. Draft of true will not be rendered.
+toc: false # Controls if a table of contents should be generated for first-level links automatically.
+# menu: main # when uncomment, display on manu bar
+usePageBundles: false # Set to true to group assets like images in the same folder as this post.
+#featureImage: "/images/path/file.jpg" # Sets featured image on blog post.
+#featureImageAlt: 'Description of image' # Alternative text for featured image.
+#featureImageCap: 'This is the featured image.' # Caption (optional).
+#thumbnailはstatic/images/*.pngを
+#thumbnail: "/images/path/thumbnail.png" # Sets thumbnail image appearing inside card on homepage.
+#shareImage: "/images/path/share.png" # Designate a separate image for social media sharing.
+codeMaxLines: 10 # Override global value for how many lines within a code block before auto-collapsing.
+codeLineNumbers: false # Override global value for showing of line numbers within code block.
+figurePositionShow: true # Override global value for showing the figure label.
+# hugo.tomlのtaxonomiesで分類あり
+categories:
+  - tool
+tags:
+  - Eigen
+#series :
+#  - Enjoy Linux
+#aliases : 
+#  - migrate-from-jekyl
+# Create redirects from old URLs to new URLs with aliases:
+
+# comment: false # Disable comment if false.
+
+lang: ja
+#+OPTIONS: toc:nil timestamp:nil ^:{} \n:t
+#+LANGUAGE: ja
+---
+
+環境はbookwormです
+
+* cmakeをapt install
+
+* eigen-3.4.0/INSTALL
+
+userのままでok
+
+** DL
+
+[[http://eigen.tuxfamily.org/index.php?title=Main_Page#Download]]
+
+@@html:<!--@@
+#+begin_comment
+git clone https://github.com/PX4/eigen.git:119M!
+#+end_comment
+@@html:-->@@
+
+<!--more-->
+
+** cmakeなしのinstall
+
+tar.bz2を展開して、Eigen/を任意の場所にcp
+
+unsupportedを使いたい時は、unsupported/subdirectoryをcp
+
+** cmakeを用いたinstall
+
+eigen-3.4.0.tar.bz2を展開したらeigen-3.4.0ができる
+
+ここを(eigen-3.4.0)をsrc_dirとする
+
+#+begin_src bash
+  $ tar jxvf eigen-3.4.0.tar.bz2
+  $ cd eigen-3.4.0
+  $ mkdir <build_dir>
+  $ cd <build_dir>
+  $ cmake -DCMAKE_INSTALL_PREFIX=$HOME/<inst_dir> ..
+  $ make install
+#+end_src
+
+-DCMAKE_INSTALL_PREFIXを指定しないと、
+/usr/local/include/eigen3  
+に入れようとするので、rootでないとNG
+
+make installすることで、希望の<inst_dir>に<include>と<share>ができる
+
+
+* Eigenの場所をcmakeに教える
+
+~/Eigenにinstallした場合です。
+
+~/.bash.rcに以下追加。
+#+begin_src bash
+export CMAKE_PREFIX_PATH=$HOME/Eigen:$CMAKE_PREFIX_PATH
+#+end_src
+追加後、一旦terminal閉じる
+
+#+begin_quote
+指定しないと、
+Add the installation prefix of "Eigen3" to
+CMAKE_PREFIX_PATH or  "Eigen3_DIR"
+と言われます。
+
+ 指定しない時は、3.4.0の下の
+ Eigen3Config.cmake
+ eigen3-config.cmake
+を探しに行って、そこをincludeしているみたい。
+ (Makefile)
+#+end_quote
+
+指定したら、<eigen-3.4.0>(42.1M)は削除できる。\\
+Eigen本体(Eigen/{include,share})だけは9MB
+
+
+* cmakeを使ってcompile
+
+引用元:
+Ubuntu で Eigen-3.4.0 を CMake から利用する。 \\
+[[https://qiita.com/kkoba775/items/405e178f04730094b161]]
+
+
+CMakeLists.txt
+#+begin_example
+cmake_minimum_required(VERSION 3.15)
+project(test_eigen CXX)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(Eigen3 REQUIRED)
+message(STATUS "Found Eigen-" ${EIGEN3_VERSION_STRING})
+
+add_executable(test test.cpp)
+target_link_libraries(test Eigen3::Eigen)
+#+end_example
+
+test.cpp
+#+begin_src cpp
+  #include <iostream>
+  #include <Eigen/Dense>
+  namespace ei = Eigen;
+  int main()
+  {
+    ei::Matrix3d A{{1,1,1}, {0,1,1}, {0,0,1}};
+    std::cout << A << std::endl;
+    std::cout << A*A << std::endl;
+
+    return 0;
+  }
+#+end_src
+
+iostremは/usr/include/c++/{12,10}/iostremにあり
+
+
+** 手順の少ないcmake
+cmakeの使い方
+[[https://qiita.com/shohirose/items/45fb49c6b429e8b204ac]]
+に書いてあったとおり
+
+#+begin_src bash
+    $ cmake -S . -B build
+    $ cmake --build build
+    $ ./build/test
+#+end_src
+
+mkdir,cd不要
+
+** 手順の多いcmake
+[[https://qiita.com/kkoba775/items/405e178f04730094b161]]
+に書いてあった通り
+   
+   #+begin_src bash
+     $ mkdir build
+     $ cd build
+     $ cmake ..
+     $ make 
+     $ ./test
+   #+end_src

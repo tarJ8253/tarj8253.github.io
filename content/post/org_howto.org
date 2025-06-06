@@ -592,10 +592,12 @@ ox-gfm(github flavored),ox-hugo,ox-pandoc,ox-reportなどいろいろあり
 
 
 * あとがき
-
+2025.4.21頃:
+- githubはorgに対応していることがわかったので、ほとんどのコンテンツを変換せずに
+  orgのまま掲載
+  
 2025.4.7:
-- hugo-github/actionsでhtml表示するので、ox-pandocを用いてpandoc/gfm経由で
-  mdに変換した。\\
+- @@html:<strike>@@hugo-github/actionsでhtml表示するので、ox-pandocを用いてpandoc/gfm経由でmdに変換した。@@html:</strike>@@\\
   srcの言語指定も落ちず、frontmatterも追記される。
 - 直接mdにexportしたら、src環境は全部pre扱いになる。
 - ox-hugoを用いる場合、frontmatterに#+HUGO_BASE_DIR: ./と設定しておくと、
