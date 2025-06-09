@@ -139,17 +139,57 @@ add_executableを修正
   add_executable(test test.cpp $<TARGET_OBJECTS:sub>)
 #+end_src
 
-** rt pthread 調査中
+** ライブラリ結合
+
+*** rt pthread (調査中)
 
 LDLIBS = -lm -lrt -pthread
 
-Eigenは以下
+# -lrt はlibrt.a, -Lでlibdir指定
+# -pthreadはlibcの代わりにlibc_rをリンク:FreeBSD固有オプション
+
+#+begin_example
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+target_link_libraries(main Threads::Threads)
+#+end_example
+
+引用元
+
+[[https://qiita.com/yumetodo/items/bd8f556ab56298f19ba8]]\\
+[[https://stackoverflow.com/questions/1620918/cmake-and-libpthread]]
+
+そのうち動作確認します
+
+
+*** realtime
+
+調査中
+
+*** Eigen
 
 #+begin_example
 find_package(Eigen3 REQUIRED)
 message(STATUS "Found Eigen-" ${EIGEN3_VERSION_STRING})
 #add_executableのあとに追加
 target_link_libraries(main Eigen3::Eigen)
+#+end_example
+
+*** OpenCV
+https://blog.neno.dev/entry/2018/06/12/so-using-cmake/
+
+#+begin_example
+find_package(OpenCV REQUIRED) #OpenCV見つけてきて 
+include_directories(${OpenCV_INCLUDE_DIRS}) #インクルードディレクトリ指定 
+add_executable(Main main.cpp) #吐き出す実行ファイルと使うソースコードの指定 
+target_link_libraries(Main ${OpenCV_LIBRARIES}) #ライブラリとリンク
+#+end_example
+
+
+*** 参考　ディレクトリ指定おまじない
+#+begin_example
+include_directories(/usr/local/include)
+link_directories(/usr/local/lib)
 #+end_example
 
 
