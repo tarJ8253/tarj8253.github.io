@@ -61,6 +61,19 @@ tar.bz2を展開して、Eigen/を任意の場所にcp
 
 unsupportedを使いたい時は、unsupported/subdirectoryをcp
 
+
+#+begin_src bash
+  g++ filename.cpp -I path_to_eigen
+  g++ filename.cpp -isystem path_to_eigen
+#+end_src
+
+-Iとすると、Eigenに対するwarningが大量に発生するので、
+-isystemのほうが、平和です。
+
+引用元:https://qiita.com/MusicScience37/items/13fefa6bed25ab8fb6e9
+
+
+
 ** cmakeを用いたinstall
 
 eigen-3.4.0.tar.bz2を展開したらeigen-3.4.0ができる。
