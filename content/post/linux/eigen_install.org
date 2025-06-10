@@ -72,7 +72,7 @@ eigen-3.4.0.tar.bz2を展開したらeigen-3.4.0ができる
   $ cd eigen-3.4.0
   $ mkdir <build_dir>
   $ cd <build_dir>
-  $ cmake -DCMAKE_INSTALL_PREFIX=$HOME/<inst_dir> ..
+  $ cmake <src_dir> -DCMAKE_INSTALL_PREFIX=$HOME/<inst_dir> ..
   $ make install
 #+end_src
 
