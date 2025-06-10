@@ -63,16 +63,16 @@ unsupportedを使いたい時は、unsupported/subdirectoryをcp
 
 ** cmakeを用いたinstall
 
-eigen-3.4.0.tar.bz2を展開したらeigen-3.4.0ができる
+eigen-3.4.0.tar.bz2を展開したらeigen-3.4.0ができる。
 
-ここを(eigen-3.4.0)をsrc_dirとする
+このeigen-3.4.0を<src_dir>とする。
+HOME(~/)の下に任意の名前のdirectory(<build_dir>)を作成して、そこにinstallします。
 
 #+begin_src bash
   $ tar jxvf eigen-3.4.0.tar.bz2
-  $ cd eigen-3.4.0
   $ mkdir <build_dir>
   $ cd <build_dir>
-  $ cmake <src_dir> -DCMAKE_INSTALL_PREFIX=$HOME/<inst_dir> ..
+  $ cmake <src_dir> -DCMAKE_INSTALL_PREFIX=$HOME/<build_dir> ..
   $ make install
 #+end_src
 
@@ -80,7 +80,7 @@ eigen-3.4.0.tar.bz2を展開したらeigen-3.4.0ができる
 /usr/local/include/eigen3  
 に入れようとするので、rootでないとNG
 
-make installすることで、希望の<inst_dir>に<include>と<share>ができる
+make installすることで、希望の<build_dir>に<include>と<share>ができる
 
 
 * Eigenの場所をcmakeに教える
