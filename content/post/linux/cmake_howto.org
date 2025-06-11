@@ -74,7 +74,7 @@ CMake Documentation:[[https://cmake.org/cmake/help/latest/index.html]]
 
 #+begin_src bash
   $ cmake -S . -B build
-  $ cmake --build
+  $ cmake --build build
   $ ./build/hoge
 #+end_src
 
