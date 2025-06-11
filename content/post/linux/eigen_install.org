@@ -79,14 +79,15 @@ unsupportedを使いたい時は、unsupported/subdirectoryをcp
 eigen-3.4.0.tar.bz2を展開したらeigen-3.4.0ができる。
 
 このeigen-3.4.0の下にbuildを作成してcmakeで作業。
-HOME(~/)の下に任意の名前のdirectory(<build_dir>)を作成して、そこにinstallします。
+HOME(~/)の下に任意の名前のdirectory(<install_dir>)を作成して、そこにEigenのpackageをinstallします。
 
 #+begin_src bash
+  $ mkdir <install_dir>
   $ tar jxvf eigen-3.4.0.tar.bz2
   $ cd eigen-3.4.0
   $ mkdir build
   $ cd build
-  $ cmake -DCMAKE_INSTALL_PREFIX=$HOME/<build_dir> ..
+  $ cmake -DCMAKE_INSTALL_PREFIX=$HOME/<install_dir> ..
   $ make install
 #+end_src
 
@@ -94,7 +95,7 @@ HOME(~/)の下に任意の名前のdirectory(<build_dir>)を作成して、そ�
 /usr/local/include/eigen3  
 に入れようとするので、rootでないとNG
 
-make installすることで、希望の<build_dir>に<include>と<share>ができる
+make installすることで、希望の<install_dir>に<include>と<share>ができる。
 
 eigen-3.4.0は削除してok
 
