@@ -17,14 +17,21 @@ layout: "archives"
 - [asciidocの始め方](/docs/asciidoc_howto)
 - [orgの使い方](/post/org_howto)
 
-## 制御
+## Octave
 
-- [Octaveのinstall](/control/octave_start/)
-- [Octave始めましょう](/control/octave_howto/)
-- [Octave,Graphics](/control/octave_graphics/)
-- [Octave,図をfileで保存](/control/octave_fig_print/)
+- [Octaveのinstall](/control/octave_start)
+- [Octave始めましょう](/control/octave_howto)
+- [Octave,Graphics](/control/octave_graphics)
+- [Octave,図をfileで保存](/control/octave_fig_print)
 - [Octave,データファイルの読み込み](/control/octave-data)
 - [Octave,配列に注意!](/control/octave-hairetu)
+- [Octave,GUIを使う](/control/octave_gui)
+
+## Octaveで制御
+
+- [周波数領域でのOctaveコマンド](/control/octave_control_basic)
+- [バネマスダンパ(二次)システムの解析](/control/octave_control_2d_sys)
+
 
 ## いろいろTips
 

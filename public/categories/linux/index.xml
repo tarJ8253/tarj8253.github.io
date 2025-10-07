@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on たきやま&#39;sPAGE</title>
+    <link>http://localhost:1313/categories/linux/</link>
+    <description>Recent content in Linux on たきやま&#39;sPAGE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Fri, 06 Jun 2025 11:43:19 +0900</lastBuildDate><atom:link href="http://localhost:1313/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LinuxでRT実験 ramdisk作成</title>
+      <link>http://localhost:1313/post/linux/ramdisk/</link>
+      <pubDate>Fri, 06 Jun 2025 11:43:19 +0900</pubDate>
+      
+      <guid>http://localhost:1313/post/linux/ramdisk/</guid>
+      <description>
+        
+          
+            &lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;headline-1&#34;&gt;
+Linuxでramdisk作成
+&lt;/h2&gt;
+&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-2&#34;&gt;
+&lt;p&gt;初版:2019.8.29&lt;/p&gt;
+&lt;p&gt;
+メモリ上にdiskのように読み書きアクセスできる領域を確保して、RT実験時の時間負荷短縮を図りました。&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>magitのつかいかた</title>
+      <link>http://localhost:1313/post/linux/magit_howto/</link>
+      <pubDate>Fri, 06 Jun 2025 11:43:19 +0900</pubDate>
+      
+      <guid>http://localhost:1313/post/linux/magit_howto/</guid>
+      <description>
+        
+          
+            &lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;headline-1&#34;&gt;
+ひとりでmagit
+&lt;/h2&gt;
+&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-2&#34;&gt;
+&lt;p&gt;
+2025.3.6: r1&lt;br&gt;
+2014.2.27:初版&lt;/p&gt;
+&lt;p&gt;
+環境はbookwormです&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>cmakeの使い方</title>
+      <link>http://localhost:1313/post/linux/cmake_howto/</link>
+      <pubDate>Thu, 29 May 2025 11:43:19 +0900</pubDate>
+      
+      <guid>http://localhost:1313/post/linux/cmake_howto/</guid>
+      <description>
+        
+          
+            &lt;p&gt;
+CMake Documentation:&lt;a href=&#34;https://cmake.org/cmake/help/latest/index.html&#34;&gt;https://cmake.org/cmake/help/latest/index.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+環境はbookwormです。&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Linuxノートのバッテリメンテ</title>
+      <link>http://localhost:1313/post/linux/batt_care/</link>
+      <pubDate>Tue, 04 Mar 2025 15:46:46 +0900</pubDate>
+      
+      <guid>http://localhost:1313/post/linux/batt_care/</guid>
+      <description>
+        
+          
+            &lt;p&gt;
+u937/Pにbullseye入れてます。&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Linux tips</title>
+      <link>http://localhost:1313/post/linux/lin_tips/</link>
+      <pubDate>Sat, 22 Feb 2025 01:08:48 +0900</pubDate>
+      
+      <guid>http://localhost:1313/post/linux/lin_tips/</guid>
+      <description>
+        
+          
+            個人的備忘録です。 実行時間の計測(gcc, icc ,ifc) -pg をつけてcompile,linkして実行 CFLAGS,FFLAGS,LDFLAGS全てに -pg を
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

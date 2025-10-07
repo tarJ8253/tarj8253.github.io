@@ -67,7 +67,12 @@ codeMaxLines = 7
 codeLineNumbers = false
 
 # enable math notation. Switch to `true` to enable mathjax in your site.
-enableMathNotation = false
+#enableMathNotation = false
+enableMathNotation = true
+#2025.10.3 set for katex
+# mathjax has comparable performance. (web)と書いてるけどとりあえずkatex
+# katex:html, mathjax:svg,速度はkatex,latexに従い、長い複雑な式を書くのはmathjaxが適しているそう
+#githubには,katex使うときはtrue,mathjax使うときは,/layouts/partials/math.html追加と書いてある
 
 # directory(s) where your articles are located
 mainSections = ["post"] # see config details here https://gohugo.io/functions/where/#mainsections

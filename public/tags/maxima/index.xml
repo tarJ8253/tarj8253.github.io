@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Maxima on たきやま&#39;sPAGE</title>
+    <link>http://localhost:1313/tags/maxima/</link>
+    <description>Recent content in Maxima on たきやま&#39;sPAGE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Tue, 04 Mar 2025 15:46:46 +0900</lastBuildDate><atom:link href="http://localhost:1313/tags/maxima/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>maximaおぼえがき</title>
+      <link>http://localhost:1313/post/linux/maxima-howto/</link>
+      <pubDate>Tue, 04 Mar 2025 15:46:46 +0900</pubDate>
+      
+      <guid>http://localhost:1313/post/linux/maxima-howto/</guid>
+      <description>
+        
+          
+            &lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;headline-1&#34;&gt;
+入力コマンド
+&lt;/h3&gt;
+&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-3&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;命令の最後には必ずセミコロン*;*をつける!!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;終了は&lt;/p&gt;
+&lt;div class=&#34;src src-maxima&#34;&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;ln&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;cl&#34;&gt;  quit();&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

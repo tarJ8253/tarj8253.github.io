@@ -1,0 +1,1986 @@
+
+<!DOCTYPE html>
+<html
+  lang="ja"
+  data-figures="true"
+  
+    class="page"
+  
+  
+  >
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<title>Rの使い方 | たきやま&#39;sPAGE</title>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+<meta property="og:locale" content="ja" />
+
+<meta property="og:type" content="article">
+<meta name="description" content="R linux" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:creator" content="">
+<meta name="twitter:title" content="Rの使い方" />
+<meta name="twitter:image" content="http://localhost:1313/images/thumbnail.png"/>
+<meta property="og:url" content="http://localhost:1313/post/r-howto/" />
+<meta property="og:title" content="Rの使い方" />
+<meta property="og:description" content="R linux" />
+<meta property="og:image" content="http://localhost:1313/images/thumbnail.png" />
+  <meta name="keywords" content="R" />
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage":"http:\/\/localhost:1313\/post\/r-howto\/",
+      "name": "たきやま\u0027sPAGE",
+      "headline": "Rの使い方",
+      "description": "R linux",
+      "url": "http:\/\/localhost:1313\/post\/r-howto\/",
+      "datePublished": "2025-03-04T15:46:46+09:00",
+      "dateModified": "2025-03-04T15:46:46+09:00",
+      "keywords": ["R"],
+        "articleSection": ["tool"],
+      "author": {
+        "@type": "Person",
+        "name": "map[name:たきやま\u0027sPAGE]"
+      },
+      "image":{
+        "@type":"ImageObject",
+        "url": "http:\/\/localhost:1313\/images\/thumbnail.png"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "logo": {
+          "@type":"ImageObject",
+          "url": "http:\/\/localhost:1313\/icons\/favicon.png"
+        },
+        "name": "たきやま\u0027sPAGE"
+      }
+    }
+  </script>
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/icons/favicon-32x32.png">
+<link rel="manifest" href="http://localhost:1313/icons/site.webmanifest">
+
+<link rel="canonical" href="http://localhost:1313/post/r-howto/">
+
+
+
+<link rel="preload" href="http://localhost:1313/css/styles.7ec6ccf9d8b85cf4a42ab738be21025089d767898dfe9feba068769b130469da8f08567deeb3abf584868f225c7ab5bd72acc9496596b80cd3eed7dacd2996c5.css" integrity = "sha512-fsbM&#43;di4XPSkKrc4viECUInXZ4mN/p/roGh2mxMEadqPCFZ97rOr9YSGjyJcerW9cqzJSWWWuAzT7tfazSmWxQ==" as="style" crossorigin="anonymous">
+
+
+
+<link rel="preload" href="http://localhost:1313/ja/js/bundle.b5e92629c9911af5103985969a0bf39bf09aaa6f717ecce5d42a7dad47fc79d768da52eb5cbbeb59e09f0e30a3b08b4f7565abf25ea94dcb1cb4449cbbdc2096.js" as="script" integrity=
+"sha512-tekmKcmRGvUQOYWWmgvzm/Caqm9xfszl1Cp9rUf8eddo2lLrXLvrWeCfDjCjsItPdWWr8l6pTcsctEScu9wglg==" crossorigin="anonymous">
+
+
+<link rel="stylesheet" type="text/css" href="http://localhost:1313/css/styles.7ec6ccf9d8b85cf4a42ab738be21025089d767898dfe9feba068769b130469da8f08567deeb3abf584868f225c7ab5bd72acc9496596b80cd3eed7dacd2996c5.css" integrity="sha512-fsbM&#43;di4XPSkKrc4viECUInXZ4mN/p/roGh2mxMEadqPCFZ97rOr9YSGjyJcerW9cqzJSWWWuAzT7tfazSmWxQ==" crossorigin="anonymous">
+
+  </head>
+  <body
+    data-code="10"
+    data-lines="false"
+    id="documentTop"
+    data-lang="ja"
+  >
+
+<header class="nav_header" >
+  <nav class="nav"><a href='http://localhost:1313/' class="nav_brand nav_item" title="たきやま&#39;sPAGE">
+  <img src="http://localhost:1313/icons/favicon.png" class="logo" alt="たきやま&#39;sPAGE">
+  <div class="nav_close">
+    <div><svg class="icon">
+  <title>open-menu</title>
+  <use xlink:href="#open-menu"></use>
+</svg>
+<svg class="icon">
+  <title>closeme</title>
+  <use xlink:href="#closeme"></use>
+</svg>
+</div>
+  </div>
+</a>
+
+    <div class='nav_body nav_body_left'>
+      
+      
+      
+        
+
+  <div class="nav_parent">
+    <a href="http://localhost:1313/" class="nav_item" title="Home">Home </a>
+  </div>
+  <div class="nav_parent">
+    <a href="http://localhost:1313/archives/" class="nav_item" title="Archives/Index">Archives/Index </a>
+  </div>
+  <div class="nav_parent">
+    <a href="http://localhost:1313/about/" class="nav_item" title="About">About </a>
+  </div>
+      
+<div class='follow'>
+<div class="color_mode">
+  <input type="checkbox" class="color_choice" id="mode">
+</div>
+
+</div>
+
+    </div>
+  </nav>
+</header>
+
+    <main>
+  
+<div class="grid-inverse wrap content">
+  <article class="post_content">
+    <h1 class="post_title">Rの使い方</h1>
+  <div class="post_meta">
+    <span><svg class="icon">
+  <title>calendar</title>
+  <use xlink:href="#calendar"></use>
+</svg>
+</span>
+    <span class="post_date">
+      2025-03-04	  
+    </span>
+    <span class="post_time"> · 15 分で読了</span><span>&nbsp;· <a href='http://localhost:1313/tags/r/' title="R" class="post_tag button button_translucent">R
+        </a>
+    </span>
+  </div>
+
+    <div class="post_body">
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+基本
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<ul>
+<li>変数名は英数字、ドット . 、先頭に数字は不可、大文字小文字は別</li>
+<li>アンダーバー _ は使えない(昔代入記号として使われていた)。今は使えなくもないが、混乱を避けるために使わないほうがいいかも。</li>
+<li>コメント: 先頭#,または</li>
+</ul>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="kr">if</span><span class="p">(</span><span class="m">0</span><span class="p">){}</span></span></span></code></pre></div>
+</div>
+<p>で囲う</p>
+<ul>
+<li>代入</li>
+</ul>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="o">&lt;-</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">x</span><span class="o">&lt;-</span> <span class="m">6</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="n">y</span><span class="o">&lt;-</span> <span class="n">x</span><span class="m">+2</span></span></span></code></pre></div>
+</div>
+<ul>
+<li>べき乗</li>
+</ul>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">^</span> あるいは　<span class="o">**</span></span></span></code></pre></div>
+</div>
+<ul>
+<li>割り算と余り</li>
+</ul>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"> <span class="o">%/%</span> 整数除算
+</span></span><span class="line"><span class="ln">2</span><span class="cl"> <span class="o">%%</span> 剰余</span></span></code></pre></div>
+</div>
+<ul>
+<li>演算の優先順位</li>
+</ul>
+<p>:の優先順位が一番高いので、</p>
+<p>
+ 1:3-1と1:(3-1)は違うよ!!</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"> <span class="n">a[1</span><span class="o">:</span><span class="m">4-1</span><span class="n">]とa[1</span><span class="o">:</span><span class="p">(</span><span class="m">4-1</span><span class="p">)</span><span class="n">]の違いに注意</span><span class="o">!!</span></span></span></code></pre></div>
+</div>
+<ul>
+<li>まいなす記号</li>
+</ul>
+<p>&lt; &lt;= :: -記号をつけるときは、代入と間違われないように、空白をきちんとつける</p>
+<ul>
+<li>論理演算</li>
+</ul>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="o">!</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="o">&amp;</span> <span class="o">&amp;&amp;</span> 論理積
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="o">|</span> <span class="o">||</span>　論理和
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nf">xor</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="kc">TRUE</span><span class="p">,</span> <span class="nf">FALSE </span><span class="p">(</span><span class="bp">T</span><span class="p">,</span><span class="bp">F</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<ul>
+<li>分岐と繰り返し </li>
+</ul>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="kr">if</span><span class="p">(</span>条件式<span class="p">){</span>式<span class="m">1</span><span class="p">}</span><span class="kr">else</span><span class="p">{</span>式<span class="m">2</span><span class="p">}</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="kr">switch</span><span class="p">(</span>条件式<span class="p">,</span>ケース<span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="kr">repeat</span><span class="p">{</span>式<span class="p">}</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="kr">while</span><span class="p">(</span>条件<span class="p">){</span>式<span class="p">}</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="kr">for</span><span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="n">M</span><span class="p">){</span>式<span class="p">}</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="kr">next</span> <span class="o">:</span> 
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="kr">break</span></span></span></code></pre></div>
+</div>
+<ul>
+<li>関数</li>
+</ul>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nf">max</span><span class="p">(),</span><span class="nf">min</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="n">abs</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="nf">sqrt</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="nf">round</span><span class="p">(),</span><span class="nf">floor</span><span class="p">(),</span><span class="nf">ceiling</span><span class="p">()</span> 丸め、切り捨て、切り上げ
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="nf">sum</span><span class="p">(),</span> <span class="nf">prod</span><span class="p">()</span> ベクトルの要素の総和、要素の総積
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="nf">log</span><span class="p">(),</span> <span class="nf">log10</span><span class="p">(),</span> <span class="nf">log2</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="nf">exp</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="nf">sin</span><span class="p">(),</span><span class="nf">cos</span><span class="p">(),</span><span class="nf">tan</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="nf">asin</span><span class="p">(),</span><span class="nf">acos</span><span class="p">(),</span><span class="nf">atan</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="kc">pi</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="kc">Inf</span><span class="p">,</span><span class="o">-</span><span class="kc">Inf</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl">
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="nf">mode</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="nf">attributes</span><span class="p">(),</span><span class="nf">attr</span><span class="p">(),</span> <span class="nf">structure</span><span class="p">()</span> 属性
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="nf">typeof</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl">
+</span></span><span class="line"><span class="ln">17</span><span class="cl"><span class="nf">ls</span><span class="p">()</span>で登録されている名前一覧表示
+</span></span><span class="line"><span class="ln">18</span><span class="cl">
+</span></span><span class="line"><span class="ln">19</span><span class="cl"><span class="nf">rm</span><span class="p">(</span><span class="n">hoge</span><span class="p">)</span>で名前<span class="n">hoge削除</span></span></span></code></pre></div>
+</div>
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+help
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">help</span><span class="p">(</span><span class="n">hoge</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
+初期化
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">(</span><span class="n">all</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span> <span class="c1">#初期化</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nf">setwd</span><span class="p">(</span><span class="s">&#34;/media/takiyama/m2sata/docs/Research/AUT_ENG/imep_ana&#34;</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
+型
+</h3>
+<div id="outline-text-headline-4" class="outline-text-3">
+<ul>
+<li>character:文字列</li>
+<li>numeric:実数</li>
+<li>integer:整数</li>
+<li>logical:論理値</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-5" class="outline-2">
+<h2 id="headline-5">
+データ構造
+</h2>
+<div id="outline-text-headline-5" class="outline-text-2">
+<div id="outline-container-headline-6" class="outline-3">
+<h3 id="headline-6">
+ベクトル:c()
+</h3>
+<div id="outline-text-headline-6" class="outline-text-3">
+<p>
+<font color="red"><b>
+関数c(): combine,あるいはconcatenateの略
+</b></font></p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">x</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">5</span><span class="p">)</span>とすると処理だけ	
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="p">(</span><span class="n">x</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">5</span><span class="p">))</span>とかっこで囲むと表示までしてくれる</span></span></code></pre></div>
+</div>
+<div id="outline-container-headline-7" class="outline-4">
+<h4 id="headline-7">
+中身が空のベクトル
+</h4>
+<div id="outline-text-headline-7" class="outline-text-4">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">#直接大きさ指定はできないので以下のようにする</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">a</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="n">a[1</span><span class="o">:</span><span class="m">100</span><span class="n">]</span><span class="o">&lt;-</span><span class="kc">NA</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-4">
+<h4 id="headline-8">
+差の変化が規則正しいベクトル
+</h4>
+<div id="outline-text-headline-8" class="outline-text-4">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">seq</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">-5</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="m">-0.5</span><span class="p">)</span>で<span class="m">2</span><span class="p">,</span><span class="m">1.5</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="kc">...</span><span class="m">-4.5</span><span class="p">,</span><span class="m">-5</span>が得られる
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1">#rep()である一定パターンの繰り返し</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="m">3</span><span class="p">)</span>で、<span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">1</span>が得られる。</span></span></code></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-9" class="outline-3">
+<h3 id="headline-9">
+行列:matrix
+</h3>
+<div id="outline-text-headline-9" class="outline-text-3">
+<p>二次元 :defaultは列方向に値が設定される</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span>要素<span class="p">),</span><span class="n">nrow</span><span class="o">=</span><span class="n">nr</span><span class="p">,</span><span class="n">byrow</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span><span class="c1">#こうしたら行(row)方向に値が設定</span></span></span></code></pre></div>
+</div>
+<div id="outline-container-headline-10" class="outline-4">
+<h4 id="headline-10">
+中身が空の行列:
+</h4>
+<div id="outline-text-headline-10" class="outline-text-4">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">matrix</span><span class="p">()</span><span class="o">::</span>中身<span class="p">,</span>大きさが空
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nf">matrix</span><span class="p">(</span><span class="n">nrow</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="n">ncol</span><span class="o">=</span><span class="m">3</span><span class="p">),</span>行数<span class="p">(</span><span class="n">nrow</span><span class="p">)</span>列数<span class="p">(</span><span class="n">ncol</span><span class="p">)</span>指定
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nf">matrix</span><span class="p">(</span>要素<span class="p">,</span><span class="n">nrow</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="n">ncol</span><span class="o">=</span><span class="m">3</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+大きさ指定したいならば要素必要</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">mm</span><span class="o">&lt;-</span><span class="nf">matrix</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)</span><span class="c1">#なら空行列できる</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">mm</span><span class="o">&lt;-</span><span class="nf">matrix</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)</span><span class="c1">#なら空行列できる</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">行列<span class="n">zをベクトルとすると</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nf">dim</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>で<span class="m">2</span>行<span class="m">3</span>列の行列</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-11" class="outline-4">
+<h4 id="headline-11">
+要素を行方向に設定
+</h4>
+<div id="outline-text-headline-11" class="outline-text-4">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="n">a</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="nf">matrix</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>で<span class="p">(</span><span class="m">2</span>行<span class="p">)</span><span class="m">3</span>列の<span class="n">matrix</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="nf">matrix</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">nrow</span><span class="o">=</span><span class="m">3</span><span class="p">)</span>で<span class="m">3</span>行<span class="p">(</span><span class="m">2</span>列<span class="p">)</span>の<span class="n">matrixができる</span>。
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="nf">matrix</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">nrow</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="n">byrow</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span> <span class="o">::</span> <span class="n">byrow</span><span class="o">=</span><span class="n">Tで左から右へ行方向に要素が埋められ</span>、
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">指定がない時は、上から下へ列方向に要素が設定
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="nf">matrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">nrow</span><span class="p">,</span><span class="n">ncol</span><span class="p">,</span><span class="n">byrow</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="nf">t</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>で転置行列</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-12" class="outline-4">
+<h4 id="headline-12">
+単位行列は
+</h4>
+<div id="outline-text-headline-12" class="outline-text-4">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">diag</span><span class="p">(</span><span class="m">4</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-13" class="outline-3">
+<h3 id="headline-13">
+配列
+</h3>
+<div id="outline-text-headline-13" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">array</span><span class="p">()</span></span></span></code></pre></div>
+</div>
+<p>
+多次元,arrayは行列の拡張版</p>
+<p>
+m行,n列の行列を重ねたもの</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">array</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">20</span><span class="p">,</span><span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">))</span><span class="c1">#で4行5列の行列、列から1,2..と埋めていく</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="m">1</span> <span class="m">5</span> <span class="kc">...</span> <span class="m">17</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="m">2</span> <span class="m">6</span> <span class="kc">...</span> <span class="m">18</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="m">3</span> <span class="m">7</span> <span class="kc">...</span> <span class="m">19</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="m">4</span> <span class="m">8</span> <span class="kc">...</span> <span class="m">20</span></span></span></code></pre></div>
+</div>
+<p>となるデータができる。	</p>
+<p>
+以上の構造中の要素はすべて同じ型。
+数値、文字などを混在できない。
+自動で変換されてしまう。</p>
+</div>
+</div>
+<div id="outline-container-headline-14" class="outline-3">
+<h3 id="headline-14">
+配列の大きさを調べる
+</h3>
+<div id="outline-text-headline-14" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">length</span><span class="p">(</span><span class="n">hoge</span><span class="p">)</span><span class="c1">#で長さ</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nf">dim</span><span class="p">(</span><span class="n">hoge</span><span class="p">)</span><span class="c1">#で行列の大きさ</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-15" class="outline-3">
+<h3 id="headline-15">
+配列のアクセス
+</h3>
+<div id="outline-text-headline-15" class="outline-text-3">
+<ul>
+<li>要素の抽出</li>
+</ul>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">a[2</span><span class="p">,</span><span class="m">3</span><span class="n">]</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">a[2</span><span class="p">,</span><span class="n">]</span><span class="o">---</span>二行目
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="n">a[</span><span class="p">,</span><span class="m">3</span><span class="n">]</span><span class="o">---</span>三列目</span></span></code></pre></div>
+</div>
+<ul>
+<li>1:10 で1から10まで。</li>
+</ul>
+<p>:の優先順位が一番高いので、
+1:3-1と1:(3-1)は違うよ!!</p>
+</div>
+</div>
+<div id="outline-container-headline-16" class="outline-3">
+<h3 id="headline-16">
+data.frame()
+</h3>
+<div id="outline-text-headline-16" class="outline-text-3">
+<p>列ごとに異なる型を持たせることができる</p>
+<p>
+https://htsuda.net/stats/data-basics.html</p>
+<p>
+つまり1行方向はあるものの特性</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">id</span> 	<span class="n">name</span> 	<span class="n">age</span> 	<span class="n">sex</span> 	<span class="n">married</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="m">1</span> 	<span class="n">Alice</span> 	<span class="m">10</span> 	<span class="n">Female</span> 	<span class="kc">FALSE</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="m">2</span> 	<span class="n">Bob</span> 	<span class="m">15</span> 	<span class="n">Male</span> 	<span class="kc">FALSE</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="m">3</span> 	<span class="n">Charlotte</span> 	<span class="m">20</span> 	<span class="n">Female</span> 	<span class="kc">FALSE</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="m">4</span> 	<span class="n">Dick</span> 	<span class="m">35</span> 	<span class="n">Male</span> 	<span class="kc">TRUE</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-17" class="outline-3">
+<h3 id="headline-17">
+list()
+</h3>
+<div id="outline-text-headline-17" class="outline-text-3">
+<p>様々な種類のデータ</p>
+<p>
+配列の要素に配列など</p>
+<p>
+リストを取り出すのは二重鉤括弧<a href=""></a>や$記号</p>
+</div>
+</div>
+<div id="outline-container-headline-18" class="outline-3">
+<h3 id="headline-18">
+table(x)
+</h3>
+<div id="outline-text-headline-18" class="outline-text-3">
+<p>配列に含まれる値の出現数をカウント</p>
+<p>
+https://www.marketechlabo.com/r-time-series-analysis/</p>
+</div>
+</div>
+<div id="outline-container-headline-19" class="outline-3">
+<h3 id="headline-19">
+ts
+</h3>
+<div id="outline-text-headline-19" class="outline-text-3">
+<p>ts: Rの基本の時系列オブジェクト。ほとんどの時系列ライブラリはこの形式の時系列データを扱う</p>
+</div>
+</div>
+<div id="outline-container-headline-20" class="outline-3">
+<h3 id="headline-20">
+xts
+</h3>
+<div id="outline-text-headline-20" class="outline-text-3">
+<p>xts: データフレームとtsの間に位置づけられる、時系列データを便利に扱えるようにした形式</p>
+</div>
+</div>
+<div id="outline-container-headline-21" class="outline-3">
+<h3 id="headline-21">
+zoo
+</h3>
+<div id="outline-text-headline-21" class="outline-text-3">
+<p>zoo: データフレームとxtsの間の形式</p>
+</div>
+</div>
+<div id="outline-container-headline-22" class="outline-3">
+<h3 id="headline-22">
+少し高度な型
+</h3>
+<div id="outline-text-headline-22" class="outline-text-3">
+<ul>
+<li>factor(因子型)</li>
+<li>factorは因子型:カテゴリカルなデータを扱うときに使う</li>
+</ul>
+<p><a href="https://htsuda.net/stats/data-basics.html">https://htsuda.net/stats/data-basics.html</a></p>
+<ul>
+<li>factor()はベクトルを因子にする。</li>
+<li>gl()は水準パターンを与えて因子を作る</li>
+</ul>
+<p><a href="http://www.okadajp.org/RWiki/?">http://www.okadajp.org/RWiki/?</a>因子Tips大全</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-23" class="outline-2">
+<h2 id="headline-23">
+データ変換
+</h2>
+<div id="outline-text-headline-23" class="outline-text-2">
+<div id="outline-container-headline-24" class="outline-3">
+<h3 id="headline-24">
+一次元データを二次元に変換 
+</h3>
+<div id="outline-text-headline-24" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">#dをnrow行,byrow=Tで左から右へ行方向に要素が埋められる</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1">#d(col*DATA_NUM)をs(DATA.NUM行,col列)に変換</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="n">s</span><span class="o">&lt;-</span><span class="nf">matrix</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">nrow</span><span class="o">=</span><span class="n">DATA.NUM</span><span class="p">,</span><span class="n">byrow</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="n">s</span><span class="o">&lt;-</span><span class="nf">matrix</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">ncol</span><span class="o">=</span><span class="n">col</span><span class="p">,</span><span class="n">byrow</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span><span class="c1">#列方向指定しても同じ</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-25" class="outline-3">
+<h3 id="headline-25">
+型とデータ構造の変換
+</h3>
+<div id="outline-text-headline-25" class="outline-text-3">
+<div id="outline-container-headline-26" class="outline-4">
+<h4 id="headline-26">
+型変換:as.*****()
+</h4>
+<div id="outline-text-headline-26" class="outline-text-4">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">as.numeric</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nf">as.character</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nf">as.vector</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nf">as.matrix</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="nf">as.data.frame</span><span class="p">()</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-27" class="outline-4">
+<h4 id="headline-27">
+問い合わせ
+</h4>
+<div id="outline-text-headline-27" class="outline-text-4">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">is.</span><span class="o">*****</span><span class="p">()</span></span></span></code></pre></div>
+</div>
+<p>問い合わせ::ifなどの判断で用いる</p>
+<p>
+(<code class="verbatim">=, !</code> &lt; &gt;などの比較演算子以外に利用可)</p>
+</div>
+</div>
+<div id="outline-container-headline-28" class="outline-4">
+<h4 id="headline-28">
+データ型の確認
+</h4>
+<div id="outline-text-headline-28" class="outline-text-4">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">hoge</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-29" class="outline-2">
+<h2 id="headline-29">
+配列の加工と操作::データ構造の演算
+</h2>
+<div id="outline-text-headline-29" class="outline-text-2">
+<p>
+大きさを指定した配列の変数に代入という考え方はできない。</p>
+<p>
+すべて、ベクトルの結合(リスト)、という考え方。</p>
+<p>
+結合後に操作する。</p>
+<div id="outline-container-headline-30" class="outline-3">
+<h3 id="headline-30">
+コマンド
+</h3>
+<div id="outline-text-headline-30" class="outline-text-3">
+<div id="outline-container-headline-31" class="outline-4">
+<h4 id="headline-31">
+ベクトルx,yの結合
+</h4>
+<div id="outline-text-headline-31" class="outline-text-4">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">c</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="c1">#xの後ろにyを結合</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nf">append</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="c1">#xの後ろにyを結合</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nf">append</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">after</span><span class="o">=</span><span class="m">2</span><span class="p">)</span><span class="c1">#xの2番目以降にyを挿入</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-32" class="outline-4">
+<h4 id="headline-32">
+置換
+</h4>
+<div id="outline-text-headline-32" class="outline-text-4">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">replace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="c1">#x:置換対象</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1">#y:置換位置</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1">#z:置換内容</span></span></span></code></pre></div>
+</div>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">x</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">y</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="n">z</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="m">20</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="n">w</span><span class="o">&lt;-</span><span class="nf">replace</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="n">w</span><span class="o">:</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">20</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-33" class="outline-4">
+<h4 id="headline-33">
+sort(x)昇順で並べ替え
+</h4>
+<div id="outline-text-headline-33" class="outline-text-4">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">sort</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">decreasing</span><span class="p">)</span><span class="c1">#降順で並べ替え</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-34" class="outline-4">
+<h4 id="headline-34">
+orderで,大きさ順がわかる
+</h4>
+<div id="outline-text-headline-34" class="outline-text-4">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">s</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">10</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nf">order</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="m">1</span> <span class="m">3</span> <span class="m">2</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nf">rev</span><span class="p">(</span><span class="nf">order</span><span class="p">(</span><span class="n">s</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+以上
+<a href="https://stats.biopapyrus.jp/r/basic/vector.html">https://stats.biopapyrus.jp/r/basic/vector.html</a>
+参考</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-35" class="outline-3">
+<h3 id="headline-35">
+ベクトルの結合
+</h3>
+<div id="outline-text-headline-35" class="outline-text-3">
+<ul>
+<li>rbind:row(行)要素としてbind</li>
+<li>cbind:col(列)要素としてbind</li>
+</ul>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="o">&gt;</span> <span class="n">a</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="o">&gt;</span> <span class="n">b</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="o">&gt;</span> <span class="n">d</span><span class="o">&lt;-</span><span class="nf">cbind</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="o">&gt;</span> <span class="n">d</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">     <span class="n">a</span> <span class="n">b</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="n">[1</span><span class="p">,</span><span class="n">]</span> <span class="m">1</span> <span class="m">5</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="n">[2</span><span class="p">,</span><span class="n">]</span> <span class="m">2</span> <span class="m">6</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="n">[3</span><span class="p">,</span><span class="n">]</span> <span class="m">3</span> <span class="m">7</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="o">&gt;</span> <span class="n">e</span><span class="o">&lt;-</span><span class="nf">rbind</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="o">&gt;</span> <span class="n">e</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  <span class="n">[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span> <span class="n">[</span><span class="p">,</span><span class="m">2</span><span class="n">]</span> <span class="n">[</span><span class="p">,</span><span class="m">3</span><span class="n">]</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="n">a</span>    <span class="m">1</span>    <span class="m">2</span>    <span class="m">3</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="n">b</span>    <span class="m">5</span>    <span class="m">6</span>    <span class="m">7</span></span></span></code></pre></div>
+</div>
+<ul>
+<li>data.frame(元,追加):行データを追加</li>
+<li>list:大きさが異なっても結合できる</li>
+</ul>
+<p>クラスを保持したまま結合するのはlistがおすすめ
+by:
+<a href="https://www.karada-good.net/analyticsr/r-317/">https://www.karada-good.net/analyticsr/r-317/</a></p>
+<p>
+データフレームに行追加をしないほうがいい::型が変わってしまう
+<a href="https://www.jaysong.net/RBook/datastructure.html">https://www.jaysong.net/RBook/datastructure.html</a></p>
+</div>
+</div>
+<div id="outline-container-headline-36" class="outline-3">
+<h3 id="headline-36">
+ベクトルに名前つける
+</h3>
+<div id="outline-text-headline-36" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">names</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span><span class="s">&#34;v&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nf">names</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">=</span><span class="kc">NULL</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-37" class="outline-3">
+<h3 id="headline-37">
+データフレームの列方向毎に名前をつける
+</h3>
+<div id="outline-text-headline-37" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">FU</span><span class="o">&lt;-</span><span class="m">1</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">IMEP</span><span class="o">&lt;-</span><span class="m">2</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nf">colnames</span><span class="p">(</span><span class="n">sd</span><span class="p">)</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="s">&#34;FU&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="s">&#34;IMEP&#34;</span><span class="p">)</span><span class="c1">#列変数名</span></span></span></code></pre></div>
+</div>
+<p>
+1列目にFU,2列目にIMEPと名前がついた</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-38" class="outline-2">
+<h2 id="headline-38">
+名前を用いた演算
+</h2>
+<div id="outline-text-headline-38" class="outline-text-2">
+<div id="outline-container-headline-39" class="outline-3">
+<h3 id="headline-39">
+変数名$データ名で取り出せる
+</h3>
+<div id="outline-text-headline-39" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="n">IMEP.mean</span><span class="o">&lt;-</span><span class="nf">mean</span><span class="p">(</span><span class="n">sd</span><span class="o">$</span><span class="n">IMEP</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="n">ymax</span><span class="o">&lt;-</span><span class="nf">max</span><span class="p">(</span><span class="n">sd</span><span class="o">$</span><span class="n">IMEP</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="n">j</span><span class="o">&lt;-</span><span class="m">1</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="c1">#IMEP.fil&lt;-array(0,dim=c(DATA.NUM))</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="n">IMEP.fil</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">()</span><span class="c1">#大きさを指定しない</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="kr">for</span> <span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="n">DATA.NUM</span><span class="p">){</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">    <span class="kr">if</span><span class="p">(</span><span class="n">sd</span><span class="o">$</span><span class="n">IMEP[i]</span> <span class="o">&lt;</span> <span class="n">IMEP.mean</span><span class="m">+150</span><span class="p">){</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">        <span class="n">IMEP.fil[j]</span> <span class="o">&lt;-</span> <span class="n">sd</span><span class="o">$</span><span class="n">IMEP[i]</span><span class="c1">#ベクトルに追加</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">        <span class="n">j</span><span class="o">&lt;-</span><span class="n">j</span><span class="m">+1</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-40" class="outline-3">
+<h3 id="headline-40">
+リストを取り出すのは二重鉤括弧<a href=""></a>や$記号
+</h3>
+</div>
+<div id="outline-container-headline-41" class="outline-3">
+<h3 id="headline-41">
+ハイテクニックな結合
+</h3>
+<div id="outline-text-headline-41" class="outline-text-3">
+<p>
+which(names(df2)==&#34;c&#34;)</p>
+<p>
+で&#34;c&#34;というラベルの列を参照できる。</p>
+<p>
+https://rstudio-pubs-static.s3.amazonaws.com/573963_94a58958207d44d884ab52d2f8a8ffac.html</p>
+<p>
+問題:a,b,eを縦方向に結合する</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">df1</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="s">&#34;b&#34;</span><span class="p">,</span> <span class="s">&#34;c&#34;</span><span class="p">),</span> <span class="n">e</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">df2</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="m">7</span><span class="o">:</span><span class="m">9</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;t&#34;</span><span class="p">,</span> <span class="s">&#34;t&#34;</span><span class="p">,</span> <span class="s">&#34;t&#34;</span><span class="p">),</span> <span class="n">c</span> <span class="o">=</span> <span class="m">4</span><span class="o">:</span><span class="m">6</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;q&#34;</span><span class="p">,</span><span class="s">&#34;w&#34;</span><span class="p">,</span> <span class="s">&#34;e&#34;</span><span class="p">),</span> <span class="n">e</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">6</span><span class="p">,</span> <span class="m">6</span><span class="p">,</span> <span class="m">6</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="n">df2a</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="nf">which</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#34;c&#34;</span><span class="p">),</span> <span class="nf">which</span><span class="p">(</span><span class="nf">names</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#34;d&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="n">df2b</span> <span class="o">&lt;-</span> <span class="n">df2[</span> <span class="p">,</span> <span class="o">-</span><span class="n">df2a]</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="nf">rbind</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2b</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<ul>
+<li>df2からcとdを削除::</li>
+<li>df2aにcとdを集めて、それをdf2から引く-&gt;df2bとする</li>
+<li>その後df1とdf2bを結合</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-42" class="outline-2">
+<h2 id="headline-42">
+データ読込
+</h2>
+<div id="outline-text-headline-42" class="outline-text-2">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln"> 1</span><span class="cl">  <span class="nf">read.table</span><span class="p">(</span><span class="s">&#34;ファイル名&#34;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span>ヘッダ行有無<span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&#34;区切り文字&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  <span class="nf">read.csv</span><span class="p">(</span><span class="s">&#34;hoge&#34;</span><span class="p">)</span> は<span class="nf">read.table</span><span class="p">(</span><span class="s">&#34;hoge&#34;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&#34;,&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  <span class="nf">read.delim</span><span class="p">(</span><span class="s">&#34;hoge&#34;</span><span class="p">)</span>は<span class="nf">read.table</span><span class="p">(</span><span class="s">&#34;hoge&#34;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&#34;\t&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="c1">#  headerつきがdefault</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="c1">#  大規模なデータはscanのほうが効率いいらしい</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  <span class="nf">scan</span><span class="p">(</span><span class="s">&#34;hoge&#34;</span><span class="p">,</span><span class="nf">list</span><span class="p">(</span><span class="n">No</span><span class="p">,,</span><span class="n">l</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">l</span><span class="p">),</span><span class="n">skip</span><span class="o">=</span><span class="m">1</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&#34;,&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="c1">#  skipはヘッダ行を読み飛ばしと、開始行を指定。</span></span></span></code></pre></div>
+</div>
+<div id="outline-container-headline-43" class="outline-3">
+<h3 id="headline-43">
+CSVデータ読み込み
+</h3>
+<div id="outline-text-headline-43" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl">  <span class="n">d</span><span class="o">&lt;-</span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&#34;ファイル名&#34;</span><span class="p">,</span><span class="n">header</span><span class="o">=</span><span class="bp">F</span><span class="p">,</span><span class="n">skip</span><span class="o">=</span><span class="s">&#34;</span><span class="err">)</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-44" class="outline-3">
+<h3 id="headline-44">
+バイナリデータ読み込み
+</h3>
+<div id="outline-text-headline-44" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">DATA.NUM</span> <span class="o">&lt;-</span> <span class="m">2500</span> <span class="c1">#行数</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">col</span> <span class="o">&lt;-</span> <span class="m">9</span> <span class="c1">#列数</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="n">con</span> <span class="o">&lt;-</span> <span class="nf">file</span><span class="p">(</span><span class="s">&#34;../data/2023_0712/w_IMEP/AF_const/data_2023_0712_143906&#34;</span><span class="p">,</span><span class="s">&#34;rb&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="n">d</span> <span class="o">&lt;-</span> <span class="nf">readBin</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">what</span><span class="o">=</span><span class="nf">double</span><span class="p">(),</span> <span class="n">n</span><span class="o">=</span><span class="n">col</span><span class="o">*</span><span class="n">DATA.NUM</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">8</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="nf">close </span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="c1">#配列に放り込むoptionなし,すべて1次元データとして読み込み</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="n">s</span><span class="o">&lt;-</span><span class="nf">matrix</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">ncol</span><span class="o">=</span><span class="n">col</span><span class="p">,</span><span class="n">byrow</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span><span class="c1">#col列の二次元データに変換</span>
+</span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="n">sd</span><span class="o">&lt;-</span><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="c1">#データフレームに変換</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-45" class="outline-2">
+<h2 id="headline-45">
+データ保存
+</h2>
+<div id="outline-text-headline-45" class="outline-text-2">
+<p>
+大きさが異なる変数はwrite.{table,csv}で保存できない</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="s">&#34;dplyr&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nf">bind_rows</span><span class="p">()</span></span></span></code></pre></div>
+</div>
+<p>
+NAで補完してサイズを合わせてくれる</p>
+<p>
+https://a-habakiri.hateblo.jp/entry/2019/11/07/203512</p>
+</div>
+</div>
+<div id="outline-container-headline-46" class="outline-2">
+<h2 id="headline-46">
+コマンド
+</h2>
+<div id="outline-text-headline-46" class="outline-text-2">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">getwd</span><span class="p">()</span> <span class="c1">#現在ディレクトリの設定</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nf">setwd</span><span class="p">()</span> <span class="c1">#WorhDirの設定</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1">#デリミタは　\\ または /</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nf">source</span><span class="p">(</span><span class="s">&#34;hoge.R&#34;</span><span class="p">)</span><span class="c1">#でソースの読み込みと実行</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="nf">dump</span><span class="p">(</span><span class="s">&#34;hoge.R&#34;</span><span class="p">)</span><span class="c1">#でRのオブジェクトをダンプ</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="nf">save.image</span><span class="p">(</span><span class="s">&#34;h&#34;</span><span class="p">)</span>でデータ、関数の保存
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="nf">load</span><span class="p">(</span><span class="s">&#34;h&#34;</span><span class="p">)</span>でデータ、関数の読み込み</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-47" class="outline-2">
+<h2 id="headline-47">
+データフレーム
+</h2>
+<div id="outline-text-headline-47" class="outline-text-2">
+<p>
+data.frame()
+フレームでいろいろ変えられる</p>
+<div id="outline-container-headline-48" class="outline-3">
+<h3 id="headline-48">
+read.tableのようにデータフレームに変換したいときは
+</h3>
+<div id="outline-text-headline-48" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">as.data.frame</span><span class="p">(</span>オブジェクト名<span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="n">a</span><span class="o">&lt;-</span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&#34;hoge&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nf">data.entry</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl">
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="c1">#または</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">
+</span></span><span class="line"><span class="ln">8</span><span class="cl"><span class="nf">fix</span><span class="p">(</span><span class="n">a</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+とすると、読み込んだデータが表形式で現れる。</p>
+<p>
+(データエディタといい、編集もできるそうである)</p>
+</div>
+</div>
+<div id="outline-container-headline-49" class="outline-3">
+<h3 id="headline-49">
+名前を用いた参照
+</h3>
+<div id="outline-text-headline-49" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl">      <span class="n">year</span> <span class="n">abc</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">Japan</span> <span class="m">2006</span><span class="p">,</span> <span class="m">2</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="n">USA</span>   <span class="m">2000</span><span class="p">,</span> <span class="m">3</span></span></span></code></pre></div>
+</div>
+<p>
+とすると</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">a</span><span class="o">&lt;-</span><span class="nf">read.table</span><span class="p">(</span><span class="s">&#34;hoge&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">a</span><span class="o">$</span><span class="n">year</span></span></span></code></pre></div>
+</div>
+<p>
+で列ごと</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">a[</span><span class="s">&#34;Japan&#34;</span><span class="p">,</span><span class="n">]</span></span></span></code></pre></div>
+</div>
+<p>で行ごと
+参照できる。</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">attach</span><span class="p">(</span><span class="n">a</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>とすると</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">year</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">abc</span></span></span></code></pre></div>
+</div>
+<p>だけで参照できる</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">colnames</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;hoge&#34;</span><span class="p">,</span><span class="s">&#34;fuga&#34;</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>で追加しても良いし、</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl">  <span class="n">x1</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="n">x2</span><span class="o">&lt;-</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="n">xx</span><span class="o">&lt;-</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">hoge</span><span class="o">=</span><span class="n">x1</span><span class="p">,</span><span class="n">fuga</span><span class="o">=</span><span class="n">x2</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+  とすると名前hoge,fugaの列ができる!
+  -列要素の足し算で、データが構成できる。!!</p>
+</div>
+</div>
+<div id="outline-container-headline-50" class="outline-3">
+<h3 id="headline-50">
+列要素の加工
+</h3>
+<div id="outline-text-headline-50" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl">  <span class="n">a1</span><span class="o">&lt;-</span><span class="m">2</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="n">a2</span><span class="o">&lt;-</span><span class="m">7</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="n">a</span><span class="o">&lt;-</span><span class="n">a[</span><span class="p">,</span><span class="o">-</span><span class="nf">c</span><span class="p">((</span><span class="n">a1</span><span class="m">-1</span><span class="p">),(</span><span class="n">a1</span><span class="m">+1</span><span class="p">)</span><span class="o">:</span><span class="p">(</span><span class="n">a2</span><span class="m">-1</span><span class="p">),(</span><span class="n">a2</span><span class="m">+1</span><span class="p">))</span><span class="n">]</span></span></span></code></pre></div>
+</div>
+<p>
+  とすると
+  aから,1,3:6,8行を取り除く行列の出来上がり!</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">a[1</span><span class="o">:</span><span class="m">3</span><span class="n">]</span><span class="c1">#とすると1列から3列</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">a[1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="n">]</span><span class="c1">#と,をつけないと、行指定の選択にならない</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1">#:の優先順位が一番高いので、()をつけること!!</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-51" class="outline-2">
+<h2 id="headline-51">
+図を描く
+</h2>
+<div id="outline-text-headline-51" class="outline-text-2">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">sd</span><span class="o">$</span><span class="n">IMEP</span><span class="p">,</span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">DATA.NUM</span><span class="p">),</span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">ymax</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">,</span><span class="n">ann</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">new</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span><span class="c1">#上書きするおまじない</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1">#plot(IMEP.fil,type=&#34;l&#34;,xlim=c(0,DATA.NUM),ylim=c(0,ymax),col=&#39;blue&#39;)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">IMEP.fil</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&#34;o&#34;</span><span class="p">,</span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">DATA.NUM</span><span class="p">),</span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">ymax</span><span class="p">),</span><span class="n">col</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1">#type::l:線,o:点と線,p(点,default),b,cなどあり</span></span></span></code></pre></div>
+</div>
+<div id="outline-container-headline-52" class="outline-3">
+<h3 id="headline-52">
+par(…)
+</h3>
+<div id="outline-text-headline-52" class="outline-text-3">
+<p>グラフィックパラメータの設定</p>
+<p>
+help(par)で参照
+<a href="http://takenaka-akio.org/doc/r_auto/chapter_05.html">http://takenaka-akio.org/doc/r_auto/chapter_05.html</a></p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">lheight</span><span class="p">(</span><span class="n">line</span> <span class="n">height</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nf">lwd</span><span class="p">(</span><span class="n">line</span> <span class="n">width</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nf">lty</span><span class="p">(</span><span class="n">line</span> <span class="n">type</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="n">xlog</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-53" class="outline-3">
+<h3 id="headline-53">
+新しい画面を開く
+</h3>
+<div id="outline-text-headline-53" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">dev.new</span><span class="p">()</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-54" class="outline-3">
+<h3 id="headline-54">
+画面を分割する
+</h3>
+<div id="outline-text-headline-54" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">layout</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="n">byrow</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span><span class="c1">#2行1列,行方向に並ぶ</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mfcol</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span></span></span></code></pre></div>
+</div>
+<p>
+layout(hoge)の引数は分割サイズと図の配置位置も指定できる。</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl">  <span class="c1">#1行目に図を1つ、2行目2列に分けて、右側に図を書く</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  <span class="n">nf</span> <span class="o">&lt;-</span> <span class="nf">layout</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="n">byrow</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span> <span class="n">respect</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  <span class="nf">layout.show</span><span class="p">(</span><span class="n">nf</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  <span class="c1">#0は図を書かない、幅3:1,高さ1:3,</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl">  <span class="n">nf</span><span class="o">&lt;-</span><span class="nf">layout</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="n">byrow</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">),</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">),</span><span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl">  <span class="nf">layout.show</span><span class="p">(</span><span class="n">nf</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">  <span class="c1">#http://eau.uijin.com/advgraphs/layout.html</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-55" class="outline-3">
+<h3 id="headline-55">
+画面を閉じる
+</h3>
+<div id="outline-text-headline-55" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">dev.off</span><span class="p">()</span><span class="c1">#今見ている画面</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nf">dev.off</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="c1">#指定画面</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nf">graphics.off</span><span class="p">()</span><span class="c1">#全画面</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-56" class="outline-2">
+<h2 id="headline-56">
+文字を画面に出力する
+</h2>
+<div id="outline-text-headline-56" class="outline-text-2">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">cat</span><span class="p">(</span><span class="s">&#34;IMEP fil mean = &#34;</span> <span class="p">,</span> <span class="n">IMEP.fil.mean</span> <span class="p">,</span><span class="s">&#34;\n&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="nf">cat</span><span class="p">(</span><span class="s">&#34;IMEP fil sd = &#34;</span><span class="p">,</span> <span class="n">IMEP.fil.sd</span><span class="p">,</span> <span class="s">&#34;\n&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">                                        
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="c1">#printで出力できるのは1つだけ</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1">#または</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="c1">#sprintf(&#34;IMEP fil mean = %f &#34; , IMEP.fil.mean): 使えない</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-57" class="outline-2">
+<h2 id="headline-57">
+lmを使う
+</h2>
+<div id="outline-text-headline-57" class="outline-text-2">
+<div id="outline-container-headline-58" class="outline-3">
+<h3 id="headline-58">
+lmの返すオブジェクト
+</h3>
+<div id="outline-text-headline-58" class="outline-text-3">
+<p>Rstat.pdf,p132.</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">ans</span><span class="o">$</span><span class="n">fitted.values</span><span class="p">,</span><span class="n">df</span><span class="o">$</span><span class="n">AirPassengers</span><span class="p">)</span><span class="c1">#回帰データと元データをplot</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="n">xlab</span><span class="o">=</span><span class="s">&#34;x axis name&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="n">ylab</span><span class="o">=</span><span class="s">&#34;y axis name&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">600</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">600</span><span class="p">),</span><span class="c1">#描画範囲</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="n">asp</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="nf">abline</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">)</span><span class="c1">#傾き1の直線,fitしてたら一致するはず</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="nf">abline</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span><span class="c1">#回帰直線</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="nf">layout</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="n">byrow</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span><span class="c1">#一画面に複数の図を出す時のおまじない</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mar</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">4.5</span><span class="p">,</span> <span class="m">1.5</span><span class="p">,</span> <span class="m">0.5</span><span class="p">),</span> <span class="n">mgp</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2.1</span><span class="p">,</span> <span class="m">0.8</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">cex</span><span class="o">=</span><span class="m">0.7</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span> <span class="c1"># 回帰診断グラフ</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-59" class="outline-3">
+<h3 id="headline-59">
+p.135(149)　図7.4(p.136) は，以下のようにして描くことができる。
+</h3>
+<div id="outline-text-headline-59" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="o">&gt;</span> <span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">pch</span><span class="o">=</span><span class="m">19</span><span class="p">,</span> <span class="n">cex</span><span class="o">=</span><span class="m">1.5</span><span class="p">)</span> <span class="c1"># 元のデータの散布図</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="o">&gt;</span> <span class="n">x1</span> <span class="o">&lt;-</span> <span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="m">0.05</span><span class="p">)</span> <span class="c1"># 新しいデータ</span>
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="o">&gt;</span> <span class="n">new.data</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x1</span><span class="p">)</span> <span class="c1"># データフレームにする</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="o">&gt;</span> <span class="n">y1</span> <span class="o">&lt;-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">ans1</span><span class="p">,</span> <span class="n">new.data</span><span class="p">)</span> <span class="c1"># 新しいデータに対する予測値</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="o">&gt;</span> <span class="n">y3</span> <span class="o">&lt;-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">ans3</span><span class="p">,</span> <span class="n">new.data</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="o">&gt;</span> <span class="n">y5</span> <span class="o">&lt;-</span> <span class="nf">predict</span><span class="p">(</span><span class="n">ans5</span><span class="p">,</span> <span class="n">new.data</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="o">&gt;</span> <span class="nf">matlines</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="n">y5</span><span class="p">),</span> <span class="c1"># 3 種類の予測値を描画</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="o">+</span> <span class="n">lty</span><span class="o">=</span><span class="m">3</span><span class="o">:</span><span class="m">1</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s">&#34;black&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl"><span class="o">&gt;</span> <span class="nf">legend</span><span class="p">(</span><span class="s">&#34;bottomright&#34;</span><span class="p">,</span> <span class="c1"># 凡例を付ける</span>
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="o">+</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;1 次式&#34;</span><span class="p">,</span> <span class="s">&#34;3 次式&#34;</span><span class="p">,</span> <span class="s">&#34;5 次式&#34;</span><span class="p">),</span> <span class="n">lty</span><span class="o">=</span><span class="m">3</span><span class="o">:</span><span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="o">==</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-60" class="outline-3">
+<h3 id="headline-60">
+低水準関数:abline
+</h3>
+<div id="outline-text-headline-60" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">abline</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="m">0</span><span class="p">,</span><span class="n">v</span><span class="o">=</span><span class="m">0</span><span class="p">)</span><span class="c1">#座標軸を表示</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">R</span><span class="o">-</span><span class="n">tips</span> <span class="nf">p.131</span><span class="p">(</span><span class="m">132</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nf">abline</span><span class="p">(</span>切片<span class="p">,</span>傾き<span class="p">,</span><span class="n">h</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">v</span><span class="o">=</span><span class="n">x</span><span class="p">)</span><span class="c1">#ベクトルで与えたy座標の水平線、x座標の垂直線を引く</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nf">abline</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>result は関数lm() で直線回帰を行った結果が入ったオブジェクト
+で，回帰直線が描かれる．</p>
+</div>
+</div>
+<div id="outline-container-headline-61" class="outline-3">
+<h3 id="headline-61">
+lm()が返すオブジェクトobj
+</h3>
+<div id="outline-text-headline-61" class="outline-text-3">
+<pre class="example">
+  + obj&lt;-lm()とすると
+  summary(obj),AIC(obj),coefficient(obj)などで値を取り出すことができる
+  r-tips p.188(190)
+  + obj$coeffciant, obj$residuals, obj$fitted.valuesなどもあり
+  (Rstat, p,123(137)にしか説明はなし
+  --&gt;helpにfited.valuesあり。グラフ表示もできた! )
+  + R-intro-1.7.0,p.53(59)にはcoeffients(obj)などのみの説明
+  ($coeffientsの説明はなし)
+  + formula(obj)#モデル式を抽出
+</pre>
+<p>
+coefficients(obj)でも、obj$coefficientsでも同じ結果が表示されるけど、
+lmの場合だけできる特典。coefficients(obj)が一般的</p>
+</div>
+</div>
+<div id="outline-container-headline-62" class="outline-3">
+<h3 id="headline-62">
+多変数回帰
+</h3>
+<div id="outline-text-headline-62" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="n">Y</span> <span class="n">. X1</span> <span class="o">+</span> <span class="n">X2</span> <span class="o">+</span> <span class="n">X3</span> <span class="o">+</span> <span class="n">X4</span> <span class="c1"># モデル式</span>
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="n">Df</span> <span class="n">Sum</span> <span class="n">of</span> <span class="n">Sq</span> <span class="n">RSS</span> <span class="n">AIC</span> <span class="c1"># 独立変数を除いたモデルのAIC</span>
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl"><span class="o">-</span> <span class="n">X4</span> <span class="m">1</span> <span class="m">3.233</span> <span class="m">72.763</span> <span class="m">27.846</span> <span class="c1"># X4 を除くとAIC が小さくなる</span>
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl"><span class="o">&lt;</span> <span class="n">none</span> <span class="o">&gt;</span> <span class="m">69.531</span> <span class="m">29.392</span> <span class="c1"># 何も取り除かないモデルのAIC</span>
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl"><span class="o">-</span> <span class="n">X1</span> <span class="m">1</span> <span class="m">41.797</span> <span class="m">111.328</span> <span class="m">32.099</span>
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl"><span class="o">-</span> <span class="n">X2</span> <span class="m">1</span> <span class="m">43.966</span> <span class="m">113.497</span> <span class="m">32.292</span>
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl"><span class="o">-</span> <span class="n">X3</span> <span class="m">1</span> <span class="m">165.279</span> <span class="m">234.810</span> <span class="m">39.562</span>
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">
+</span></span><span class="line"><span class="ln">10</span><span class="cl"><span class="n">Step</span><span class="o">:</span> <span class="n">AIC</span><span class="o">=</span><span class="m">27.85</span> <span class="c1"># このステップでのAIC</span>
+</span></span><span class="line"><span class="ln">11</span><span class="cl"><span class="n">Y</span> <span class="n">. X1</span> <span class="o">+</span> <span class="n">X2</span> <span class="o">+</span> <span class="n">X3</span> <span class="c1"># モデル式</span>
+</span></span><span class="line"><span class="ln">12</span><span class="cl"><span class="n">Df</span> <span class="n">Sum</span> <span class="n">of</span> <span class="n">Sq</span> <span class="n">RSS</span> <span class="n">AIC</span> <span class="c1"># 独立変数を除いたモデルのAIC</span>
+</span></span><span class="line"><span class="ln">13</span><span class="cl"><span class="o">&lt;</span> <span class="n">none</span> <span class="o">&gt;</span> <span class="m">72.763</span> <span class="m">27.846</span> <span class="c1"># 今のモデルのAIC が最小</span>
+</span></span><span class="line"><span class="ln">14</span><span class="cl"><span class="o">-</span> <span class="n">X1</span> <span class="m">1</span> <span class="m">39.909</span> <span class="m">112.673</span> <span class="m">30.219</span> <span class="c1"># 以下のどれを取り除いても</span>
+</span></span><span class="line"><span class="ln">15</span><span class="cl"><span class="o">-</span> <span class="n">X2</span> <span class="m">1</span> <span class="m">84.007</span> <span class="m">156.770</span> <span class="m">33.522</span> <span class="c1"># AIC は大きくなる</span>
+</span></span><span class="line"><span class="ln">16</span><span class="cl"><span class="o">-</span> <span class="n">X3</span> <span class="m">1</span> <span class="m">168.982</span> <span class="m">241.746</span> <span class="m">37.853</span></span></span></code></pre></div>
+</div>
+<p>step で最小のAIC を持つ重回帰モデルlm(formula = Y 〜 X1 + X2 + X3, data</p>
+<p>
+;;Rstat.pdf,p.128(142)</p>
+</div>
+</div>
+<div id="outline-container-headline-63" class="outline-3">
+<h3 id="headline-63">
+stepの挙動;
+</h3>
+<div id="outline-text-headline-63" class="outline-text-3">
+<ol>
+<li>そのバラメータを取り除いたときのAICを計算し、   小さい順に並べる</li>
+<li>何も取り除かない時 &lt; none &gt; のAICと比較し、それよりもAICが小さい時は そのパラメータを取り除くことで、AICがよくなる(AICが小さくなる)ことを示しているので、そのパラメータを取り除くことにする。</li>
+<li>一番小さいAICから順に、1つずつ(2)を繰り返す。</li>
+<li>&lt;none&gt;の時のAICが一番小さい値になるまで繰り返す。</li>
+<li>こうして残ったパラメータが有効なパラメータである。これについてPrなどを計算している</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-64" class="outline-2">
+<h2 id="headline-64">
+時系列解析
+</h2>
+<div id="outline-text-headline-64" class="outline-text-2">
+<p>
+Rの標準パッケージに含まれる時系列データの型としてts(time series)がある</p>
+<p>
+<a href="http://www.okadajp.org/RWiki/?Rの基本パッケージ中の時系列オブジェクト一覧">Rの基本パッケージ中の時系列オブジェクト一覧</a></p>
+<p>
+https://qiita.com/YM_DSKR/items/2528548913378bfbf9bc</p>
+<p>
+https://logics-of-blue.com/時系列解析_理論編</p>
+<div id="outline-container-headline-65" class="outline-3">
+<h3 id="headline-65">
+AIC()
+</h3>
+</div>
+<div id="outline-container-headline-66" class="outline-3">
+<h3 id="headline-66">
+AR
+</h3>
+<div id="outline-text-headline-66" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">=</span><span class="n">a1</span><span class="o">*</span><span class="nf">y</span><span class="p">(</span><span class="n">t</span><span class="m">-1</span><span class="p">)</span><span class="o">+</span><span class="n">a2</span><span class="o">*</span><span class="nf">y</span><span class="p">(</span><span class="n">t</span><span class="m">-2</span><span class="p">)</span><span class="m">+.</span><span class="n">..</span><span class="o">+</span><span class="n">ap</span><span class="o">*</span><span class="nf">y</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">+</span><span class="n">eps</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-67" class="outline-3">
+<h3 id="headline-67">
+MA
+</h3>
+<div id="outline-text-headline-67" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">=</span><span class="n">mu</span><span class="o">+</span><span class="n">b1</span><span class="o">*</span><span class="nf">eps</span><span class="p">(</span><span class="n">t</span><span class="m">-1</span><span class="p">)</span><span class="o">+</span><span class="n">b2</span><span class="o">*</span><span class="nf">eps</span><span class="p">(</span><span class="n">t</span><span class="m">-2</span><span class="p">)</span><span class="m">+.</span><span class="n">..</span><span class="o">+</span><span class="n">bq</span><span class="o">*</span><span class="nf">eps</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">q</span><span class="p">)</span><span class="o">+</span><span class="nf">eps</span><span class="p">(</span><span class="n">t</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-68" class="outline-3">
+<h3 id="headline-68">
+ARMA
+</h3>
+<div id="outline-text-headline-68" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">=</span><span class="n">a1</span><span class="o">*</span><span class="nf">y</span><span class="p">(</span><span class="n">t</span><span class="m">-1</span><span class="p">)</span><span class="o">+</span><span class="n">a2</span><span class="o">*</span><span class="nf">y</span><span class="p">(</span><span class="n">t</span><span class="m">-2</span><span class="p">)</span><span class="m">+.</span><span class="n">..</span><span class="o">+</span><span class="n">ap</span><span class="o">*</span><span class="nf">y</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">+</span><span class="n">b1</span><span class="o">*</span><span class="nf">eps</span><span class="p">(</span><span class="n">t</span><span class="m">-1</span><span class="p">)</span><span class="m">+.</span><span class="n">..</span></span></span></code></pre></div>
+</div>
+<p>
+Autoregressive Moving Avarage,
+yとepsで回帰</p>
+</div>
+</div>
+<div id="outline-container-headline-69" class="outline-3">
+<h3 id="headline-69">
+ARIMA
+</h3>
+<div id="outline-text-headline-69" class="outline-text-3">
+<p>Autoregressive integrated Moving Avarage</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">y</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="nf">y</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">d</span><span class="p">)</span><span class="o">=</span><span class="n">c</span><span class="o">+</span><span class="n">a1</span><span class="o">*</span><span class="nf">y</span><span class="p">(</span><span class="n">t</span><span class="m">-1</span><span class="p">)</span><span class="o">+</span><span class="n">a2</span><span class="o">*</span><span class="nf">y</span><span class="p">(</span><span class="n">t</span><span class="m">-2</span><span class="p">)</span><span class="m">+.</span><span class="n">..</span><span class="o">+</span><span class="n">ap</span><span class="o">*</span><span class="nf">y</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">p</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+データの差分を取ってからARMAを適用したモデルです。</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-70" class="outline-2">
+<h2 id="headline-70">
+コレログラム
+</h2>
+<div id="outline-text-headline-70" class="outline-text-2">
+<p>
+https://qiita.com/nash_efp/items/a35c1796e249277ec43f</p>
+<div id="outline-container-headline-71" class="outline-3">
+<h3 id="headline-71">
+acf(IMEP.fil)#自己相関.1,2,3
+</h3>
+</div>
+<div id="outline-container-headline-72" class="outline-3">
+<h3 id="headline-72">
+pacf(IMEP.fil)#偏自己相関:注目している時以外を無視した自己相関係数
+</h3>
+<div id="outline-text-headline-72" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">acf</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">pacf</span></span></span></code></pre></div>
+</div>
+<p>コレログラムとはそれぞれのラグについての自己相関係数を表した図です。</p>
+<p>
+日ごとのある株の収益率データを使って見ていきましょう。</p>
+<p>
+ラグ0は現在の自分と現在の自分の相関を表しているので当然1.0です。</p>
+<p>
+右にいくほど下がっている、つまり過去にいくほど現在との相関が弱くなって
+いることがわかります。</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-73" class="outline-2">
+<h2 id="headline-73">
+varモデル
+</h2>
+<div id="outline-text-headline-73" class="outline-text-2">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">vars</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>VARモデル</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl">今年のサンマ　　　＝　去年のサンマ×傾き<span class="n">A</span>　＋　去年のプランクトン×傾き<span class="n">B</span>　　　＋切片<span class="n">C</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">今年のプランクトン＝　去年のプランクトン×傾き<span class="n">D</span>　＋　去年のサンマ×傾き<span class="n">E</span>　　 ＋切片<span class="bp">F</span></span></span></code></pre></div>
+</div>
+<p>
+https://logics-of-blue.com/varモデル</p>
+<p>
+arxと同等???</p>
+</div>
+</div>
+<div id="outline-container-headline-74" class="outline-2">
+<h2 id="headline-74">
+Rの移動平均は
+</h2>
+<div id="outline-text-headline-74" class="outline-text-2">
+<div id="outline-container-headline-75" class="outline-3">
+<h3 id="headline-75">
+statsパッケージに含まれるfilterを利用
+</h3>
+<div id="outline-text-headline-75" class="outline-text-3">
+<p>dplyrとかぶるので、stats::filterとする</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">https</span><span class="o">://</span><span class="n">datasciencehenomiti.com</span><span class="o">/</span><span class="n">programing</span><span class="o">/</span><span class="n">r</span><span class="o">/</span><span class="n">dplyr_moving_average</span><span class="o">/</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nf">mutate</span><span class="p">(</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="n">stats</span><span class="o">::</span><span class="nf">filter</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">,</span><span class="n">sides</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="p">)</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-76" class="outline-3">
+<h3 id="headline-76">
+filterという関数を用いて書く
+</h3>
+<div id="outline-text-headline-76" class="outline-text-3">
+<p><a href="http://tips-r.blogspot.com/2015/01/r_1.html">http://tips-r.blogspot.com/2015/01/r_1.html</a></p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">filter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">))</span><span class="o">/</span><span class="n">n</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">c</span><span class="o">:</span>時点<span class="n">n</span><span class="m">-1</span><span class="p">,</span>現時点<span class="n">n</span><span class="p">,</span>時点<span class="n">n</span><span class="m">+1</span><span class="p">,</span>の重み
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>と<span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">)</span>は意味同じ
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>は<span class="m">1</span>を<span class="n">n回繰り返し</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-77" class="outline-3">
+<h3 id="headline-77">
+dplyr
+</h3>
+<div id="outline-text-headline-77" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">RcppRoll</span><span class="o">:</span><span class="nf">roll_sum</span><span class="p">(</span><span class="n">x</span><span class="p">,)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">RcppRoll</span><span class="o">:</span><span class="nf">roll_mean</span><span class="p">(</span><span class="n">x</span><span class="p">,)</span></span></span></code></pre></div>
+</div>
+<p>
+zoo::rollapply()もあり
+<a href="https://qiita.com/Sickle-Sword/items/d93aff1d29e1176e25fe">https://qiita.com/Sickle-Sword/items/d93aff1d29e1176e25fe</a></p>
+<p>
+時系列データを扱うパッケージ</p>
+<pre class="example">
+zoo
+dplyr
+tidyr
+purrr
+tibble
+</pre>
+<p>などあり
+<a href="https://rstudio-pubs-static.s3.amazonaws.com/640203_28880d5e47b44029b9279d8e24385fba.html">https://rstudio-pubs-static.s3.amazonaws.com/640203_28880d5e47b44029b9279d8e24385fba.html</a></p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">mutate</span><span class="p">()</span></span></span></code></pre></div>
+</div>
+<p>データセットに変数を追加する関数</p>
+<p>
+https://kazutan.github.io/kazutanR/hands_on_170730/mutate.html</p>
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="nf">mutate</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span><span class="n">k</span><span class="o">=</span><span class="n">S.len</span><span class="o">*</span><span class="m">2</span><span class="p">)</span></span></span></code></pre></div>
+</div>
+<p>
+irisのS.lenを2倍したkをirisの最後列に追加
+名前が同じなら、上書きする
+行数が同じでないとだめ</p>
+<p>
+data.frameの仕様と同じ!?!?</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-78" class="outline-2">
+<h2 id="headline-78">
+パッケージ
+</h2>
+<div id="outline-text-headline-78" class="outline-text-2">
+<div id="outline-container-headline-79" class="outline-3">
+<h3 id="headline-79">
+package(library)のインストール
+</h3>
+<div id="outline-text-headline-79" class="outline-text-3">
+<p>tseries,statsはdebianのパッケージになし</p>
+<pre class="example">
+suしてRを起動
+ Rのコンソールから
+ install.packages(&#34;tseries&#34;, dependencies=TRUE)
+ https://stats.biopapyrus.jp/r/basic/package.html
+libの指定がないので
+/usr/local/lib/R/site-library
+にinstall
+依存対象::TTR,curl,jsonlite,quadprog,quantmod,xts,zooも入った
+</pre>
+</div>
+</div>
+<div id="outline-container-headline-80" class="outline-3">
+<h3 id="headline-80">
+library(tseries)
+</h3>
+<div id="outline-text-headline-80" class="outline-text-3">
+<p>
+tseriesにadfある</p>
+</div>
+</div>
+<div id="outline-container-headline-81" class="outline-3">
+<h3 id="headline-81">
+library(gvlma)
+</h3>
+<div id="outline-text-headline-81" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">fit1</span><span class="o">=</span><span class="nf">lm</span><span class="p">(</span><span class="n">sa</span><span class="o">~</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">fit2</span><span class="o">=</span><span class="nf">lm</span><span class="p">(</span><span class="n">sa</span><span class="o">~</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl">                                        
+</span></span><span class="line"><span class="ln">4</span><span class="cl"><span class="nf">AIC</span><span class="p">(</span><span class="n">fit1</span><span class="p">,</span><span class="n">fit2</span><span class="p">)</span>
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="c1">#https://htsuda.net/stats/regression.html</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-82" class="outline-3">
+<h3 id="headline-82">
+library(MASS)
+</h3>
+<div id="outline-text-headline-82" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="ln">1</span><span class="cl"><span class="c1">#stepAIC(fit,direction=&#34;backward&#34;)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="c1">#https://qiita.com/purple_jp/items/b5b36bc78a4ccfb42027</span>
+</span></span><span class="line"><span class="ln">4</span><span class="cl">
+</span></span><span class="line"><span class="ln">5</span><span class="cl"><span class="nf">dev.new</span><span class="p">()</span>
+</span></span><span class="line"><span class="ln">6</span><span class="cl"><span class="nf">acf</span><span class="p">(</span><span class="n">IMEP.fil</span><span class="p">)</span><span class="c1">#自己相関.1,2,3</span>
+</span></span><span class="line"><span class="ln">7</span><span class="cl"><span class="nf">pacf</span><span class="p">(</span><span class="n">IMEP.fil</span><span class="p">)</span><span class="c1">#偏自己相関:注目している時以外を無視した自己相関係数</span>
+</span></span><span class="line"><span class="ln">8</span><span class="cl">
+</span></span><span class="line"><span class="ln">9</span><span class="cl"><span class="n">imep.ar</span> <span class="o">&lt;-</span> <span class="nf">ar</span><span class="p">(</span><span class="n">IMEP.fil</span><span class="p">)</span><span class="c1">#係数表示,31次!!</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-83" class="outline-2">
+<h2 id="headline-83">
+参考文献、URL
+</h2>
+<div id="outline-text-headline-83" class="outline-text-2">
+<div id="outline-container-headline-84" class="outline-3">
+<h3 id="headline-84">
+forecast
+</h3>
+<div id="outline-text-headline-84" class="outline-text-3">
+<p>パッケージforecastは、自動SARIMA推定だけでなく、色々な便利な関数が付い
+ています</p>
+<p>
+https://logics-of-blue.com/時系列解析_理論編</p>
+<p>
+https://logics-of-blue.com/時系列分析_実践編</p>
+</div>
+</div>
+<div id="outline-container-headline-85" class="outline-3">
+<h3 id="headline-85">
+TSstudio 
+</h3>
+<div id="outline-text-headline-85" class="outline-text-3">
+<p>今回は、「MLmetrics」（精度評価用のライブラリー）と「forecast」（時系
+列解析のライブラリー）も利用するので、インストールされていない方は、イ
+ンストールしておいてください。
+<a href="https://www.salesanalytics.co.jp/datascience/datascience011/">https://www.salesanalytics.co.jp/datascience/datascience011/</a></p>
+</div>
+</div>
+<div id="outline-container-headline-86" class="outline-3">
+<h3 id="headline-86">
+ts_ R1.pdf
+</h3>
+<div id="outline-text-headline-86" class="outline-text-3">
+<p><a href="http://user.keio.ac.jp/~nagakura/R/ts_R1.pdf">http://user.keio.ac.jp/~nagakura/R/ts_R1.pdf</a></p>
+</div>
+</div>
+<div id="outline-container-headline-87" class="outline-3">
+<h3 id="headline-87">
+lbrts.pdf
+</h3>
+<div id="outline-text-headline-87" class="outline-text-3">
+<p>リトルブック　関西大学
+<a href="http://www.ec.kansai-u.ac.jp/user/arakit/documents/lbrts.pdf">http://www.ec.kansai-u.ac.jp/user/arakit/documents/lbrts.pdf</a></p>
+</div>
+</div>
+<div id="outline-container-headline-88" class="outline-3">
+<h3 id="headline-88">
+統計解析ソフトRのスクリプト集
+</h3>
+<div id="outline-text-headline-88" class="outline-text-3">
+<p><a href="https://www.educa.nagoya-u.ac.jp/~ishii-h/materials/Rscripts_ishii.pdf">https://www.educa.nagoya-u.ac.jp/~ishii-h/materials/Rscripts_ishii.pdf</a></p>
+<p>
+ R 制御　モデルでgoogleした結果</p>
+</div>
+</div>
+<div id="outline-container-headline-89" class="outline-3">
+<h3 id="headline-89">
+北川源四郎
+</h3>
+<div id="outline-text-headline-89" class="outline-text-3">
+<p>Rによる　時系列モデリング入門　岩波</p>
+<p>
+代表的な手法と応用へのポイントを、RパッケージTSSSを用いた分析により実
+践的に学ぶ。</p>
+<p>
+統計数理研究所で開発されたRパッケージTSSSの使用法と解析例を新たに多数
+追加した。 </p>
+<div id="outline-container-headline-90" class="outline-4">
+<h4 id="headline-90">
+時系列解析(6) –ARモデルの推定
+</h4>
+<div id="outline-text-headline-90" class="outline-text-4">
+<p>
+東京大学　数理・情報教育研究センター
+<a href="http://www.mi.u-tokyo.ac.jp/mds-oudan/lecture_document_2019_math7/">http://www.mi.u-tokyo.ac.jp/mds-oudan/lecture_document_2019_math7/</a>時系列解析（６）_2019.pdf</p>
+<p>
+北川源四郎 時系列解析
+<a href="http://www.mi.u-tokyo.ac.jp/mds-oudan/lecture_document_2019_math7/">http://www.mi.u-tokyo.ac.jp/mds-oudan/lecture_document_2019_math7/</a>%E6%99%82%E7%B3%BB%E5%88%97%E8%A7%A3%E6%9E%90%EF%BC%88%EF%BC%96%EF%BC%89_2019.pdf</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    </div><div class="post_comments">
+  
+  
+  
+  
+</div>
+
+
+
+
+  </article>
+<aside class="sidebar">
+  <section class="sidebar_inner">
+    <br>
+    
+  
+  <div class="search">
+    <input type="search" class="search_field form_field" placeholder='検索...' id="find" autocomplete="off" data-scope='post'>
+    <label for="find" class="search_label"><svg class="icon">
+  <title>search</title>
+  <use xlink:href="#search"></use>
+</svg>
+
+    </label>
+    
+    <div class="search_results results"></div>
+  </div>
+
+        <h2>たきやま&#39;sPAGE</h2>
+      <div class="author_bio">
+        自由自在!
+      </div>
+      <a href='http://localhost:1313/about/' class="button mt-1" role="button" title='続きを読む'>続きを読む</a>
+
+    
+    <h2 class="mt-4">おすすめの投稿</h2>
+    <ul>
+      <li>
+        <a href="http://localhost:1313/post/text_trans/" class="nav-link" title="マークアップ形式のテキスト変換">マークアップ形式のテキスト変換</a>
+      </li>
+      <li>
+        <a href="http://localhost:1313/post/linux/pdf-edit/" class="nav-link" title="pdfファイルを編修">pdfファイルを編修</a>
+      </li>
+      <li>
+        <a href="http://localhost:1313/post/linux/lin_tips/" class="nav-link" title="Linux tips">Linux tips</a>
+      </li>
+      <li>
+        <a href="http://localhost:1313/post/org_howto/" class="nav-link" title="ORGの使い方メモ">ORGの使い方メモ</a>
+      </li>
+    </ul>
+    <h2 class="mt-4">最近の投稿</h2>
+    <ul class="flex-column">
+      <li>
+        <a href="http://localhost:1313/post/linux/ramdisk/" class="nav-link" title="LinuxでRT実験 ramdisk作成">LinuxでRT実験 ramdisk作成</a>
+      </li>
+      <li>
+        <a href="http://localhost:1313/post/linux/magit_howto/" class="nav-link" title="magitのつかいかた">magitのつかいかた</a>
+      </li>
+      <li>
+        <a href="http://localhost:1313/post/linux/cmake_howto/" class="nav-link" title="cmakeの使い方">cmakeの使い方</a>
+      </li>
+      <li>
+        <a href="http://localhost:1313/post/linux/eigen_install/" class="nav-link" title="Eigenのinstallと使い方(debian)">Eigenのinstallと使い方(debian)</a>
+      </li>
+      <li>
+        <a href="http://localhost:1313/post/linux/scratch_buffer/" class="nav-link" title=" Emacsスクラッチバッファで計算">Emacsスクラッチバッファで計算</a>
+      </li>
+      <li>
+        <a href="http://localhost:1313/post/linux/batt_care/" class="nav-link" title="Linuxノートのバッテリメンテ">Linuxノートのバッテリメンテ</a>
+      </li>
+      <li>
+        <a href="http://localhost:1313/post/linux/maxima-howto/" class="nav-link" title="maximaおぼえがき">maximaおぼえがき</a>
+      </li>
+      <li>
+        <a href="http://localhost:1313/post/r-howto/" class="nav-link" title="Rの使い方">Rの使い方</a>
+      </li>
+    </ul>
+    <div>
+      <h2 class="mt-4 taxonomy" id="categories-section">カテゴリ</h2>
+      <nav class="tags_nav">
+        <a href='http://localhost:1313/categories/control/' class="post_tag button button_translucent" title="control">
+          CONTROL
+          <span class="button_tally">9</span>
+        </a>
+        
+        <a href='http://localhost:1313/categories/tool/' class="post_tag button button_translucent" title="tool">
+          TOOL
+          <span class="button_tally">9</span>
+        </a>
+        
+        <a href='http://localhost:1313/categories/linux/' class="post_tag button button_translucent" title="linux">
+          LINUX
+          <span class="button_tally">5</span>
+        </a>
+        
+        <a href='http://localhost:1313/categories/document-write/' class="post_tag button button_translucent" title="document write">
+          DOCUMENT WRITE
+          <span class="button_tally">4</span>
+        </a>
+        
+        
+      </nav>
+    </div>
+    <div>
+      <h2 class="mt-4 taxonomy" id="series-section">シリーズ</h2>
+      <nav class="tags_nav">
+        <a href='http://localhost:1313/series/octave/' class="post_tag button button_translucent" title="octave">
+          OCTAVE
+          <span class="button_tally">9</span>
+        </a>
+        
+        
+      </nav>
+    </div>
+    <div>
+      <h2 class="mt-4 taxonomy" id="tags-section">タグ</h2>
+      <nav class="tags_nav">
+        <a href='http://localhost:1313/tags/octave/' class="post_tag button button_translucent" title="octave">
+          OCTAVE
+          <span class="button_tally">9</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/emacs/' class="post_tag button button_translucent" title="emacs">
+          EMACS
+          <span class="button_tally">3</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/index/' class="post_tag button button_translucent" title="index">
+          INDEX
+          <span class="button_tally">3</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/graphics/' class="post_tag button button_translucent" title="graphics">
+          GRAPHICS
+          <span class="button_tally">2</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/inkscape/' class="post_tag button button_translucent" title="inkscape">
+          INKSCAPE
+          <span class="button_tally">2</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/markdown/' class="post_tag button button_translucent" title="markdown">
+          MARKDOWN
+          <span class="button_tally">2</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/asciidoc/' class="post_tag button button_translucent" title="asciidoc">
+          ASCIIDOC
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/battery/' class="post_tag button button_translucent" title="battery">
+          BATTERY
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/cmake/' class="post_tag button button_translucent" title="cmake">
+          CMAKE
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/diff/' class="post_tag button button_translucent" title="diff">
+          DIFF
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/dlmread/' class="post_tag button button_translucent" title="dlmread">
+          DLMREAD
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/eigen/' class="post_tag button button_translucent" title="eigen">
+          EIGEN
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/find/' class="post_tag button button_translucent" title="find">
+          FIND
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/gui/' class="post_tag button button_translucent" title="gui">
+          GUI
+          <span class="button_tally">1</span>
+        </a>
+        
+        
+        <br>
+        <div class="post_tags_toggle button">全てのタグ</div>
+        <div class="post_tags">
+          <div class="tags_list">
+            
+            <a href='http://localhost:1313/tags/asciidoc/' class=" post_tag button button_translucent" data-position=1 title="asciidoc">ASCIIDOC<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/battery/' class=" post_tag button button_translucent" data-position=1 title="battery">BATTERY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/cmake/' class=" post_tag button button_translucent" data-position=1 title="cmake">CMAKE<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/diff/' class=" post_tag button button_translucent" data-position=1 title="diff">DIFF<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/dlmread/' class=" post_tag button button_translucent" data-position=1 title="dlmread">DLMREAD<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/eigen/' class=" post_tag button button_translucent" data-position=1 title="eigen">EIGEN<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/emacs/' class=" post_tag button button_translucent" data-position=3 title="emacs">EMACS<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/find/' class=" post_tag button button_translucent" data-position=1 title="find">FIND<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/graphics/' class=" post_tag button button_translucent" data-position=2 title="graphics">GRAPHICS<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/gui/' class=" post_tag button button_translucent" data-position=1 title="gui">GUI<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/index/' class=" post_tag button button_translucent" data-position=3 title="index">INDEX<span class="button_tally">3</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/inkscape/' class=" post_tag button button_translucent" data-position=2 title="inkscape">INKSCAPE<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/lualatex/' class=" post_tag button button_translucent" data-position=1 title="lualatex">LUALATEX<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/magit/' class=" post_tag button button_translucent" data-position=1 title="magit">MAGIT<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/markdown/' class=" post_tag button button_translucent" data-position=2 title="markdown">MARKDOWN<span class="button_tally">2</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/maxima/' class=" post_tag button button_translucent" data-position=1 title="maxima">MAXIMA<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/note-pc/' class=" post_tag button button_translucent" data-position=1 title="note pc">NOTE PC<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/octave/' class=" post_tag button button_translucent" data-position=9 title="octave">OCTAVE<span class="button_tally">9</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/org/' class=" post_tag button button_translucent" data-position=1 title="org">ORG<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/pandoc/' class=" post_tag button button_translucent" data-position=1 title="pandoc">PANDOC<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/pdftk/' class=" post_tag button button_translucent" data-position=1 title="pdftk">PDFTK<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/qpdf/' class=" post_tag button button_translucent" data-position=1 title="qpdf">QPDF<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/r/' class=" post_tag button button_translucent" data-position=1 title="r">R<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/ramdisk/' class=" post_tag button button_translucent" data-position=1 title="ramdisk">RAMDISK<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/real-time/' class=" post_tag button button_translucent" data-position=1 title="real time">REAL TIME<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/scratch-buffer/' class=" post_tag button button_translucent" data-position=1 title="scratch buffer">SCRATCH BUFFER<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/tex/' class=" post_tag button button_translucent" data-position=1 title="tex">TEX<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/vsc/' class=" post_tag button button_translucent" data-position=1 title="vsc">VSC<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/zeros/' class=" post_tag button button_translucent" data-position=1 title="zeros">ZEROS<span class="button_tally">1</span>
+            </a>
+            
+            <div class="tags_sort"><span title="sort alphabetically">[A~Z]</span><span title="sort by count">[0~9]</span>
+            </div>
+            <span class="tags_hide"><svg class="icon">
+            <use xlink:href="#closeme"></use>
+          </svg></span>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </section>
+</aside>
+
+  
+</div>
+    </main><svg width="0" height="0" class="hidden">
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
+    <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18.001 18.001" id="twitter">
+    <path d="M15.891 4.013c.808-.496 1.343-1.173 1.605-2.034a8.68 8.68 0 0 1-2.351.861c-.703-.756-1.593-1.14-2.66-1.14-1.043 0-1.924.366-2.643 1.078a3.56 3.56 0 0 0-1.076 2.605c0 .309.039.585.117.819-3.076-.105-5.622-1.381-7.628-3.837-.34.601-.51 1.213-.51 1.846 0 1.301.549 2.332 1.645 3.089-.625-.053-1.176-.211-1.645-.47 0 .929.273 1.705.82 2.388a3.623 3.623 0 0 0 2.115 1.291c-.312.08-.641.118-.979.118-.312 0-.533-.026-.664-.083.23.757.664 1.371 1.291 1.841a3.652 3.652 0 0 0 2.152.743C4.148 14.173 2.625 14.69.902 14.69c-.422 0-.721-.006-.902-.038 1.697 1.102 3.586 1.649 5.676 1.649 2.139 0 4.029-.542 5.674-1.626 1.645-1.078 2.859-2.408 3.639-3.974a10.77 10.77 0 0 0 1.172-4.892v-.468a7.788 7.788 0 0 0 1.84-1.921 8.142 8.142 0 0 1-2.11.593z"
+      ></path>
+  </symbol>
+  <symbol aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="mail">
+    <path  d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="calendar">
+    <path d="M452 40h-24V0h-40v40H124V0H84v40H60C26.916 40 0 66.916 0 100v352c0 33.084 26.916 60 60 60h392c33.084 0 60-26.916 60-60V100c0-33.084-26.916-60-60-60zm20 412c0 11.028-8.972 20-20 20H60c-11.028 0-20-8.972-20-20V188h432v264zm0-304H40v-48c0-11.028 8.972-20 20-20h24v40h40V80h264v40h40V80h24c11.028 0 20 8.972 20 20v48z"></path>
+    <path d="M76 230h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 310h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zM76 390h40v40H76zm80 0h40v40h-40zm80 0h40v40h-40zm80 0h40v40h-40zm80-80h40v40h-40z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="github">
+    <path d="M255.968 5.329C114.624 5.329 0 120.401 0 262.353c0 113.536 73.344 209.856 175.104 243.872 12.8 2.368 17.472-5.568 17.472-12.384 0-6.112-.224-22.272-.352-43.712-71.2 15.52-86.24-34.464-86.24-34.464-11.616-29.696-28.416-37.6-28.416-37.6-23.264-15.936 1.728-15.616 1.728-15.616 25.696 1.824 39.2 26.496 39.2 26.496 22.848 39.264 59.936 27.936 74.528 21.344 2.304-16.608 8.928-27.936 16.256-34.368-56.832-6.496-116.608-28.544-116.608-127.008 0-28.064 9.984-51.008 26.368-68.992-2.656-6.496-11.424-32.64 2.496-68 0 0 21.504-6.912 70.4 26.336 20.416-5.696 42.304-8.544 64.096-8.64 21.728.128 43.648 2.944 64.096 8.672 48.864-33.248 70.336-26.336 70.336-26.336 13.952 35.392 5.184 61.504 2.56 68 16.416 17.984 26.304 40.928 26.304 68.992 0 98.72-59.84 120.448-116.864 126.816 9.184 7.936 17.376 23.616 17.376 47.584 0 34.368-.32 62.08-.32 70.496 0 6.88 4.608 14.88 17.6 12.352C438.72 472.145 512 375.857 512 262.353 512 120.401 397.376 5.329 255.968 5.329z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 212 212" id="gitlab">
+    <path d="M12.3 74.7h54L43.3 3c-1-3.6-6.4-3.6-7.6 0L12.3 74.8z" />
+    <path d="M12.3 74.7L.5 111c-1 3.2 0 6.8 3 8.8l101.6 74-92.5-119z"/>
+    <path d="M105 193.7l-38.6-119h-54l92.7 119z"/>
+    <path d="M105 193.7l38.7-119H66.4l38.7 119z"/>
+    <path d="M105 193.7l38.7-119H198l-93 119z"/>
+    <path d="M198 74.7l11.6 36.2c1 3 0 6.6-3 8.6l-101.5 74 93-119z"/>
+    <path d="M198 74.7h-54.3L167 3c1.2-3.6 6.4-3.6 7.6 0L198 74.8z"/>
+  </symbol>
+  <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="rss">
+    <circle cx="3.429" cy="20.571" r="3.429"></circle>
+    <path d="M11.429 24h4.57C15.999 15.179 8.821 8.001 0 8v4.572c6.302.001 11.429 5.126 11.429 11.428z"></path>
+    <path d="M24 24C24 10.766 13.234 0 0 0v4.571c10.714 0 19.43 8.714 19.43 19.429z"></path>
+  </symbol>
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="linkedin">
+    <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h362c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zM181 406h-60V196h60zm0-240h-60v-60h60zm210 240h-60V286c0-16.54-13.46-30-30-30s-30 13.46-30 30v120h-60V196h60v11.309C286.719 202.422 296.93 196 316 196c40.691.043 75 36.547 75 79.688zm0 0"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612" id="to-top">
+    <path d="M604.501 440.509L325.398 134.956c-5.331-5.357-12.423-7.627-19.386-7.27-6.989-.357-14.056 1.913-19.387 7.27L7.499 440.509c-9.999 10.024-9.999 26.298 0 36.323s26.223 10.024 36.222 0l262.293-287.164L568.28 476.832c9.999 10.024 26.222 10.024 36.221 0 9.999-10.023 9.999-26.298 0-36.323z"></path>
+  </symbol>
+  <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="carly">
+    <path d="M504.971 239.029L448 182.059V84c0-46.317-37.682-84-84-84h-44c-13.255 0-24 10.745-24 24s10.745 24 24 24h44c19.851 0 36 16.149 36 36v108c0 6.365 2.529 12.47 7.029 16.971L454.059 256l-47.029 47.029A24.002 24.002 0 0 0 400 320v108c0 19.851-16.149 36-36 36h-44c-13.255 0-24 10.745-24 24s10.745 24 24 24h44c46.318 0 84-37.683 84-84v-98.059l56.971-56.971c9.372-9.372 9.372-24.568 0-33.941zM112 192V84c0-19.851 16.149-36 36-36h44c13.255 0 24-10.745 24-24S205.255 0 192 0h-44c-46.318 0-84 37.683-84 84v98.059l-56.971 56.97c-9.373 9.373-9.373 24.568 0 33.941L64 329.941V428c0 46.317 37.682 84 84 84h44c13.255 0 24-10.745 24-24s-10.745-24-24-24h-44c-19.851 0-36-16.149-36-36V320c0-6.365-2.529-12.47-7.029-16.971L57.941 256l47.029-47.029A24.002 24.002 0 0 0 112 192z"></path>
+  </symbol>
+  <symbol viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="copy">
+    <path d="M23 2.75A2.75 2.75 0 0 0 20.25 0H8.75A2.75 2.75 0 0 0 6 2.75v13.5A2.75 2.75 0 0 0 8.75 19h11.5A2.75 2.75 0 0 0 23 16.25zM18.25 14.5h-7.5a.75.75 0 0 1 0-1.5h7.5a.75.75 0 0 1 0 1.5zm0-3h-7.5a.75.75 0 0 1 0-1.5h7.5a.75.75 0 0 1 0 1.5zm0-3h-7.5a.75.75 0 0 1 0-1.5h7.5a.75.75 0 0 1 0 1.5z"></path>
+    <path d="M8.75 20.5a4.255 4.255 0 0 1-4.25-4.25V2.75c0-.086.02-.166.025-.25H3.75A2.752 2.752 0 0 0 1 5.25v16A2.752 2.752 0 0 0 3.75 24h12a2.752 2.752 0 0 0 2.75-2.75v-.75z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.001 512.001" id="closeme">
+    <path d="M284.286 256.002L506.143 34.144c7.811-7.811 7.811-20.475 0-28.285-7.811-7.81-20.475-7.811-28.285 0L256 227.717 34.143 5.859c-7.811-7.811-20.475-7.811-28.285 0-7.81 7.811-7.811 20.475 0 28.285l221.857 221.857L5.858 477.859c-7.811 7.811-7.811 20.475 0 28.285a19.938 19.938 0 0 0 14.143 5.857 19.94 19.94 0 0 0 14.143-5.857L256 284.287l221.857 221.857c3.905 3.905 9.024 5.857 14.143 5.857s10.237-1.952 14.143-5.857c7.811-7.811 7.811-20.475 0-28.285L284.286 256.002z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="open-menu">
+    <path d="M492 236H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0-160H20C8.954 76 0 84.954 0 96s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20zm0 320H20c-11.046 0-20 8.954-20 20s8.954 20 20 20h472c11.046 0 20-8.954 20-20s-8.954-20-20-20z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="instagram">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id=youtube>
+    <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="stackoverflow">
+    <path d="M21 27v-8h3v11H0V19h3v8h18z"></path><path d="M17.1.2L15 1.8l7.9 10.6 2.1-1.6L17.1.2zm3.7 14.7L10.6 6.4l1.7-2 10.2 8.5-1.7 2zM7.2 12.3l12 5.6 1.1-2.4-12-5.6-1.1 2.4zm-1.8 6.8l13.56 1.96.17-2.38-13.26-2.55-.47 2.97zM19 25H5v-3h14v3z"></path>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="xing">
+    <path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 55" id="discord">
+    <path d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.440769 45.4204 0.525289C44.7963 1.6353 44.105 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.905 3.0581 26.1886 1.6353 25.5617 0.525289C25.5141 0.443589 25.4218 0.40133 25.3294 0.41542C20.2584 1.2888 15.4057 2.8186 10.8776 4.8978C10.8384 4.9147 10.8048 4.9429 10.7825 4.9795C1.57795 18.7309 -0.943561 32.1443 0.293408 45.3914C0.299005 45.4562 0.335386 45.5182 0.385761 45.5576C6.45866 50.0174 12.3413 52.7249 18.1147 54.5195C18.2071 54.5477 18.305 54.5139 18.3638 54.4378C19.7295 52.5728 20.9469 50.6063 21.9907 48.5383C22.0523 48.4172 21.9935 48.2735 21.8676 48.2256C19.9366 47.4931 18.0979 46.6 16.3292 45.5858C16.1893 45.5041 16.1781 45.304 16.3068 45.2082C16.679 44.9293 17.0513 44.6391 17.4067 44.3461C17.471 44.2926 17.5606 44.2813 17.6362 44.3151C29.2558 49.6202 41.8354 49.6202 53.3179 44.3151C53.3935 44.2785 53.4831 44.2898 53.5502 44.3433C53.9057 44.6363 54.2779 44.9293 54.6529 45.2082C54.7816 45.304 54.7732 45.5041 54.6333 45.5858C52.8646 46.6197 51.0259 47.4931 49.0921 48.2228C48.9662 48.2707 48.9102 48.4172 48.9718 48.5383C50.038 50.6034 51.2554 52.5699 52.5959 54.435C52.6519 54.5139 52.7526 54.5477 52.845 54.5195C58.6464 52.7249 64.529 50.0174 70.6019 45.5576C70.6551 45.5182 70.6887 45.459 70.6943 45.3942C72.1747 30.0791 68.2147 16.7757 60.1968 4.9823C60.1772 4.9429 60.1437 4.9147 60.1045 4.8978ZM23.7259 37.3253C20.2276 37.3253 17.3451 34.1136 17.3451 30.1693C17.3451 26.225 20.1717 23.0133 23.7259 23.0133C27.308 23.0133 30.1626 26.2532 30.1066 30.1693C30.1066 34.1136 27.28 37.3253 23.7259 37.3253ZM47.3178 37.3253C43.8196 37.3253 40.9371 34.1136 40.9371 30.1693C40.9371 26.225 43.7636 23.0133 47.3178 23.0133C50.9 23.0133 53.7545 26.2532 53.6986 30.1693C53.6986 34.1136 50.9 37.3253 47.3178 37.3253Z"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 18" id="mastodon">
+    <path
+    fill="#ffffff"
+    d="m 15.054695,9.8859583 c -0.22611,1.1632697 -2.02517,2.4363497 -4.09138,2.6830797 -1.0774504,0.12856 -2.1382704,0.24673 -3.2694704,0.19484 -1.84996,-0.0848 -3.30971,-0.44157 -3.30971,-0.44157 0,0.1801 0.0111,0.35157 0.0333,0.51194 0.24051,1.82571 1.81034,1.93508 3.29737,1.98607 1.50088,0.0514 2.8373104,-0.37004 2.8373104,-0.37004 l 0.0617,1.35686 c 0,0 -1.0498104,0.56374 -2.9199404,0.66742 -1.03124,0.0567 -2.3117,-0.0259 -3.80308,-0.42069 -3.23454998,-0.85613 -3.79081998,-4.304 -3.87592998,-7.8024197 -0.026,-1.03871 -0.01,-2.01815 -0.01,-2.83732 0,-3.57732 2.34385998,-4.62587996 2.34385998,-4.62587996 1.18184,-0.54277 3.20976,-0.77101 5.318,-0.7882499985409 h 0.0518 C 9.8267646,0.01719834 11.856025,0.24547834 13.037775,0.78824834 c 0,0 2.34377,1.04855996 2.34377,4.62587996 0,0 0.0294,2.63937 -0.32687,4.47183"/>
+ <path
+    fill="#000000"
+    d="m 12.616925,5.6916583 v 4.3315297 h -1.71607 V 5.8189683 c 0,-0.88624 -0.37289,-1.33607 -1.1187604,-1.33607 -0.82467,0 -1.23799,0.53361 -1.23799,1.58875 v 2.30122 h -1.70594 v -2.30122 c 0,-1.05514 -0.4134,-1.58875 -1.23808,-1.58875 -0.74587,0 -1.11876,0.44983 -1.11876,1.33607 v 4.2042197 h -1.71607 V 5.6916583 c 0,-0.88527 0.22541,-1.58876 0.67817,-2.10922 0.46689,-0.52047 1.07833,-0.78727 1.83735,-0.78727 0.87816,0 1.54317,0.33752 1.98288,1.01267 l 0.42744,0.71655 0.42753,-0.71655 c 0.43961,-0.67515 1.10463,-1.01267 1.9828704,-1.01267 0.75893,0 1.37037,0.2668 1.83735,0.78727 0.45268,0.52046 0.67808,1.22395 0.67808,2.10922"/>
+  </symbol>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 530" id="bluesky" >
+    <path d="m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"/>
+  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" id="ko-fi">
+    <path fill="#ffffff" d="M4.5,9.8527H32.7947a0,0,0,0,1,0,0v19.225a9.07,9.07,0,0,1-9.07,9.07H13.57a9.07,9.07,0,0,1-9.07-9.07V9.8527A0,0,0,0,1,4.5,9.8527Z"/>
+    <path fill="#000000" d="M12.197,25.9493l6.45,6.45,6.45-6.45a8.2,8.2,0,0,0,2.4016-5.798h0a4.5082,4.5082,0,0,0-4.212-4.5459,4.4262,4.4262,0,0,0-4.64,4.4209,4.4261,4.4261,0,0,0-4.64-4.4209,4.5082,4.5082,0,0,0-4.212,4.5459h0A8.2,8.2,0,0,0,12.197,25.9493Z"/>
+    <path fill="#ffffff" d="M32.7947,9.8527H35.73a7.77,7.77,0,0,1,0,15.5394H32.7947"/>
+  </svg>
+  </symbol>
+</svg>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+<footer class="footer">
+  <div class="footer_inner wrap pale">
+    <img src='http://localhost:1313/icons/tarJ-72x72.png' class="icon icon_2 transparent" alt="たきやま&#39;sPAGE">
+    <p>Copyright&nbsp;<span class="year"></span>&nbsp;たきやま&#39;SPAGE. All Rights Reserved</p><a class="to_top" href="#documentTop">
+  <svg class="icon">
+  <title>to-top</title>
+  <use xlink:href="#to-top"></use>
+</svg>
+
+</a>
+
+  </div>
+</footer>
+
+<script type="text/javascript" src="http://localhost:1313/ja/js/bundle.b5e92629c9911af5103985969a0bf39bf09aaa6f717ecce5d42a7dad47fc79d768da52eb5cbbeb59e09f0e30a3b08b4f7565abf25ea94dcb1cb4449cbbdc2096.js" integrity="sha512-tekmKcmRGvUQOYWWmgvzm/Caqm9xfszl1Cp9rUf8eddo2lLrXLvrWeCfDjCjsItPdWWr8l6pTcsctEScu9wglg==" crossorigin="anonymous"></script>
+
+  <script src="http://localhost:1313/js/search.min.73cb82d8f274395dd220d6594053cd3d3d8ac8c97d874b5142a60b9744f3704d765551e0ade104d5803c66b731f5a7a00ac2cff33c8c9090ff8100169a3e2574.js"></script>
+
+  </body>
+</html>

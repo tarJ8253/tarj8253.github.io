@@ -44,7 +44,9 @@ tags:
 
 # かんたんな文法
 
-セクションヘッドは#(井桁,number)で、#の数でレベルを指定します。
+## 0. セクションヘッド
+
+#(井桁,number)を用います。#の数でレベルを指定します。
 
 
 ## 1. テキストフォーマット(文字装飾)
@@ -190,7 +192,7 @@ i. greece
 
 	
 	
-### ソースファイルもかける場合がある
+### ソースファイルもかける
 
 
 	``` ruby:d.rb
@@ -201,19 +203,30 @@ i. greece
 
 アンダーバー`jeee.hoge_hh`
 
+バッククォートで囲まない場合、アンダーバーが少し乱れるようです。
 
+hoge_hh
 
 ### 3.2 数式
 
+hugoでkatexやmathjaxを使うには、
+clarityの場合は、
+config.tomlやmath.htmlの設定が必要です。
 
-\$で囲めばインライン$T_E$
-ててて$T_e=\int_0^\infty$
+使用しているthemeで設定方法が異なるかもしれません。
 
 
-\$\$で囲めば1行数式
+`$`で囲めばインライン(設定必要)、
+`$$`で囲めば1行数式
+
+`T_e=\int_0^\infty$`は
+$T_e=\int_0^\infty$
+
+または
+
 $$T_e=\int_0^\infty$$
 
-
+となります。
 
 ### 3.3 折りたたみ
 ```
@@ -225,6 +238,8 @@ $$T_e=\int_0^\infty$$
 矢印クリックして折りたたみのトリガー
 </details>
 ```
+右矢印をクリックすると折りたたまれた部分が表示されます。
+
 <details>
 <summary>タイトル</summary>
 
@@ -253,17 +268,25 @@ HTMLのタグ
 
 ### 4.1 図を挿入
 
-図![step応答比較](./fig/fig_op_6.png)
 
 ```
 ![タイトル](ファイル場所)
+![step response](post/hoge/fuga.png)
+ファイル場所は相対パスでは表示されない場合があるので注意
 ```
+
+![step応答](post/markdown_howto/fig/fig_op_6.png)
+
+
+
 
 大きさ指定はhtmlタグ
 ```
-<img src="./fig_op_6.png" width="120">
+<img src="./fig_op_6.png" width="240">
+こちらは相対パスでもokの場合があるようです
 ```
-<img src="./fig/fig_op_6.png" width="120">
+
+<img src="./fig/fig_op_6.png" width="240">
 
 
 ### 4.2 link
