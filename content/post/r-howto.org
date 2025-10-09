@@ -8,8 +8,8 @@ featured: false #true # sidebarのおすすめの投稿, sets if post is a featu
 draft: false #true # Sets whether to render this page. Draft of true will not be rendered.
 toc: false # Controls if a table of contents should be generated for first-level links automatically.
 # menu: main # when uncomment, display on manu bar
-#usePageBundles: false # Set to true to group assets like images in the same folder as this post.
-usePageBundles: true # Set to true to group assets like images in the same folder as this post.
+usePageBundles: false # Set to true to group assets like images in the same folder as this post.
+#usePageBundles: true # Set to true to group assets like images in the same folder as this post.
 #featureImage: "/images/path/file.jpg" # Sets featured image on blog post.
 #featureImageAlt: 'Description of image' # Alternative text for featured image.
 #featureImageCap: 'This is the featured image.' # Caption (optional).
@@ -24,9 +24,9 @@ categories:
   - tool
 tags:
   - R
-#series :
+# series :
 #  - Enjoy Linux
-#aliases : 
+# aliases : 
 #  - migrate-from-jekyl
 # Create redirects from old URLs to new URLs with aliases:
 # comment: false # Disable comment if false.

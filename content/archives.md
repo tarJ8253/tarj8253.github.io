@@ -33,6 +33,12 @@ layout: "archives"
 - [バネマスダンパ(二次)システムの解析](/control/octave_control_2d_sys)
 
 
+## Hugo
+
+- [Hugoの設定作業備忘録](/post/hugo_howto)
+- [Clarityの設定作業備忘録](/post/hugo_clarity)
+- [Hugo-github-actionsの作業備忘録](/post/hugo_github_actions)
+
 ## いろいろTips
 
 - [PDF文書を編集する](/post/linux/pdf-edit)

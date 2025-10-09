@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Crality on たきやま&#39;sPAGE</title>
+    <link>http://localhost:1313/tags/crality/</link>
+    <description>Recent content in Crality on たきやま&#39;sPAGE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Tue, 04 Mar 2025 15:46:46 +0900</lastBuildDate><atom:link href="http://localhost:1313/tags/crality/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HUGO_claltityの備忘録</title>
+      <link>http://localhost:1313/post/hugo_clarity/</link>
+      <pubDate>Tue, 04 Mar 2025 15:46:46 +0900</pubDate>
+      
+      <guid>http://localhost:1313/post/hugo_clarity/</guid>
+      <description>
+        
+          
+            – clarityの見た目を変える hugo server として、ブラウザで画面を見ながら下記環境を編集すると 随時変更点が反映されていくので、よくわかります。 co
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,370 @@
+---
+#content/post/に置くファイルの雛形!
+#---はyamlの書式.+++はtoml
+TITLE: "Hugo github actions作業備忘録"
+date: 2025-10-07T15:46:46+09:00 # Date of post creation.
+description: "Hugo" # Description used for search engine.
+featured: false #true # sidebarのおすすめの投稿, sets if post is a featured post, making appear on the home page side bar.
+draft: false #true # Sets whether to render this page. Draft of true will not be rendered.
+toc: false # Controls if a table of contents should be generated for first-level links automatically.
+# menu: main # when uncomment, display on manu bar
+usePageBundles: false # Set to true to group assets like images in the same folder as this post.
+#usePageBundles: true # Set to true to group assets like images in the same folder as this post.
+#featureImage: "/images/path/file.jpg" # Sets featured image on blog post.
+#featureImageAlt: 'Description of image' # Alternative text for featured image.
+#featureImageCap: 'This is the featured image.' # Caption (optional).
+#thumbnailはstatic/images/*.pngを
+#thumbnail: "/images/path/thumbnail.png" # Sets thumbnail image appearing inside card on homepage.
+#shareImage: "/images/path/share.png" # Designate a separate image for social media sharing.
+codeMaxLines: 10 # Override global value for how many lines within a code block before auto-collapsing.
+codeLineNumbers: false # Override global value for showing of line numbers within code block.
+figurePositionShow: true # Override global value for showing the figure label.
+# hugo.tomlのtaxonomiesで分類あり
+lang: ja
+categories:
+  - Hugo
+  - github  
+tags:
+  - github actions
+# series :
+#  - Enjoy Linux
+# aliases : 
+#  - migrate-from-jekyl
+# Create redirects from old URLs to new URLs with aliases:
+# comment: false # Disable comment if false.
+#+TITLE: HUGO_github_actions
+#+DATE: 2025/1/29,03/26
+#+LANGUAGE: ja
+#+OPTIONS: author:nil toc:nil ^:{} timestamp:nil \n:t
+---
+
+githubにpushして、
+contentに入っているファイルをhtmlにしたりpublicに移したりするなどの公
+開に必要な作業を
+自動で実行してもらうために、actionsを使用します。
+
+<!--more-->
+
+* 作成したファイルをgithub.ioで公開するので、actionsを用いて自動deployする。
+
+#+begin_src 
+$ hugo
+#+end_src
+と実行すると、作成したコンテンツファイルをpublic/に展開します。
+
+このファイルをweb serverに上げれば公開できるようですが、手元にweb
+serverがないので、githubのお世話になります。
+
+
+Hugoで作成したコンテンツをgithub_actionsでdeploy!
+
+
+
+** まずはgithubのサイトで作業
+
+*** 1. [[https://docs.github.com/ja/pages/getting-started-with-github-pages/creating-a-github-pages-site][repository作成]]
+@@html:<br>@@
+   tarj8253.github.io
+@@html:<br>@@
+
+小文字にすること。
+   [ユーザー名]に大文字が入っていてもURLは小文字になるので、間違いを防
+   ぐために小文字にしました。
+   
+
+*** 2. [[https://gohugo.io/host-and-deploy/host-on-github-pages/][リポジトリにおいて、actionsが動くように設定]]
+
+(1) settings/pages/build and deployment/
+
+source を github actionsにする
+
+(2) Actions/general
+
+- Workflow permissions :Read and write permissionsをchk
+- Allow Github actions to create and approval requestsにchk
+- SAVEを押す
+
+
+*** 3. actionsのファイルを取得
+
+actionsのworkflowはgithubのものを使用
+
+Actions/All workflowからhugoを探してサンプルをlocalの.github/wolrkflows/hugo.yamlとして保存
+(下記のとこ(Pages/Build and deploy)にもサンプルあり)
+
+後述するトラブル発生時の解決方法として、ファイルを全部pushしてから、
+actionsのファイルを設定すると、
+push時のエラーやコンパイルの動きが見やすいので必要に応じて設定します。
+
+また、自分の環境(mac/linux/win)をhugo.yaml内に書くようですが、
+厳密に合わせる必要はないようです。(debian使ってますが、.yaml内にはubunt残ってます。)
+
+*** 4. tokenを取得
+
+1.mainの一番上の段階
+home,dashboardの右端にある写真のアイコン(緑のへんなやつ)をクリック
+
+2.現れたメニューの中から
+Settings/Developer Settings/Personal access token/Tokens(Classic)
+
+noteに:hugodeploy
+workflow: github actionsにchkout
+
+Generate new token
+
+
+ghp_*************************************
+
+
+トークンをpasteして控えておく;
+リポジトリ削除しても、tokenは残っている
+
+@@html:<!--@@
+**** リポジトリにトークン設定::
+
+github actionsを用いて自動的にファイルを修正してもらいたい時．
+
+push時のpwにトークン入力しているので、この作業が有効かどうか未確認::
+トークンupdateしたときこの作業しなかったので、実施しなくても大丈夫かも。
+
+#+begin_example
+- リポジトリのSettingsを開き
+'Secrets and Variables'
+'Actions'
+'Repository secrets'
+'New repository secret'
+
+ NameにPERSONAL_ACCESS_TOKEN，
+ Secretに先ほどコピーしたtokenを入力し，
+Add secretをクリックします．
+
+- リポジトリのSettingsのActionsのGeneralの一番下に，
+  Workflow permissionsとあるので，
+それのRead and write permissionsを選択しSaveします．
+#+end_example
+
+https://qiita.com/soranjiro/items/3909b8e0598c01cac5e7
+  
+@@html:-->@@
+
+** 準備ができたら、localからhugoのソースを全部push
+
+#+begin_src 
+git init
+git add .
+git commit -m "1st"
+git branch -M main
+git remote add origin https://github.com/[USERNAME]/[UNAME].github.io.git
+git push -u origin main
+Username for 'https://github.com': [USERNAME]
+Password for 'https://[USERNAME]@github.com': tokenのコードを貼り付け 
+#+end_src
+
+@@html:<!--@@
+git remote add origin https://github.com/tarJ8253/tarj8253.github.io.git
+git push -u origin main
+Username for 'https://github.com': tarJ8253
+Password for 'https://tarJ8253@github.com': tokenのコードを貼り付け 
+@@html:-->@@
+
+
+問題がなければ、deployまで自動で行われ、[USERNAME].github.ioで公開され
+ます。
+
+
+*** このときのトラブルメモ
+
+- .gitignoreに書いてあるファイルはgithub上へはpushされない!
+  
+@@html:<!--@@
+     (faviconが反映されなかった理由)
+   actionsなしで、push後、pullした時そんなメッセージがでて気づいた!   
+.gitignoreにpngを書いていたので、pushされなかった!!!!
+iconのファイル(png)がなかったので、
+params.tomlで指定してあるname:「たきやま's page」:が表示された!
+@@html:-->@@
+
+- local上のhugo severで見えても、github上では全く見えない!?
+
+手元のマシンで構築できても、githubのhugoコンパイラ(?)ではエラーが出た!
+文法少し違う?要注意!!
+  
+push時の自動actionsをやめて、pushしてからworkflow/actionsを動かすようにしたら
+   エラーが見やすくなり、原因がわかった
+
+@@html:<!--@@
+ソースファイルの書き方で引っかかった
+1. create repo 
+
+2. hugoのソースを全部push
+
+  2. pushしてから、actionsを有効にする
+   または、ここでactionsのソースを.github/workflows/hugo.yamlを設定
+ 
+#+begin_src 
+git init
+git add .
+git commit -m "1st"
+git branch -M main
+git remote add origin https://github.com/tarJ8253/tarj8253.github.io.git
+git remote add origin https://github.com/tarJ8253/control.gitになるのかな?
+git push -u origin main
+Username for 'https://github.com': tarJ8253
+Password for 'https://tarJ8253@github.com': tokenのコードを貼り付け 
+
+Enumerating objects: 413, done.
+Counting objects: 100% (413/413), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (298/298), done.
+Writing objects: 100% (413/413), 2.03 MiB | 3.05 MiB/s, done.
+Total 413 (delta 127), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (127/127), done.
+To https://github.com/tarJ8253/tarj8253.github.io.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+takiyama@v11:/media/takiyama/m2sata/docs/HUGO_202503/tarj8253$ 
+#+end_src
+
+@@html:-->@@
+
+
+
+** その他 actions-hugoのトラブル。
+
+actionsに使うtomlはあちこちで紹介されていて、それぞれ微妙にちがうので
+どれを採用するか迷った。
+githubのものを採用したが、メモとして残しておく。
+
+@@html:<!--@@
+ここに記載の通常のworkflowと、使っているworkflow(pageにあったもの)は、
+内容異なる。why????
+@@html:-->@@
+
+*** githubのdocument peaceiris/actions-hugo
+
+[[https://github.com/peaceiris/actions-hugo/blob/main/README.md][actions-hugoでの紹介]]
+
+gh-pages.yml
+
+asciidoctorのworkflowもここにあり!
+
+
+*** HUGOのdocument, HUGO/host and deploy/Host on github pages.
+
+[[https://gohugo.io/host-and-deploy/host-on-github-pages/][hugoでの紹介]]
+
+hugo.yamlを設定
+
+#+begin_example
+Step 1
+Create a GitHub repository.
+
+Step 2
+Push your local repository to GitHub.
+
+Step 3
+Visit your GitHub repository. From the main menu choose Settings >
+Pages.
+In the center of your screen you will see this:
+
+BUILD and deployment
+Source
+ Deploy from a branch
+
+Step 4
+
+Change the Source to GitHub Actions.
+The change is immediate; you do not have to press a Save button.
+BUILD and deployment
+Source
+ GitHub Actions
+
+Step 5
+
+Create a file named hugo.yaml in a directory named .github/workflows.
+mkdir -p .github/workflows
+touch .github/workflows/hugo.yaml
+
+Step 6
+Copy and paste the YAML below into the file you created. Change the branch name and Hugo version as needed.
+
+Step 7
+Commit and push the change to your GitHub repository.
+
+git add -A
+git commit -m "Create hugo.yaml"
+git push
+
+Step 8
+
+From GitHub’s main menu, choose Actions. You will see something like this:
+
+All workflows
+1 workflow run
+[yellow]Add workflow
+
+Step 9
+
+When GitHub has finished building and deploying your site, the color of the status indicator will change to green.
+
+All workflows
+1 workflow run
+[green]Add workflow
+
+Step 10
+
+Click on the commit message as shown above. You will see this:
+
+hugo.yaml
+build -- deloy
+Under the deploy step, you will see a link to your live site.
+
+In the future, whenever you push a change from your local repository,
+GitHub will rebuild your site and deploy the changes.
+#+end_example
+
+
+@@html:<!--@@
+* 最初に参考にしたサイト、でも最終的にはなにも利用しなかった。
+
+   
+** github pagesサイトを作成する
+https://docs.github.com/ja/pages/getting-started-with-github-pages/creating-a-github-pages-site
+
+
+** 暦路さん
+https://koyomiji.com/log/72
+
+
+** @2Gken1029(辻 健一郎)
+actionsは使わない、生成したpublicをpush
+https://qiita.com/2Gken1029/items/c7eadefc45590cc55a5e
+
+* github pages
+
+https://note.com/hideki_ikemoto/n/n97a61f1ead6b
+
+GitHub Pagesには、2つのタイプ、3つのデプロイ方法があります。
+
+1つ目のタイプは、ユーザまたは組織のページです。
+https://<ユーザ名 or 組織名>.github.io でアクセスできます。
+
+もう1つのタイプは、プロジェクトのページです。
+https://<ユーザ名 or 組織名>.github.io/<リポジトリ名> でアクセスできます。
+
+デプロイ方法は次の3つがあります。
+
+    任意のブランチ
+
+    任意のブランチの docs ディレクトリ
+
+    GitHub Actionsによるデプロイ
+
+
+しかしGitHub Pages サイトの公開元を設定するというページには次のように書かれています。
+
+--略--
+
+よって今後はGitHub Actionsのみ使われると思った方がいいでしょう。
+この記事でもGitHub Actionsの設定のみ記載します。
+@@html:-->@@

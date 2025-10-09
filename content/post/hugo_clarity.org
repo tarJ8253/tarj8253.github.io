@@ -1,0 +1,231 @@
+---
+#content/post/に置くファイルの雛形!
+#---はyamlの書式.+++はtoml
+TITLE: "Hugo themes Clarityの作業備忘録"
+date: 2025-10-07T15:46:46+09:00 # Date of post creation.
+description: "Hugo Crality" # Description used for search engine.
+featured: false #true # sidebarのおすすめの投稿, sets if post is a featured post, making appear on the home page side bar.
+draft: false #true # Sets whether to render this page. Draft of true will not be rendered.
+toc: false # Controls if a table of contents should be generated for first-level links automatically.
+# menu: main # when uncomment, display on manu bar
+usePageBundles: false # Set to true to group assets like images in the same folder as this post.
+#usePageBundles: true # Set to true to group assets like images in the same folder as this post.
+#featureImage: "/images/path/file.jpg" # Sets featured image on blog post.
+#featureImageAlt: 'Description of image' # Alternative text for featured image.
+#featureImageCap: 'This is the featured image.' # Caption (optional).
+#thumbnailはstatic/images/*.pngを
+#thumbnail: "/images/path/thumbnail.png" # Sets thumbnail image appearing inside card on homepage.
+#shareImage: "/images/path/share.png" # Designate a separate image for social media sharing.
+codeMaxLines: 10 # Override global value for how many lines within a code block before auto-collapsing.
+codeLineNumbers: false # Override global value for showing of line numbers within code block.
+figurePositionShow: true # Override global value for showing the figure label.
+# hugo.tomlのtaxonomiesで分類あり
+categories:
+  - Hugo
+tags:
+  - Clarity
+# series :
+#  - Enjoy Linux
+# aliases : 
+#  - migrate-from-jekyl
+# Create redirects from old URLs to new URLs with aliases:
+# comment: false # Disable comment if false.
+lang: ja
+#+options: timestamp:nil toc:nil ^:{}
+#+LANGUAGE: ja
+#+OPTIONS: author:nil toc:nil ^:{} timestamp:nil \n:t
+# 2025/6/10分離
+
+---
+
+Hugoのthemesの中から、Clarityを選び、いろいろ触ったときの作業備忘録。
+
+* Clarityの見た目を変える
+
+hugo server として、ブラウザで画面を見ながら下記環境を編集すると
+随時変更点が反映されていくので、よくわかります。
+
+** configのパラメータを変える。
+<!--more-->
+
+*** config/_default/hugo.toml(旧名はconfig.toml)
+
+DefaultContentLanguage="ja"
+
+- menus/menu.ja.tomlを作成(enからcp,真ん中をjaにすること)
+
+ @@html:<br>@@
+ 
+  そうしたらボタンREAD MOREが日本語表記**続きを読む**と日本語になる。
+  i18n/ja.tomlの設定が、ボタンに使われるみたい(ファイルなくていい)
+
+   @@html:<br>@@
+
+ そしたら地球アイコン(languageMenuname)のアイコンなくなる。
+  menu.en.tomlがあるとアイコン出てくる
+
+-  copyrightけせる,のこっているcopyrightはhtmlの中 
+
+*** config/_default/language.toml
+- [ja]の項を追加。
+- [en][pt]をcomment out
+
+titleはhtmlのタイトルになる
+
+*** config/_default/params.toml
+params.tomlでページ右側欄の記述方法を指定できるみたい
+
+#+begin_example
+introDescription=""
+introURL="about/"
+showShare = false 
+commentにするとtwitterなどのアイコン消える。
+logo="logos/logo.png" menubarにロゴが出せる
+centerLogo=false , 上記ロゴ位置を真ん中にする
+#+end_example
+
+- footerLogoも static/icons/hoge.svgを適当に作成し、指定できる
+
+- mainsection=["post"]
+   @@html:<br>@@
+
+  postsではないので注意(themeでいろいろ異なるのでconfig読むこと)
+ @@html:<br>@@
+  
+  languageMenuNameをコメントアウト(後でhtmlを変更するので意味なし)
+
+- comments=falseをuncomment, 効果不明
+- dateFormat="2006-01-02"をuncomment,日付の表示方法を指定
+
+- author="HOGE"
+
+*** config/menus/menu.ja.tomlを作成
+- cp menu.en.toml menu.ja.toml
+
+- Aboutを変更
+  menus/menu.ja.toml
+
+- menubarの表示項目をいろいろ変えることができる
+
+- menus/にファイルが2つ以上あるとbuild時にその言語があらわれる
+  _menus_newnameなどにrenameしても、反映してしまうので、削除必要
+
+
+** clarity-masterを参考に設定を変える
+master/assets/sass/*に設定ファイルあり。
+
+overrideすることで、いろいろ表示を変えられるようです。
+
+*** 色を変える
+
+Modify menus:[[https://github.com/chipzoller/hugo-clarity?tab=readme-ov-file#modify-menus][参考サイト]]
+
+config/_default/menusを編集
+about -> 自己紹介など
+
+**** nav_headerの色
+もともと、assets/にファイルないので、新規作成。
+#+begin_src bash
+$ touch assets/sass/_override.sass
+#+end_src
+
+して、_override.sassに
+#+begin_example
+$bg: #RGB
+$theme: #RGB
+#+end_example
+
+などと記述。
+
+see
+master/assets/sass/_variable.sass
+
+
+*** 表示を変える
+
+以前は、以下のようにhtmlを編集していたが、
+2025.1では、上記のconfig書き換えだけで変更反映できている。
+メモとして残す。
+
++ master/layouts/partials/から、該当部分のhtmlを
+  layouts/partials/
+  にcpして編集
+
++ master/layouts/partials/から
+  Hugo_tmp/clarity/layouts/partials/に
+  header.html
+  footer.html
+  logo.html
+  をcpしてきて、そこで編集している
+
++ header.html
+  if Site.IsMultiLingual ...をコメントアウトして、navbarに言語選択だすのやめた。
++ footer.html
+  <div class ="footer_inner wrap pale">をコメントアウトして、
+  footerのpngやall rights reservを消す。
++ logo.html
+  全部コメントアウトして、navbarにnameが表示されるのをやめた
+
+
+** original faviconを作る
+
+- inkscapeでsvgを作成,縦横長さは気にしなくてもいいようです。
+- svgを縦横16,32,48,72,128,180,192,256のpngに変換,
+  #+begin_src bash
+    inkscape -D --export-width=$size --export-height=$size --export-type=png --export-filename=output.png input.svg
+  #+end_src
+  180はapple-touch-icon.png, 192と256はandroid-crome-{n}x{n},pngという名前にします。
+  72はfavicon.pngとした。
+- pngをicoに変換
+  72x72のpngをhttps://favicon-generator.mintsu-dev.com/
+  で、48x48のfavicon.icoにしました。
+- static/icons/に放り込みます。  
+- config,   params.toml の適当な箇所を修正してください。
+
+   #+begin_example
+  logo="icons/favicon.png"
+  footerLogo="icons/hoge-72x72.png"
+  #+end_example
+  など
+
+
+* $\TeX$の数式を書く
+
+katexを使う方法とmathjaxを使う方法があるそうです。
+
+評判を少し探ってみると
+
+katex:htmlで表示、速度早い。
+mathjax:svgで表示、凝った数式も出力できる。
+
+という違いがあるようです。
+
+とりあえず、katexを使ってみます。
+
+使い方
+
+ここに書いてあるように
+[[https://github.com/chipzoller/hugo-clarity?tab=readme-ov-file#math-notation][hugo clarityの説明]]
+
+- params.tomlの設定
+  enableMathNotation=true
+
+- layouts/partials/math.htmlの追加
+
+  が必要です。
+  
+math.htmlは、DLした themes/clarity/からcpする。
+
+ただし、inline数式が表示できないので、追記が必要。
+
+[[https://worklifefun.net/katex-inline-problem/][webからの情報]]
+
+[[https://katex.org/docs/autorender.html][katexのサイト]]の内容をmath.htmlとしてもok
+
+=$= 1つで囲むとinline数式
+
+=$$= 2つで囲むと改行数式
+
+それ以外はtexの文法のままのようです。
+
+

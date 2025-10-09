@@ -2,6 +2,7 @@
 title: "GNU Octaveで制御系設計"
 date: 2025-03-04T15:35:17+09:00
 draft: false #true
+usePageBundles: true # Set to true to group assets like images in the same folder as this post.
 lang: ja
 categories:
  - control

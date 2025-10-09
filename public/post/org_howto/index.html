@@ -16,6 +16,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
+
 <meta property="og:locale" content="ja" />
 
 <meta property="og:type" content="article">
@@ -28,7 +29,6 @@
 <meta property="og:title" content="ORGの使い方メモ" />
 <meta property="og:description" content="ORG org " />
 <meta property="og:image" content="http://localhost:1313/images/thumbnail.png" />
-  <meta name="keywords" content="org" />
   <script type="application/ld+json">
     {
       "@context": "http://schema.org",
@@ -40,8 +40,6 @@
       "url": "http:\/\/localhost:1313\/post\/org_howto\/",
       "datePublished": "2025-02-21T15:01:10+09:00",
       "dateModified": "2025-02-21T15:01:10+09:00",
-      "keywords": ["org"],
-        "articleSection": ["document write"],
       "author": {
         "@type": "Person",
         "name": "map[name:たきやま\u0027sPAGE]"
@@ -69,15 +67,15 @@
 
 
 
-<link rel="preload" href="http://localhost:1313/css/styles.7ec6ccf9d8b85cf4a42ab738be21025089d767898dfe9feba068769b130469da8f08567deeb3abf584868f225c7ab5bd72acc9496596b80cd3eed7dacd2996c5.css" integrity = "sha512-fsbM&#43;di4XPSkKrc4viECUInXZ4mN/p/roGh2mxMEadqPCFZ97rOr9YSGjyJcerW9cqzJSWWWuAzT7tfazSmWxQ==" as="style" crossorigin="anonymous">
+<link rel="preload" href="http://localhost:1313/css/styles.7211989c044551b89f82aee29524ad3981fa755d020c082e59619fbe89d426d7b355f7077a9c4a81d7de3e6952749a6bc0716c53c3495ee8b4b44394db7209cf.css" integrity = "sha512-chGYnARFUbifgq7ilSStOYH6dV0CDAguWWGfvonUJtezVfcHepxKgdfePmlSdJprwHFsU8NJXui0tEOU23IJzw==" as="style" crossorigin="anonymous">
 
 
 
-<link rel="preload" href="http://localhost:1313/ja/js/bundle.b5e92629c9911af5103985969a0bf39bf09aaa6f717ecce5d42a7dad47fc79d768da52eb5cbbeb59e09f0e30a3b08b4f7565abf25ea94dcb1cb4449cbbdc2096.js" as="script" integrity=
-"sha512-tekmKcmRGvUQOYWWmgvzm/Caqm9xfszl1Cp9rUf8eddo2lLrXLvrWeCfDjCjsItPdWWr8l6pTcsctEScu9wglg==" crossorigin="anonymous">
+<link rel="preload" href="http://localhost:1313/ja/js/bundle.74607dab278abe6851e215fd1d64bf933a1216370c29e6e47064a43bf2f6fda009fde4b152d3903f71b7f834dd5a8fc7d03416999edcd13a64f6b335e79482f4.js" as="script" integrity=
+"sha512-dGB9qyeKvmhR4hX9HWS/kzoSFjcMKebkcGSkO/L2/aAJ/eSxUtOQP3G3&#43;DTdWo/H0DQWmZ7c0Tpk9rM155SC9A==" crossorigin="anonymous">
 
 
-<link rel="stylesheet" type="text/css" href="http://localhost:1313/css/styles.7ec6ccf9d8b85cf4a42ab738be21025089d767898dfe9feba068769b130469da8f08567deeb3abf584868f225c7ab5bd72acc9496596b80cd3eed7dacd2996c5.css" integrity="sha512-fsbM&#43;di4XPSkKrc4viECUInXZ4mN/p/roGh2mxMEadqPCFZ97rOr9YSGjyJcerW9cqzJSWWWuAzT7tfazSmWxQ==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="http://localhost:1313/css/styles.7211989c044551b89f82aee29524ad3981fa755d020c082e59619fbe89d426d7b355f7077a9c4a81d7de3e6952749a6bc0716c53c3495ee8b4b44394db7209cf.css" integrity="sha512-chGYnARFUbifgq7ilSStOYH6dV0CDAguWWGfvonUJtezVfcHepxKgdfePmlSdJprwHFsU8NJXui0tEOU23IJzw==" crossorigin="anonymous">
 
   </head>
   <body
@@ -142,8 +140,7 @@
 </svg>
 </span>
     <span class="post_date">
-      2025-02-21	  
-    </span>
+      2025-02-21</span>
     <span class="post_time"> · 12 分で読了</span><span>&nbsp;· <a href='http://localhost:1313/tags/org/' title="org" class="post_tag button button_translucent">org
         </a>
     </span>
@@ -316,7 +313,7 @@ v	‘#+BEGIN_VERSE’ … ‘#+END_VERSE’
 <p>
 テキスト文書の中に、ソースコードも混在できます。</p>
 <pre class="example">
-example環境は&lt;pre&gt;,言語指定できない。
+example環境は,言語指定できない。
 
 ソースコードはsrc環境
 
@@ -663,11 +660,22 @@ LATEX_HEADER
 たくさんある</p>
 <div id="outline-container-headline-26" class="outline-3">
 <h3 id="headline-26">
-TeXの数式を書く(検討中)
+TeXの数式を書く(整理中)
 </h3>
 <div id="outline-text-headline-26" class="outline-text-3">
 <p>
-<a href="https://orgmode.org/manual/Math-formatting-in-HTML-export.html">13.9.11 Math formatting in HTML export</a></p>
+以下の2つの方法があるようで、整理中です。</p>
+<ul>
+<li>org文書をhtmlにexportした時に表示</li>
+<li>org文書中の数式をHugoのサイトで表示  </li>
+<li>org文書中に数式を表示</li>
+</ul>
+<div id="outline-container-headline-27" class="outline-4">
+<h4 id="headline-27">
+orgをhtmlにexportした時に表示
+</h4>
+<div id="outline-text-headline-27" class="outline-text-4">
+<p><a href="https://orgmode.org/manual/Math-formatting-in-HTML-export.html">13.9.11 Math formatting in HTML export</a></p>
 <p>
 最初の行に</p>
 <pre class="example">
@@ -679,27 +687,39 @@ TeXの数式を書く(検討中)
 </pre>
 <p>を書くとhtmlにexportしたときに数式が現れましたが、
 なくてもできました!???</p>
+</div>
+</div>
+<div id="outline-container-headline-28" class="outline-4">
+<h4 id="headline-28">
+org文書中の数式をHugoのサイトで表示
+</h4>
+<div id="outline-text-headline-28" class="outline-text-4">
+<p>
+katexを用いる場合、
+params.tomlとmath.htmlを設定したらなんとかなるようです。</p>
 <p>
 $\int _0^\infty f(x) \dfrac{d g(t)}{dt}dx$</p>
-<p>
-単なるOrg_2_html出力ならなんとかなっていますが、
-Hugo/github-actions時ではまだ知識が足りないようです。</p>
-<p>
-org文書中にinline表記するには、dvipngが必要です。</p>
+</div>
+</div>
+<div id="outline-container-headline-29" class="outline-4">
+<h4 id="headline-29">
+org文書中にinline表記するには、dvipngが必要です。
+</h4>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-headline-27" class="outline-2">
-<h2 id="headline-27">
+</div>
+<div id="outline-container-headline-30" class="outline-2">
+<h2 id="headline-30">
 検索できるようにタグやプロパティをつける
 </h2>
-<div id="outline-text-headline-27" class="outline-text-2">
-<div id="outline-container-headline-28" class="outline-3">
-<h3 id="headline-28">
+<div id="outline-text-headline-30" class="outline-text-2">
+<div id="outline-container-headline-31" class="outline-3">
+<h3 id="headline-31">
 タグ
 </h3>
-<div id="outline-text-headline-28" class="outline-text-3">
+<div id="outline-text-headline-31" class="outline-text-3">
 <p>
 見出しには複数のタグをつけることができる
 C-c C-c</p>
@@ -712,11 +732,11 @@ C-c C-c</p>
 </div>
 </div>
 </div>
-<div id="outline-container-headline-29" class="outline-3">
-<h3 id="headline-29">
+<div id="outline-container-headline-32" class="outline-3">
+<h3 id="headline-32">
 プロパティ
 </h3>
-<div id="outline-text-headline-29" class="outline-text-3">
+<div id="outline-text-headline-32" class="outline-text-3">
 <p>プロパティは名前と値をもつことができる
 :(コロン)で前後を囲まれたキー(語句)と、その後に値をもつ1行で記述</p>
 <p>
@@ -752,11 +772,11 @@ VISIBILITY
 自分でつけた名前も自動登録される</p>
 </div>
 </div>
-<div id="outline-container-headline-30" class="outline-3">
-<h3 id="headline-30">
+<div id="outline-container-headline-33" class="outline-3">
+<h3 id="headline-33">
 タグやプロパティを検索する
 </h3>
-<div id="outline-text-headline-30" class="outline-text-3">
+<div id="outline-text-headline-33" class="outline-text-3">
 <p>
 C-c / は M-x org-sparse-tree が割り当てられています。
 C-c / で　検索のルートに行き、
@@ -804,11 +824,11 @@ ITEM 	見出しの内容
 </pre>
 </div>
 </div>
-<div id="outline-container-headline-31" class="outline-3">
-<h3 id="headline-31">
+<div id="outline-container-headline-34" class="outline-3">
+<h3 id="headline-34">
 検索結果を見やすくする
 </h3>
-<div id="outline-text-headline-31" class="outline-text-3">
+<div id="outline-text-headline-34" class="outline-text-3">
 <p>
 るびきちさんちでは、indirect-bufferを用いて、検索結果表示を見やすくす
 る方法あり</p>
@@ -820,11 +840,11 @@ ITEM 	見出しの内容
 </div>
 </div>
 </div>
-<div id="outline-container-headline-32" class="outline-2">
-<h2 id="headline-32">
+<div id="outline-container-headline-35" class="outline-2">
+<h2 id="headline-35">
 エクスポートする
 </h2>
-<div id="outline-text-headline-32" class="outline-text-2">
+<div id="outline-text-headline-35" class="outline-text-2">
 <p>
  C-c C-eの後、dispatcherが開く。</p>
 <p>
@@ -840,11 +860,11 @@ M-x org-latex-export-to-latex
 <pre class="example">
 M-x org-latex-export-as-latex
 </pre>
-<div id="outline-container-headline-33" class="outline-3">
-<h3 id="headline-33">
+<div id="outline-container-headline-36" class="outline-3">
+<h3 id="headline-36">
 エクスポートオプション
 </h3>
-<div id="outline-text-headline-33" class="outline-text-3">
+<div id="outline-text-headline-36" class="outline-text-3">
 <p>
 ヘッダ部(frontmatter?)に以下を書くと便利かも</p>
 <pre class="example">
@@ -870,11 +890,11 @@ OPTIONS行は以下をよく用います。</p>
 <a href="https://orgmode.org/manual/Export-Settings.html">orgmode.org 13.2 Export Settings</a></p>
 </div>
 </div>
-<div id="outline-container-headline-34" class="outline-3">
-<h3 id="headline-34">
+<div id="outline-container-headline-37" class="outline-3">
+<h3 id="headline-37">
 export形式を増やす
 </h3>
-<div id="outline-text-headline-34" class="outline-text-3">
+<div id="outline-text-headline-37" class="outline-text-3">
 <p>
 init.elで(require &#39;ox-md)しておけば md形式、 (require &#39;ox-beamer)して
 おけば beamer形式にexportできる</p>
@@ -884,11 +904,11 @@ ox-gfm(github flavored),ox-hugo,ox-pandoc,ox-reportなどいろいろあり</p>
 </div>
 </div>
 </div>
-<div id="outline-container-headline-35" class="outline-2">
-<h2 id="headline-35">
+<div id="outline-container-headline-38" class="outline-2">
+<h2 id="headline-38">
 あとがき
 </h2>
-<div id="outline-text-headline-35" class="outline-text-2">
+<div id="outline-text-headline-38" class="outline-text-2">
 <p>2025.4.21頃:</p>
 <ul>
 <li>githubはorgに対応していることがわかったので、ほとんどのコンテンツを変換せずに
@@ -913,8 +933,8 @@ content/posts/に落ちる。  frontmatterは追記されない。</li>
 </ul>
 </div>
 </div>
-    </div><div class="post_comments">
-  
+    </div>
+<div class="post_comments">
   
   
   
@@ -948,6 +968,7 @@ content/posts/に落ちる。  frontmatterは追記されない。</li>
       <a href='http://localhost:1313/about/' class="button mt-1" role="button" title='続きを読む'>続きを読む</a>
 
     
+    
     <h2 class="mt-4">おすすめの投稿</h2>
     <ul>
       <li>
@@ -966,6 +987,15 @@ content/posts/に落ちる。  frontmatterは追記されない。</li>
     <h2 class="mt-4">最近の投稿</h2>
     <ul class="flex-column">
       <li>
+        <a href="http://localhost:1313/post/hugo_github_actions/" class="nav-link" title="Hugo github actions作業備忘録">Hugo github actions作業備忘録</a>
+      </li>
+      <li>
+        <a href="http://localhost:1313/post/hugo_clarity/" class="nav-link" title="Hugo themes Clarityの作業備忘録">Hugo themes Clarityの作業備忘録</a>
+      </li>
+      <li>
+        <a href="http://localhost:1313/post/hugo_howto/" class="nav-link" title="Hugo 備忘録">Hugo 備忘録</a>
+      </li>
+      <li>
         <a href="http://localhost:1313/post/linux/ramdisk/" class="nav-link" title="LinuxでRT実験 ramdisk作成">LinuxでRT実験 ramdisk作成</a>
       </li>
       <li>
@@ -979,15 +1009,6 @@ content/posts/に落ちる。  frontmatterは追記されない。</li>
       </li>
       <li>
         <a href="http://localhost:1313/post/linux/scratch_buffer/" class="nav-link" title=" Emacsスクラッチバッファで計算">Emacsスクラッチバッファで計算</a>
-      </li>
-      <li>
-        <a href="http://localhost:1313/post/linux/batt_care/" class="nav-link" title="Linuxノートのバッテリメンテ">Linuxノートのバッテリメンテ</a>
-      </li>
-      <li>
-        <a href="http://localhost:1313/post/linux/maxima-howto/" class="nav-link" title="maximaおぼえがき">maximaおぼえがき</a>
-      </li>
-      <li>
-        <a href="http://localhost:1313/post/r-howto/" class="nav-link" title="Rの使い方">Rの使い方</a>
       </li>
     </ul>
     <div>
@@ -1011,6 +1032,16 @@ content/posts/に落ちる。  frontmatterは追記されない。</li>
         <a href='http://localhost:1313/categories/document-write/' class="post_tag button button_translucent" title="document write">
           DOCUMENT WRITE
           <span class="button_tally">4</span>
+        </a>
+        
+        <a href='http://localhost:1313/categories/hugo/' class="post_tag button button_translucent" title="hugo">
+          HUGO
+          <span class="button_tally">3</span>
+        </a>
+        
+        <a href='http://localhost:1313/categories/github/' class="post_tag button button_translucent" title="github">
+          GITHUB
+          <span class="button_tally">1</span>
         </a>
         
         
@@ -1070,6 +1101,11 @@ content/posts/に落ちる。  frontmatterは追記されない。</li>
           <span class="button_tally">1</span>
         </a>
         
+        <a href='http://localhost:1313/tags/clarity/' class="post_tag button button_translucent" title="clarity">
+          CLARITY
+          <span class="button_tally">1</span>
+        </a>
+        
         <a href='http://localhost:1313/tags/cmake/' class="post_tag button button_translucent" title="cmake">
           CMAKE
           <span class="button_tally">1</span>
@@ -1095,11 +1131,6 @@ content/posts/に落ちる。  frontmatterは追記されない。</li>
           <span class="button_tally">1</span>
         </a>
         
-        <a href='http://localhost:1313/tags/gui/' class="post_tag button button_translucent" title="gui">
-          GUI
-          <span class="button_tally">1</span>
-        </a>
-        
         
         <br>
         <div class="post_tags_toggle button">全てのタグ</div>
@@ -1111,6 +1142,10 @@ content/posts/に落ちる。  frontmatterは追記されない。</li>
             
             
             <a href='http://localhost:1313/tags/battery/' class=" post_tag button button_translucent" data-position=1 title="battery">BATTERY<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/clarity/' class=" post_tag button button_translucent" data-position=1 title="clarity">CLARITY<span class="button_tally">1</span>
             </a>
             
             
@@ -1138,11 +1173,19 @@ content/posts/に落ちる。  frontmatterは追記されない。</li>
             </a>
             
             
+            <a href='http://localhost:1313/tags/github-actions/' class=" post_tag button button_translucent" data-position=1 title="github actions">GITHUB ACTIONS<span class="button_tally">1</span>
+            </a>
+            
+            
             <a href='http://localhost:1313/tags/graphics/' class=" post_tag button button_translucent" data-position=2 title="graphics">GRAPHICS<span class="button_tally">2</span>
             </a>
             
             
             <a href='http://localhost:1313/tags/gui/' class=" post_tag button button_translucent" data-position=1 title="gui">GUI<span class="button_tally">1</span>
+            </a>
+            
+            
+            <a href='http://localhost:1313/tags/hugo/' class=" post_tag button button_translucent" data-position=1 title="hugo">HUGO<span class="button_tally">1</span>
             </a>
             
             
@@ -1309,14 +1352,6 @@ content/posts/に落ちる。  frontmatterは追記されない。</li>
     fill="#000000"
     d="m 12.616925,5.6916583 v 4.3315297 h -1.71607 V 5.8189683 c 0,-0.88624 -0.37289,-1.33607 -1.1187604,-1.33607 -0.82467,0 -1.23799,0.53361 -1.23799,1.58875 v 2.30122 h -1.70594 v -2.30122 c 0,-1.05514 -0.4134,-1.58875 -1.23808,-1.58875 -0.74587,0 -1.11876,0.44983 -1.11876,1.33607 v 4.2042197 h -1.71607 V 5.6916583 c 0,-0.88527 0.22541,-1.58876 0.67817,-2.10922 0.46689,-0.52047 1.07833,-0.78727 1.83735,-0.78727 0.87816,0 1.54317,0.33752 1.98288,1.01267 l 0.42744,0.71655 0.42753,-0.71655 c 0.43961,-0.67515 1.10463,-1.01267 1.9828704,-1.01267 0.75893,0 1.37037,0.2668 1.83735,0.78727 0.45268,0.52046 0.67808,1.22395 0.67808,2.10922"/>
   </symbol>
-  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 530" id="bluesky" >
-    <path d="m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"/>
-  <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" id="ko-fi">
-    <path fill="#ffffff" d="M4.5,9.8527H32.7947a0,0,0,0,1,0,0v19.225a9.07,9.07,0,0,1-9.07,9.07H13.57a9.07,9.07,0,0,1-9.07-9.07V9.8527A0,0,0,0,1,4.5,9.8527Z"/>
-    <path fill="#000000" d="M12.197,25.9493l6.45,6.45,6.45-6.45a8.2,8.2,0,0,0,2.4016-5.798h0a4.5082,4.5082,0,0,0-4.212-4.5459,4.4262,4.4262,0,0,0-4.64,4.4209,4.4261,4.4261,0,0,0-4.64-4.4209,4.5082,4.5082,0,0,0-4.212,4.5459h0A8.2,8.2,0,0,0,12.197,25.9493Z"/>
-    <path fill="#ffffff" d="M32.7947,9.8527H35.73a7.77,7.77,0,0,1,0,15.5394H32.7947"/>
-  </svg>
-  </symbol>
 </svg>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
@@ -1353,7 +1388,7 @@ content/posts/に落ちる。  frontmatterは追記されない。</li>
   </div>
 </footer>
 
-<script type="text/javascript" src="http://localhost:1313/ja/js/bundle.b5e92629c9911af5103985969a0bf39bf09aaa6f717ecce5d42a7dad47fc79d768da52eb5cbbeb59e09f0e30a3b08b4f7565abf25ea94dcb1cb4449cbbdc2096.js" integrity="sha512-tekmKcmRGvUQOYWWmgvzm/Caqm9xfszl1Cp9rUf8eddo2lLrXLvrWeCfDjCjsItPdWWr8l6pTcsctEScu9wglg==" crossorigin="anonymous"></script>
+<script type="text/javascript" src="http://localhost:1313/ja/js/bundle.74607dab278abe6851e215fd1d64bf933a1216370c29e6e47064a43bf2f6fda009fde4b152d3903f71b7f834dd5a8fc7d03416999edcd13a64f6b335e79482f4.js" integrity="sha512-dGB9qyeKvmhR4hX9HWS/kzoSFjcMKebkcGSkO/L2/aAJ/eSxUtOQP3G3&#43;DTdWo/H0DQWmZ7c0Tpk9rM155SC9A==" crossorigin="anonymous"></script>
 
   <script src="http://localhost:1313/js/search.min.73cb82d8f274395dd220d6594053cd3d3d8ac8c97d874b5142a60b9744f3704d765551e0ade104d5803c66b731f5a7a00ac2cff33c8c9090ff8100169a3e2574.js"></script>
 

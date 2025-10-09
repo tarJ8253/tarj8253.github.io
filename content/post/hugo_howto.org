@@ -1,0 +1,501 @@
+---
+#content/post/に置くファイルの雛形!
+#---はyamlの書式.+++はtoml
+TITLE: "Hugo 備忘録"
+date: 2025-10-07T15:46:46+09:00 # Date of post creation.
+description: "Hugo" # Description used for search engine.
+featured: false # true # sidebarのおすすめの投稿, sets if post is a featured post, making appear on the home page side bar.
+draft: false #true # Sets whether to render this page. Draft of true will not be rendered.
+toc: false # Controls if a table of contents should be generated for first-level links automatically.
+# menu: main # when uncomment, display on manu bar
+usePageBundles: false # Set to true to group assets like images in the same folder as this post.
+#usePageBundles: true # Set to true to group assets like images in the same folder as this post.
+#featureImage: "/images/path/file.jpg" # Sets featured image on blog post.
+#featureImageAlt: 'Description of image' # Alternative text for featured image.
+#featureImageCap: 'This is the featured image.' # Caption (optional).
+#thumbnailはstatic/images/*.pngを
+#thumbnail: "/images/path/thumbnail.png" # Sets thumbnail image appearing inside card on homepage.
+#shareImage: "/images/path/share.png" # Designate a separate image for social media sharing.
+codeMaxLines: 10 # Override global value for how many lines within a code block before auto-collapsing.
+codeLineNumbers: false # Override global value for showing of line numbers within code block.
+figurePositionShow: true # Override global value for showing the figure label.
+lang: ja
+# hugo.tomlのtaxonomiesで分類あり
+categories:
+  - Hugo
+tags:
+  - Hugo
+# series :
+#  - Hugo
+# aliases : 
+#  - migrate-from-jekyl
+# Create redirects from old URLs to new URLs with aliases:
+# comment: false # Disable comment if false.
+# +TITLE: HUGO_howto
+# +DATE: 2025/1/29
+# +LANGUAGE: ja
+# +OPTIONS: author:nil toc:nil ^:{} timestamp:nil \n:t
+
+# 2025.6.10,Clarity分離
+---
+
+* Hugo の始め方
+
+Hugoはssg(static site generator)との名前が示すとおり、
+自分のコンテンツだけをmdまたはorg形式などで用意すれば、他の細かいことは全部template(theme)に応じて生成し、
+見栄えのいいwebサイトを構築してくれます。
+
+Hugo本体はapt install hugo
+
+<!--more-->
+
+** themeによらない、一般的な始め方
+Hugoを用いたサイト構築の
+一般的な始め方は、[[https://gohugo.io/getting-started/quick-start/][HugoのQuickStart]]にあるように、
+
+#+begin_src bash
+$ hugo new site <hoge>
+$ cd <hoge>
+$ git init
+$ git submodule add <theme>
+$ hugo server -D
+#+end_src
+
+とした後、browserから
+#+begin_example
+localhost:1313
+#+end_example
+としたら、拝めます。-Dはdraftも表示の意味(ファイルのfront matterで設定)。
+
+ただ、themeにより、対応するhugoのversionやできることが異なるようなので、
+themeを決めてから各テーマのdocumentを参考にして作業したほうが
+良いようです。
+
+
+** theme clarityを使う始め方
+
+[[https://github.com/chipzoller/hugo-clarity][Clarityを使いました]]
+
+
+[[https://github.com/chipzoller/hugo-clarity?tab=readme-ov-file#prerequisites][必要条件]]:
+the extended version of Hugo 0.91.0 or above
+と書いていますが、最新にしないと動かないかもしれません。
+
+- 2024.9.18作業、theme.tomlでは min_version="0.128.0"になってた。
+
+bookwormでは
+#+begin_src bash
+$ hugo version
+hugo v0.111.3+extended linux/amd64 BuildDate=2023-03-16T08:41:31Z VendorInfo=debian:0.111.3-1
+#+end_src
+だったので、動作しなくなってしまいました。
+
+そこで、現状の私の環境のgo.modは、昔のmoduleを呼び出しています(下方参照)。
+
+
+- 2025.8.12 trixie update
+#+begin_example
+hugo v0.131.0+extended linux/amd64 BuildDate=2024-09-03T01:15:37Z VendorInfo=debian:0.131.0-1
+#+end_example
+
+調子こいてgo.modだけを書き換えると、summaryの表示がヘンになってしまいました^^;
+
+*** clarityの導入
+
+
+3通りあるけど、以下の方法がおすすめだそうです。
+
+- themeをmoduleとして読み込む。
+
+goはinstall済み(hugoをaptしたときに入った。(macではbrew必要))
+
+#+begin_src bash
+$ hugo new site <sitename>
+$ cd <sitename>
+$ hugo mod init <sitename> -- go.mod, ができた
+$ wget -O - https://github.com/chipzoller/hugo-clarity/archive/master.tar.gz | tar xz
+$ cp -a ./hugo-clarity-master/exampleSite/* . && rm -f config.toml
+#+end_src
+
+このあと、
+- theme設定
+#+begin_example
+emacs ./config/_default/hugo.toml
+  theme=hugo-clarity から
+  theme=["github.com/chipzoller/hugo-clarity"]に変更
+#+end_example
+
+ただし、私の環境では新しいmoduleではerrorになったので、
+go.modで呼び出しているmodule(hugo serverを実行したら以下が追加される)
+を古いものに書き換えています。
+
+#+begin_example
+//require github.com/chipzoller/hugo-clarity v0.0.0-20240923132253-174a5e638704 // indirect
+//require github.com/chipzoller/hugo-clarity v0.0.0-20250302180814-2c9a7b6d3937 // indirect
+require github.com/chipzoller/hugo-clarity v0.0.0-20240429154213-8412edb36941 // indirect	  
+#+end_example
+
+
+サイト参考資料からの変更点
+- tarした本体はrmせずに参考用に残しています。
+  ##&& rm -rf hugo-clarity-master
+- cp -a ./hugo**の./を追加
+- clarityの環境設定方法は他のthemeとやや異なり、config.tomlなどの設定ファイルがすべてconfig/に移動しています。したがって、ここでrmしています。
+
+環境設定ファイル名は、config.tomlから、hugo.tomlに変更されています。
+
+
+2025.8.2 trixieのとき、変更無しで動いた!:とおもったら、他のファイルが
+昔のままならsummaryの表示がヘンになりました。(- -);
+#+begin_src
+module hoge
+go 1.24.4
+require github.com/chipzoller/hugo-clarity v0.0.0-20250514185450-16f2e94b0bce // indirect
+#+end_src
+
+*** demoをみる
+#+begin_src bash
+$ hugo server -D
+#+end_src
+
+とした後、browserから
+
+browserで以下のURLを指定すると、サンプルが見れます。
+#+begin_example
+localhost:1313
+#+end_example
+
+-Dはdraftも表示,各mdのfrontmatterで設定しています。
+
+
+update方法は以下のように紹介されています
+#+begin_example
+To pull in theme updates, run
+hugo mod get -u github.com/chipzoller/hugo-clarity
+You can also update all your Hugo modules with
+hugo mod get -u ./...
+-- read more about updating Hugo modules.
+#+end_example
+
+
+Clarityの見た目を変えたいときは、[[/post/hugo_clarity][別ページ]]を参考。
+
+
+** Hugo用のcontentsを作る
+
+- 雛形をcpして作成. 
+   #+begin_src bash
+    $ hugo new content/post/my-first-post.md
+   #+end_src
+   
+- 雛形はarchtypes/default.md
+  
+@@html:<br>@@
+    [[https://gohugo.io/content-management/archetypes/][サイトの案内]] にはposts.md,default.md
+    の順に探していくと書いてあるが、逆のよう。
+     default.mdが優先のよう。
+
+- テンプレートを用いたファイル生成:任意の雛形が作れるようです。@@html:<br>@@
+  @@html:<font color='red'>@@archtypes/hoge.md@@html:</font>@@というファイル
+  @@html:<font color='red'>@@hoge@@html:</font>@@.mdがあれば、hugo new @@html:<font color='red'>@@hoge@@html:</font>@@/in.mdとした時、
+  content/@@html:<font color='red'>@@hoge@@html:</font>@@/以下のファイルの雛形として使用されるようである。
+  つまりarchtypes/@@html:<font color='red'>@@hoge@@html:</font>@@.mdの@@html:<font color='red'>@@hoge@@html:</font>@@がdirectory名の識別として有効になるようである。
+
+  
+
+*** コンテンツ(文書)の書き方
+
+- mdまたはorgの書式で作成、名前は任意。公開時にはsitename/filename/index.htmlとなるみたい。
+- 文書が完成するまで見せたくないときは、frontmatterのdraftをfalseにする。
+- 図を含むコンテンツは、1つのfolderにindex.md(本文)と図を保存するdir(名前は任意)を作成する。
+  本文中で図を表示する時は./dirname/fig.pngでok
+
+  これがbundleページの意味???
+  
+*** 任意のfolder 作成 ok
+- folderはcontent,content/post,がデフォルト
+
+   - content/の下は任意のdir作成ok。
+
+   -  post/にあると、configで指定するいろいろなおまじないが効くようである。
+
+   -  postの名前は、params.tomlのmainSectionsで設定可能かな?
+
+- content/に
+  about.md,archives.md,search.mdあり
+
+- ページヘッダのmenuは
+  config/_default/menus/menu.en.toml
+#+begin_example
+[[main]]
+name = "Archives/Index"
+#url = "post/rich-content/"
+url = "archives/"
+#+end_example
+
+content/archive.mdはヘッダだけ
+
+*** mdの書式??
+frontmatterの書式に---(ハイフン3つ)と+++がある。
+- ---(ハイフン3つ)はyaml:
+- +++はTOML: 
+- {}はJSON
+
+
+- YAMLは人間が読みやすく書けることを重視したフォーマットで、構
+  造はインデント（スペースやタブ）で表現されます。[[https://zenn.dev/collabostyle/articles/a2716ea312ee6b][引用元]]
+
+- TOMLは構造化されたデータを表現するためのformat
+  
+- JSONは軽量なデータ交換フォーマットで、データを階層的なキーと値のペアの形式で表現します。
+  これらのデータは、ダブルクォートで囲まれた文字列で表現され、数値、真偽値、nullもサポート
+  されています。
+
+- markdownでは3つ以上のハイフンは罫線になるので変換時注意
+
+
+[[https://qiita.com/spiegel-im-spiegel/items/eac7bf2a3c0fc19afcbf][自分で作るtemplate　参考先]]
+
+
+
+*** Hugoのサマリの落とし穴
+
+デフォルトは冒頭70単語(半角)表示されるようです。
+
+制限したいときは、
+
+#+begin_example
+<!--more-->
+#+end_example
+
+と本文にかけば、この上の行までサマリ表示の抑制ができる。[[https://qiita.com/nonchang-net/items/3d2d2a726c6294d333a4][引用元]]
+
+日本語はイメージ通りにならないこともあるので、以下の日本語設定(2byteカウント)
+すること
+
+@@html:<!--@@
+#+begin_comment
+#記憶をたどってhugo anankeでやっと発見
+
+ここのサイトHugoの動きの解説あり、いろいろ参考になる
+#+end_comment
+@@html:-->@@
+
+*** Hugoの日本語設定
+
+[[https://gohugo.io/getting-started/configuration/][日本語設定]]
+
+- hugo.tomlに
+  hasCJKLanguage=true 
+  としたら文字カウントok
+  [[https://stysk.com/posts/2023/12/07/hugo_summary/][引用元]]
+
+ @@html:<br>@@
+  
+  configureでは、hasCJKLanguage
+  .Summary, .WordCountで有効
+
+@@html:<!--@@
+#+begin_comment
+anankeのときに少し遊んだ残骸に記憶あり
+#+end_comment
+@@html:-->@@
+
+- frontmatterに設定は
+  isCJKLanguage=true
+
+  WordCount,FuzzyWordCount,ReadingTime,Summary
+
+@@html:<!--@@
+  #+begin_comment
+
+  tomlにもいいのかな?
+
+  has?is?
+  #+end_comment
+@@html:-->@@
+
+
+** Hugoを実行するとpublicの下にコンテンツが展開される
+- post/filenameが
+  post/filename/index.htmlになるみたい。
+  
+- public/post/rich-content/index.html
+  に展開される
+
+  name = "About"
+  url = "about/"
+
+- content/about.md
+  内容たくさん
+  public/about/index.htmlに展開
+
+- config/_default/params.toml
+  の
+  mainSetions =["post"]
+  に指定したfold内のcontentsだけが、表のpageに表示される
+
+@@html:<!--@@
+ 
+** 画像管理
+Hugo 相対参照でgoogle
+https://marbles.hatenablog.com/entry/2021/05/18/172506
+Page bundle
+ほかからのlink
+relURLを使う
+<link rel="stylesheet" type="text/css" href="{{ "css/light.css" | relURL}}" />
+https://discourse.gohugo.io/t/topic/19193/3
+
+@@html:-->@@
+
+** フォルダ内に複数の文書を置くときは_index.mdを作成する
+
+front matterだけあればいいようです。適当にcp。
+
+hugo _index.md
+
+[[https://www.karakaram.com/hugo-usage/#google_vignette][ページのネスト]]
+
+[[https://gohugo.io/content-management/sections/#nested-sections][Hugo manual]]
+
+
+** ページのheader
+#+begin_example
+type=search, sections
+searchPage=true
+layout: archives
+series:
+aliases:
+descriptions
+#+end_example
+
+blogもある??
+
+
+** taxonomy(分類)
+
+hugo.tomlに[taxonomy]として、色々設定ある。
+
+[[https://kakudo.org/blog/hugo-taxonomies/][taxonomyの使い方の説明]]
+
+
+  
+** asciidocを変換可にする(検討中)
+
+以下の方法は単純な変換方法で、github/actionsで動かすにはもっと修行がいるようです。(以下では^^;;)
+
+- asciidocをsecurity追加する。
+
+[[[[https://stackoverflow.com/questions/71058236/hugo-with-asciidoctor]]][参考サイト]]
+
+hugo.tomlに以下追加:config.tomlでは効かない(obsolete)
+
+
+#+begin_example 
+[security.exec]
+allow = ["^dart-sass-embedded$", "^go$", "^npx$", "^postcss$", "^asciidoctor$"]
+osEnv = ["(?i)^(PATH|PATHEXT|APPDATA|TMP|TEMP|TERM|RUBYLIB)$"]
+#+end_example
+
+RUBYLIBを追加している
+
+- [[https://discourse.gohugo.io/t/hugo-asciidoc-on-windows-triggering-warn-messages-about-gemrc-not-being-found/48061][または別の方法]]
+
+#+begin_example
+[security.exec]
+allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^npx$', '^postcss$','^asciidoctor$']
+osEnv = ['.*']
+#+end_example
+
+どちらがいいのかな?
+
+
+
+** Hugo manual
+[[https://gohugo.io/documentation/][HUGO docs]]
+
+ここからcontent managementへ行くと
+Front matter
+Taxonomy
+Summaries
+などなどいろいろ解説あり
+
+[[https://juggernautjp.info/documentation/][一部だけ日本語訳あり]]
+
+
+*** [[https://gohugo.io/shortcodes/figure/][shortcodeの解説]]
+
+DOCS->Shortcodes->Figure
+
+{{< figure 
+src=""
+width=""
+>}}
+
+
+*** hugo.ssg説明, 最初の参考サイト
+
+ssgの説明
+https://fand.jp/what-is-static-site-generator/
+
+hugoわかりやすかった
+https://qiita.com/nonchang-net/items/3d2d2a726c6294d333a4
+
+hugo 始め方手取り足取り
+https://zenn.dev/harachan/articles/a043e9a756cae4
+
+ここもわかりやすい。githubにpushまで書いてある。
+https://www.pc-koubou.jp/magazine/30737
+
+
+@@html:<!--@@
+
+** orgをhugoに移す方法あり
+ox-hugo: emacsのpackage
+mdにexport
+
+なくてもmdにexportできる?
+
+** config.tomlの設定
+https://takaken.tokyo/dev/hugo/config/hugo-config-description/
+
+ただしhugo.tomlにすること
+
+
+** clarityにした人発見
+https://blog.asterism.xyz/posts/c05acf7b626a289355b675c1b6fd7ce3/
+-> 2025.5,HigoからWordPressに移行
+
+
+https://ibemu.dev/post/2023/12/04/customize-hugo-clarity/
+default.md変更
+
+
+**があるとcommentにできないみたい
+**.gitignore
+琉球大学情報
+https://ie.u-ryukyu.ac.jp/syskan/service/hugo/
+
+.gitignore
+生成ファイルがpushされないようにmy-site直下に.gitignoreファイルを作成
+します． .gitignore(頭に.が付きます)という名前で作成し以下の内容を記述
+しておきます．
+
+\/public\/resources\/_gen\/hugo_stats.json
+
+確認ができたら公開します． my-site直下で次のコマンドを打ちます．(これ
+らのコマンドはGitLabのリポジトリを作成したときに最初に表示されるページ
+にも記載されています．)
+
+\ #+begin_src bash
+$git remote add origin リポジトリのURL
+$git add .
+$git commit -m "Initial commit"
+$git branch -M 'main'
+$git push -u origin main
+ \#+end_src
+
+リポジトリ名がe185742の場合のURL:
+https://ie.u-ryukyu.ac.jp/e185742/
+
+@@html:-->@@

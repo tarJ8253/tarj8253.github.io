@@ -3,12 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-10-06T00:00:00+00:00</lastmod>
+    <lastmod>2025-10-07T15:46:46+09:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/control/</loc>
-    <lastmod>2025-10-06T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/tags/clarity/</loc>
+    <lastmod>2025-10-07T15:46:46+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/hugo/</loc>
+    <lastmod>2025-10-07T15:46:46+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/hugo_clarity/</loc>
+    <lastmod>2025-10-07T15:46:46+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/hugo_howto/</loc>
+    <lastmod>2025-10-07T15:46:46+09:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/index/</loc>
+    <lastmod>2025-10-07T15:46:46+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-10-07T15:46:46+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/</loc>
+    <lastmod>2025-10-07T15:46:46+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-10-07T15:46:46+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/control/</loc>
     <lastmod>2025-10-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/octave/</loc>
@@ -18,12 +39,6 @@
     <lastmod>2025-10-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/series/</loc>
-    <lastmod>2025-10-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-10-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
     <lastmod>2025-10-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/control/octave_control_basic/</loc>
@@ -60,9 +75,6 @@
     <lastmod>2025-06-06T11:43:19+09:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/real-time/</loc>
-    <lastmod>2025-06-06T11:43:19+09:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/post/</loc>
     <lastmod>2025-06-06T11:43:19+09:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/cmake/</loc>

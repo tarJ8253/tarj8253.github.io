@@ -8,8 +8,8 @@ featured: true # sidebarのおすすめの投稿, sets if post is a featured pos
 draft: false #true # Sets whether to render this page. Draft of true will not be rendered.
 toc: false # Controls if a table of contents should be generated for first-level links automatically.
 # menu: main # when uncomment, display on manu bar
-#usePageBundles: false # Set to true to group assets like images in the same folder as this post.
-usePageBundles: true # Set to true to group assets like images in the same folder as this post.
+usePageBundles: false # Set to true to group assets like images in the same folder as this post.
+#usePageBundles: true # Set to true to group assets like images in the same folder as this post.
 #featureImage: "/images/path/file.jpg" # Sets featured image on blog post.
 #featureImageAlt: 'Description of image' # Alternative text for featured image.
 #featureImageCap: 'This is the featured image.' # Caption (optional).
@@ -146,7 +146,7 @@ v	‘#+BEGIN_VERSE’ … ‘#+END_VERSE’
    
 #+begin_example
 
-example環境は<pre>,言語指定できない。
+example環境は,言語指定できない。
 
 ソースコードはsrc環境
 
@@ -422,8 +422,13 @@ LATEX_HEADER
 などなど、
 たくさんある
 
-** TeXの数式を書く(検討中)
+** TeXの数式を書く(整理中)
 
+以下の2つの方法があるようで、整理中です。
+- org文書をhtmlにexportした時に表示
+- org文書中の数式をHugoのサイトで表示  
+- org文書中に数式を表示
+***   orgをhtmlにexportした時に表示
 [[https://orgmode.org/manual/Math-formatting-in-HTML-export.html][13.9.11 Math formatting in HTML export]]
 
 最初の行に
@@ -437,12 +442,15 @@ LATEX_HEADER
 を書くとhtmlにexportしたときに数式が現れましたが、
 なくてもできました!???
 
+*** org文書中の数式をHugoのサイトで表示
+
+katexを用いる場合、
+params.tomlとmath.htmlを設定したらなんとかなるようです。
+
 $\int _0^\infty f(x) \dfrac{d g(t)}{dt}dx$
 
-単なるOrg_2_html出力ならなんとかなっていますが、
-Hugo/github-actions時ではまだ知識が足りないようです。
 
-org文書中にinline表記するには、dvipngが必要です。
+*** org文書中にinline表記するには、dvipngが必要です。
 
 
 * 検索できるようにタグやプロパティをつける

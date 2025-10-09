@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clarity on たきやま&#39;sPAGE</title>
+    <link>http://localhost:1313/tags/clarity/</link>
+    <description>Recent content in Clarity on たきやま&#39;sPAGE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Tue, 07 Oct 2025 15:46:46 +0900</lastBuildDate><atom:link href="http://localhost:1313/tags/clarity/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HUGO themes claltityの備忘録</title>
+      <link>http://localhost:1313/post/hugo_clarity/</link>
+      <pubDate>Tue, 07 Oct 2025 15:46:46 +0900</pubDate>
+      
+      <guid>http://localhost:1313/post/hugo_clarity/</guid>
+      <description>
+        
+          
+            &lt;p&gt;
+Hugoのthemesの中から、clarityを選び、いろいろ触ったときの備忘録。&lt;/p&gt;
+&lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;headline-1&#34;&gt;
+clarityの見た目を変える
+&lt;/h2&gt;
+&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-2&#34;&gt;
+&lt;p&gt;
+hugo server として、ブラウザで画面を見ながら下記環境を編集すると
+随時変更点が反映されていくので、よくわかります。&lt;/p&gt;
+&lt;div id=&#34;outline-container-headline-2&#34; class=&#34;outline-3&#34;&gt;
+&lt;h3 id=&#34;headline-2&#34;&gt;
+configのパラメータを変える。
+&lt;/h3&gt;
+&lt;div id=&#34;outline-text-headline-2&#34; class=&#34;outline-text-3&#34;&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>HUGO の備忘録</title>
+      <link>http://localhost:1313/post/hugo_howto/</link>
+      <pubDate>Tue, 07 Oct 2025 15:46:46 +0900</pubDate>
+      
+      <guid>http://localhost:1313/post/hugo_howto/</guid>
+      <description>
+        
+          
+            &lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;headline-1&#34;&gt;
+Hugo の始め方
+&lt;/h2&gt;
+&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-2&#34;&gt;
+&lt;p&gt;
+Hugoはssg(static site generator)との名前が示すとおり、
+自分のコンテンツだけをmd形式などで用意すれば、他の細かいことは全部template(theme)に応じて生成し、
+見栄えのいいwebサイトを構築してくれます。&lt;/p&gt;
+&lt;p&gt;
+Hugo本体はapt install hugo&lt;/p&gt;
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>
