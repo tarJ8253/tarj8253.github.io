@@ -141,7 +141,7 @@
 </span>
     <span class="post_date">
       2025-06-06</span>
-    <span class="post_time"> · 3 分で読了</span><span>&nbsp;· <a href='http://localhost:1313/tags/magit/' title="magit" class="post_tag button button_translucent">magit
+    <span class="post_time"> · 4 分で読了</span><span>&nbsp;· <a href='http://localhost:1313/tags/magit/' title="magit" class="post_tag button button_translucent">magit
         </a><a href='http://localhost:1313/tags/emacs/' title="Emacs" class="post_tag button button_translucent">Emacs
         </a>
     </span>
@@ -156,17 +156,21 @@
 2025.3.6: r1<br>
 2014.2.27:初版</p>
 <p>
-環境はbookwormです</p>
+Emacsでgitを使う方法。</p>
+<p>
+昔個人のPCで一人gitしててめげましたが、github使うために再開しました。</p>
+<p>
+環境はbookwormです。</p>
 <div id="outline-container-headline-2" class="outline-3">
 <h3 id="headline-2">
 準備
 </h3>
 <div id="outline-text-headline-2" class="outline-text-3">
 <p>2025.3 magitをpackage-install時</p>
-<div class="src src-elisp">
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl"><span class="nv">Emergency</span> <span class="p">(</span><span class="nv">magit</span><span class="p">)</span><span class="o">:</span> <span class="nv">Magit</span> <span class="nv">requires</span> <span class="err">‘</span><span class="nv">seq</span><span class="err">’</span> <span class="nf">&gt;=</span> <span class="mf">2.24</span><span class="o">,</span></span></span></code></pre></div>
-</div>
-<p>と言われたので</p>
+<pre class="example">
+Emergency (magit): Magit requires ‘seq’ &gt;= 2.24,
+</pre>
+<p>と言われたのでseqをpkg-install</p>
 <div class="src src-elisp">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="line"><span class="ln">1</span><span class="cl">  <span class="nv">M-x</span> <span class="nv">package-install</span> <span class="nv">seq</span></span></span></code></pre></div>
 </div>
@@ -237,26 +241,25 @@ modified ファイル名
 </pre>
 <p>が表記される</p>
 <p>
- カーソルをファイル名に移してから、sキーを押すと、そのファイルはステージに上がる。
- Sなら全ファイル指定
+ カーソルをファイル名に移してから、sキーを押すと、そのファイルはステージに上がる。<br>
+ S(大文字S)なら全ファイル指定。<br>
  C-u-i ならignoreファイルとして指定</p>
 <p>
  ?から始めても良い。コマンド一覧が表示</p>
 </li>
 <li>c<br>
-同じ画面からcを押すとArguments/Create/EditHEADなどの画面になる。
+同じ画面からcを押すとArguments/Create/EditHEADなどの画面になる。<br>
 もう一度cを押してCommit注釈を入力画面にする。
-commitの注釈を入力する。
-注釈文を書かないと、commitできない
+commitの注釈を入力する。<br>
+注釈文を書かないと、commitできない。 <br>
 
 注釈文は1行目に主な項目、3行目以降に詳細を記述。
-2行目には書かないこと(赤字になる)
-
+2行目には書かないこと(赤字になる)<br>
 注釈文の書き方:<a href="https://qiita.com/itosho/items/9565c6ad2ffc24c09364">https://qiita.com/itosho/items/9565c6ad2ffc24c09364</a></li>
 <li>C-c C-c<br>
 注釈文を書いたあとcomitするにはC-c C-c</li>
 <li>pushするには、P<br>
-push先のurl登録してなければ、聞いてくる
+push先のurl登録してなければ、聞いてくる。<br>
 git remote add origin htts://hoge/[].gitと同じ</li>
 <li>
 <p>logを見るには<br></p>
@@ -434,7 +437,7 @@ amendは c a (commitはc cなので2つめのcをaにする)</p>
         <a href="http://localhost:1313/post/hugo_clarity/" class="nav-link" title="Hugo themes Clarityの作業備忘録">Hugo themes Clarityの作業備忘録</a>
       </li>
       <li>
-        <a href="http://localhost:1313/post/hugo_howto/" class="nav-link" title="Hugo 備忘録">Hugo 備忘録</a>
+        <a href="http://localhost:1313/post/hugo_howto/" class="nav-link" title="Hugo 作業備忘録">Hugo 作業備忘録</a>
       </li>
       <li>
         <a href="http://localhost:1313/post/linux/ramdisk/" class="nav-link" title="LinuxでRT実験 ramdisk作成">LinuxでRT実験 ramdisk作成</a>

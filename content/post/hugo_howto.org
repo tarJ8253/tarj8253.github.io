@@ -1,7 +1,7 @@
 ---
 #content/post/に置くファイルの雛形!
 #---はyamlの書式.+++はtoml
-TITLE: "Hugo 備忘録"
+TITLE: "Hugo 作業備忘録"
 date: 2025-10-07T15:46:46+09:00 # Date of post creation.
 description: "Hugo" # Description used for search engine.
 featured: false # true # sidebarのおすすめの投稿, sets if post is a featured post, making appear on the home page side bar.
@@ -42,7 +42,7 @@ tags:
 * Hugo の始め方
 
 Hugoはssg(static site generator)との名前が示すとおり、
-自分のコンテンツだけをmdまたはorg形式などで用意すれば、他の細かいことは全部template(theme)に応じて生成し、
+コンテンツだけをmdまたはorg形式などで用意すれば、他の細かいことは全部template(theme)に応じて生成し、
 見栄えのいいwebサイトを構築してくれます。
 
 Hugo本体はapt install hugo
@@ -88,19 +88,23 @@ bookwormでは
 $ hugo version
 hugo v0.111.3+extended linux/amd64 BuildDate=2023-03-16T08:41:31Z VendorInfo=debian:0.111.3-1
 #+end_src
-だったので、動作しなくなってしまいました。
+だったので、最近のClaityをDLすると、動作しなくなってしまいました。
 
-そこで、現状の私の環境のgo.modは、昔のmoduleを呼び出しています(下方参照)。
+そこで、現状の私の環境のgo.modは、昔のmoduleを呼び出しました(下方参照)。
 
 
 - 2025.8.12 trixie update
+
+trixieにupdateしたら、最近のClarityで動作しました。
+
 #+begin_example
 hugo v0.131.0+extended linux/amd64 BuildDate=2024-09-03T01:15:37Z VendorInfo=debian:0.131.0-1
 #+end_example
 
+入れ替えるのがめんどいので、
 調子こいてgo.modだけを書き換えると、summaryの表示がヘンになってしまいました^^;
 
-*** clarityの導入
+*** Clarityの導入
 
 
 3通りあるけど、以下の方法がおすすめだそうです。
@@ -121,7 +125,7 @@ $ cp -a ./hugo-clarity-master/exampleSite/* . && rm -f config.toml
 - theme設定
 #+begin_example
 emacs ./config/_default/hugo.toml
-  theme=hugo-clarity から
+  theme=hugo-clarity を
   theme=["github.com/chipzoller/hugo-clarity"]に変更
 #+end_example
 
@@ -147,7 +151,8 @@ require github.com/chipzoller/hugo-clarity v0.0.0-20240429154213-8412edb36941 //
 
 2025.8.2 trixieのとき、変更無しで動いた!:とおもったら、他のファイルが
 昔のままならsummaryの表示がヘンになりました。(- -);
-#+begin_src
+
+#+begin_src go.mod
 module hoge
 go 1.24.4
 require github.com/chipzoller/hugo-clarity v0.0.0-20250514185450-16f2e94b0bce // indirect
@@ -166,7 +171,7 @@ localhost:1313
 #+end_example
 
 -Dはdraftも表示,各mdのfrontmatterで設定しています。
-
+-Dを省略すると、draft=falseの文書のみ表示します。
 
 update方法は以下のように紹介されています
 #+begin_example
@@ -217,12 +222,12 @@ Clarityの見た目を変えたいときは、[[/post/hugo_clarity][別ページ
 
    - content/の下は任意のdir作成ok。
 
-   -  post/にあると、configで指定するいろいろなおまじないが効くようである。
+   -  content/post/にあるファイルには、configで指定するいろいろなおまじないが効くようである。
 
    -  postの名前は、params.tomlのmainSectionsで設定可能かな?
 
 - content/に
-  about.md,archives.md,search.mdあり
+  about.md,archives.md,search.mdあり。archiveに目次をつくってみました。
 
 - ページヘッダのmenuは
   config/_default/menus/menu.en.toml
@@ -238,16 +243,20 @@ content/archive.mdはヘッダだけ
 *** mdの書式??
 frontmatterの書式に---(ハイフン3つ)と+++がある。
 - ---(ハイフン3つ)はyaml:
-- +++はTOML: 
+
+  
+YAMLは人間が読みやすく書けることを重視したフォーマットで、構
+  造はインデント（スペースやタブ）で表現されます。[[https://zenn.dev/collabostyle/articles/a2716ea312ee6b][引用元]]
+  
+- +++はTOML:
+
+  
+ TOMLは構造化されたデータを表現するためのformat
+  
 - {}はJSON
 
-
-- YAMLは人間が読みやすく書けることを重視したフォーマットで、構
-  造はインデント（スペースやタブ）で表現されます。[[https://zenn.dev/collabostyle/articles/a2716ea312ee6b][引用元]]
-
-- TOMLは構造化されたデータを表現するためのformat
   
-- JSONは軽量なデータ交換フォーマットで、データを階層的なキーと値のペアの形式で表現します。
+ JSONは軽量なデータ交換フォーマットで、データを階層的なキーと値のペアの形式で表現します。
   これらのデータは、ダブルクォートで囲まれた文字列で表現され、数値、真偽値、nullもサポート
   されています。
 

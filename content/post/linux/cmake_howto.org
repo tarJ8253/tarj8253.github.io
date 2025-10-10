@@ -22,9 +22,9 @@ categories:
   - linux
 tags:
   - cmake
-#series :
+# series :
 #  - Enjoy Linux
-#aliases : 
+# aliases : 
 #  - migrate-from-jekyl
 # Create redirects from old URLs to new URLs with aliases:
 
@@ -36,7 +36,8 @@ lang: ja
 
 ---
 
-CMake Documentation:[[https://cmake.org/cmake/help/latest/index.html]]
+
+[[[[https://cmake.org/cmake/help/latest/index.html]]][CMake Documentation]]
 
 環境はbookwormです。
 

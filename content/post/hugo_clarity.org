@@ -42,11 +42,12 @@ Hugoのthemesの中から、Clarityを選び、いろいろ触ったときの作
 
 * Clarityの見た目を変える
 
+<!--more-->
+
 hugo server として、ブラウザで画面を見ながら下記環境を編集すると
 随時変更点が反映されていくので、よくわかります。
 
 ** configのパラメータを変える。
-<!--more-->
 
 *** config/_default/hugo.toml(旧名はconfig.toml)
 
@@ -105,9 +106,9 @@ centerLogo=false , 上記ロゴ位置を真ん中にする
 - Aboutを変更
   menus/menu.ja.toml
 
-- menubarの表示項目をいろいろ変えることができる
+- menubarの表示項目をいろいろ変えることができる。
 
-- menus/にファイルが2つ以上あるとbuild時にその言語があらわれる
+- menus/にファイルが2つ以上あるとbuild時にその言語があらわれる。
   _menus_newnameなどにrenameしても、反映してしまうので、削除必要
 
 

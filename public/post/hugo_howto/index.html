@@ -9,7 +9,7 @@
   
   >
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-<title>Hugo 備忘録 | たきやま&#39;sPAGE</title>
+<title>Hugo 作業備忘録 | たきやま&#39;sPAGE</title>
 <meta charset="utf-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -23,10 +23,10 @@
 <meta name="description" content="Hugo" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
-<meta name="twitter:title" content="Hugo 備忘録" />
+<meta name="twitter:title" content="Hugo 作業備忘録" />
 <meta name="twitter:image" content="http://localhost:1313/images/thumbnail.png"/>
 <meta property="og:url" content="http://localhost:1313/post/hugo_howto/" />
-<meta property="og:title" content="Hugo 備忘録" />
+<meta property="og:title" content="Hugo 作業備忘録" />
 <meta property="og:description" content="Hugo" />
 <meta property="og:image" content="http://localhost:1313/images/thumbnail.png" />
   <script type="application/ld+json">
@@ -35,7 +35,7 @@
       "@type": "BlogPosting",
       "mainEntityOfPage":"http:\/\/localhost:1313\/post\/hugo_howto\/",
       "name": "たきやま\u0027sPAGE",
-      "headline": "Hugo 備忘録",
+      "headline": "Hugo 作業備忘録",
       "description": "Hugo",
       "url": "http:\/\/localhost:1313\/post\/hugo_howto\/",
       "datePublished": "2025-10-07T15:46:46+09:00",
@@ -132,7 +132,7 @@
   
 <div class="grid-inverse wrap content">
   <article class="post_content">
-    <h1 class="post_title">Hugo 備忘録</h1>
+    <h1 class="post_title">Hugo 作業備忘録</h1>
   <div class="post_meta">
     <span><svg class="icon">
   <title>calendar</title>
@@ -141,7 +141,7 @@
 </span>
     <span class="post_date">
       2025-10-07</span>
-    <span class="post_time"> · 7 分で読了</span><span>&nbsp;· <a href='http://localhost:1313/tags/hugo/' title="Hugo" class="post_tag button button_translucent">Hugo
+    <span class="post_time"> · 8 分で読了</span><span>&nbsp;· <a href='http://localhost:1313/tags/hugo/' title="Hugo" class="post_tag button button_translucent">Hugo
         </a>
     </span>
   </div>
@@ -153,7 +153,7 @@ Hugo の始め方
 <div id="outline-text-headline-1" class="outline-text-2">
 <p>
 Hugoはssg(static site generator)との名前が示すとおり、
-自分のコンテンツだけをmdまたはorg形式などで用意すれば、他の細かいことは全部template(theme)に応じて生成し、
+コンテンツだけをmdまたはorg形式などで用意すれば、他の細かいことは全部template(theme)に応じて生成し、
 見栄えのいいwebサイトを構築してくれます。</p>
 <p>
 Hugo本体はapt install hugo</p>
@@ -202,20 +202,22 @@ the extended version of Hugo 0.91.0 or above
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">$ hugo version
 </span></span><span class="line"><span class="ln">2</span><span class="cl">hugo v0.111.3+extended linux/amd64 <span class="nv">BuildDate</span><span class="o">=</span>2023-03-16T08:41:31Z <span class="nv">VendorInfo</span><span class="o">=</span>debian:0.111.3-1</span></span></code></pre></div>
 </div>
-<p>だったので、動作しなくなってしまいました。</p>
+<p>だったので、最近のClaityをDLすると、動作しなくなってしまいました。</p>
 <p>
-そこで、現状の私の環境のgo.modは、昔のmoduleを呼び出しています(下方参照)。</p>
+そこで、現状の私の環境のgo.modは、昔のmoduleを呼び出しました(下方参照)。</p>
 <ul>
 <li>2025.8.12 trixie update</li>
 </ul>
+<p>trixieにupdateしたら、最近のClarityで動作しました。</p>
 <pre class="example">
 hugo v0.131.0+extended linux/amd64 BuildDate=2024-09-03T01:15:37Z VendorInfo=debian:0.131.0-1
 </pre>
 <p>
+入れ替えるのがめんどいので、
 調子こいてgo.modだけを書き換えると、summaryの表示がヘンになってしまいました^^;</p>
 <div id="outline-container-headline-4" class="outline-4">
 <h4 id="headline-4">
-clarityの導入
+Clarityの導入
 </h4>
 <div id="outline-text-headline-4" class="outline-text-4">
 <p>
@@ -238,7 +240,7 @@ clarityの導入
 </ul>
 <pre class="example">
 emacs ./config/_default/hugo.toml
-  theme=hugo-clarity から
+  theme=hugo-clarity を
   theme=[&#34;github.com/chipzoller/hugo-clarity&#34;]に変更
 </pre>
 <p>
@@ -262,10 +264,10 @@ require github.com/chipzoller/hugo-clarity v0.0.0-20240429154213-8412edb36941 //
 <p>
 2025.8.2 trixieのとき、変更無しで動いた!:とおもったら、他のファイルが
 昔のままならsummaryの表示がヘンになりました。(- -);</p>
-<div class="src src-text">
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="ln">1</span><span class="cl">module hoge
-</span></span><span class="line"><span class="ln">2</span><span class="cl">go 1.24.4
-</span></span><span class="line"><span class="ln">3</span><span class="cl">require github.com/chipzoller/hugo-clarity v0.0.0-20250514185450-16f2e94b0bce // indirect</span></span></code></pre></div>
+<div class="src src-go.mod">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go.mod" data-lang="go.mod"><span class="line"><span class="ln">1</span><span class="cl"><span class="n">module</span> <span class="n">hoge</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl"><span class="n">go</span> <span class="mf">1.24</span><span class="p">.</span><span class="mi">4</span>
+</span></span><span class="line"><span class="ln">3</span><span class="cl"><span class="n">require</span> <span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">chipzoller</span><span class="o">/</span><span class="n">hugo</span><span class="o">-</span><span class="n">clarity</span> <span class="n">v0</span><span class="p">.</span><span class="mf">0.0</span><span class="o">-</span><span class="mi">20250514185450</span><span class="o">-</span><span class="mi">16</span><span class="n">f2e94b0bce</span> <span class="o">//</span> <span class="n">indirect</span></span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -285,7 +287,8 @@ browserで以下のURLを指定すると、サンプルが見れます。</p>
 localhost:1313
 </pre>
 <p>
--Dはdraftも表示,各mdのfrontmatterで設定しています。</p>
+-Dはdraftも表示,各mdのfrontmatterで設定しています。
+-Dを省略すると、draft=falseの文書のみ表示します。</p>
 <p>
 update方法は以下のように紹介されています</p>
 <pre class="example">
@@ -351,12 +354,12 @@ content/<font color='red'>hoge</font>/以下のファイルの雛形として使
 <p>folderはcontent,content/post,がデフォルト</p>
 <ul>
 <li>content/の下は任意のdir作成ok。</li>
-<li>post/にあると、configで指定するいろいろなおまじないが効くようである。</li>
+<li>content/post/にあるファイルには、configで指定するいろいろなおまじないが効くようである。</li>
 <li>postの名前は、params.tomlのmainSectionsで設定可能かな?</li>
 </ul>
 </li>
 <li>content/に
-about.md,archives.md,search.mdあり</li>
+about.md,archives.md,search.mdあり。archiveに目次をつくってみました。</li>
 <li>ページヘッダのmenuは
 config/_default/menus/menu.en.toml</li>
 </ul>
@@ -378,16 +381,23 @@ mdの書式??
 <p>frontmatterの書式に—(ハイフン3つ)と+++がある。</p>
 <ul>
 <li>—(ハイフン3つ)はyaml:</li>
-<li>+++はTOML: </li>
+</ul>
+<p>
+YAMLは人間が読みやすく書けることを重視したフォーマットで、構
+  造はインデント（スペースやタブ）で表現されます。<a href="https://zenn.dev/collabostyle/articles/a2716ea312ee6b">引用元</a></p>
+<ul>
+<li>+++はTOML:</li>
+</ul>
+<p>
+ TOMLは構造化されたデータを表現するためのformat</p>
+<ul>
 <li>{}はJSON</li>
 </ul>
+<p>
+ JSONは軽量なデータ交換フォーマットで、データを階層的なキーと値のペアの形式で表現します。
+  これらのデータは、ダブルクォートで囲まれた文字列で表現され、数値、真偽値、nullもサポート
+  されています。</p>
 <ul>
-<li>YAMLは人間が読みやすく書けることを重視したフォーマットで、構
-造はインデント（スペースやタブ）で表現されます。<a href="https://zenn.dev/collabostyle/articles/a2716ea312ee6b">引用元</a></li>
-<li>TOMLは構造化されたデータを表現するためのformat</li>
-<li>JSONは軽量なデータ交換フォーマットで、データを階層的なキーと値のペアの形式で表現します。
-これらのデータは、ダブルクォートで囲まれた文字列で表現され、数値、真偽値、nullもサポート
-されています。</li>
 <li>markdownでは3つ以上のハイフンは罫線になるので変換時注意</li>
 </ul>
 <p>
@@ -751,7 +761,7 @@ $git push -u origin main
         <a href="http://localhost:1313/post/hugo_clarity/" class="nav-link" title="Hugo themes Clarityの作業備忘録">Hugo themes Clarityの作業備忘録</a>
       </li>
       <li>
-        <a href="http://localhost:1313/post/hugo_howto/" class="nav-link" title="Hugo 備忘録">Hugo 備忘録</a>
+        <a href="http://localhost:1313/post/hugo_howto/" class="nav-link" title="Hugo 作業備忘録">Hugo 作業備忘録</a>
       </li>
       <li>
         <a href="http://localhost:1313/post/linux/ramdisk/" class="nav-link" title="LinuxでRT実験 ramdisk作成">LinuxでRT実験 ramdisk作成</a>

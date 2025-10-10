@@ -41,17 +41,21 @@ lang: ja
 2025.3.6: r1\\
 2014.2.27:初版
 
-環境はbookwormです
+Emacsでgitを使う方法。
+
+昔個人のPCで一人gitしててめげましたが、github使うために再開しました。
+
+環境はbookwormです。
 
 <!--more-->
 
 ** 準備
 2025.3 magitをpackage-install時
 
-#+begin_src elisp
+#+begin_example
 Emergency (magit): Magit requires ‘seq’ >= 2.24,
-#+end_src
-と言われたので
+#+end_example
+と言われたのでseqをpkg-install
 
 #+begin_src elisp
   M-x package-install seq
@@ -115,28 +119,27 @@ Emergency (magit): Magit requires ‘seq’ >= 2.24,
    #+end_example
    が表記される
    
-    カーソルをファイル名に移してから、sキーを押すと、そのファイルはステージに上がる。
-    Sなら全ファイル指定
+    カーソルをファイル名に移してから、sキーを押すと、そのファイルはステージに上がる。@@html:<br>@@
+    S(大文字S)なら全ファイル指定。@@html:<br>@@
     C-u-i ならignoreファイルとして指定
     
     ?から始めても良い。コマンド一覧が表示
 
 4. c@@html:<br>@@
-   同じ画面からcを押すとArguments/Create/EditHEADなどの画面になる。
+   同じ画面からcを押すとArguments/Create/EditHEADなどの画面になる。@@html:<br>@@
    もう一度cを押してCommit注釈を入力画面にする。
-   commitの注釈を入力する。
-   注釈文を書かないと、commitできない
-    
-   注釈文は1行目に主な項目、3行目以降に詳細を記述。
-   2行目には書かないこと(赤字になる)
+   commitの注釈を入力する。@@html:<br>@@
+   注釈文を書かないと、commitできない。 @@html:<br>@@
 
+   注釈文は1行目に主な項目、3行目以降に詳細を記述。
+   2行目には書かないこと(赤字になる)@@html:<br>@@
    注釈文の書き方:https://qiita.com/itosho/items/9565c6ad2ffc24c09364
     
 5. C-c C-c@@html:<br>@@
    注釈文を書いたあとcomitするにはC-c C-c
     
 6. pushするには、P@@html:<br>@@
-   push先のurl登録してなければ、聞いてくる
+   push先のurl登録してなければ、聞いてくる。@@html:<br>@@
    git remote add origin htts://hoge/[].gitと同じ
 
 7. logを見るには@@html:<br>@@

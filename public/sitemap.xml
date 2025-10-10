@@ -8,7 +8,19 @@
     <loc>http://localhost:1313/tags/clarity/</loc>
     <lastmod>2025-10-07T15:46:46+09:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/categories/github/</loc>
+    <lastmod>2025-10-07T15:46:46+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/github-actions/</loc>
+    <lastmod>2025-10-07T15:46:46+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/hugo/</loc>
+    <lastmod>2025-10-07T15:46:46+09:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/categories/hugo/</loc>
+    <lastmod>2025-10-07T15:46:46+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/hugo_github_actions/</loc>
     <lastmod>2025-10-07T15:46:46+09:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/hugo_clarity/</loc>

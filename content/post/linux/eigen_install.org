@@ -37,11 +37,14 @@ lang: ja
 
 環境はbookwormです
 
-* cmakeをapt install
 
-* eigen-3.4.0/INSTALL
+eigen-3.4.0/INSTALL
 
-userのままでok
+cmakeいります(apt install)。
+
+userのままでok。
+
+<!--more-->
 
 ** DL
 
@@ -53,7 +56,6 @@ git clone https://github.com/PX4/eigen.git:119M!
 #+end_comment
 @@html:-->@@
 
-<!--more-->
 
 ** cmakeなしのinstall
 
