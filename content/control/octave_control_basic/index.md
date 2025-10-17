@@ -44,7 +44,7 @@ lsim(G,u,t);%任意の入力uに対する応答
 |![ステップ応答(文字挿入)](./figs/fig_9.png)|![ステップ応答(重ね書き,拡大図)](./figs/fig_20.png)|
 
 
-[githubpublic](https://tarj8253.github.io/public)
+[github/b2_control_step1.m](https://github.com/tarJ8253/octave/tree/main/control/b2_control_step1.m)
 
 
 ```octave

@@ -207,6 +207,7 @@
 </li>
 <li>
 <p>紙サイズはpaper=a5paper,b5jオプションで指定</p>
+<p>a0paperができる!posterサイズ!</p>
 </li>
 <li>
 <p>文字サイズ指定は英日別可,fontsize=12pt,jafontscale=0.9247など <br>
@@ -235,7 +236,7 @@ unicode-mathの前にinclude。</p>
 LatinModernになる。</p>
 </li>
 <li>
-<p>全部のギリシャ文字をイタリックにしたいときは(p.84) \</p>
+<p>全部のギリシャ文字をイタリックにしたいときは(p.84)</p>
 </li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-latex" data-lang="latex"><span class="line"><span class="ln">1</span><span class="cl"><span class="k">\usepackage</span><span class="na">[math-style=ISO,bold-style=ISO]</span><span class="nb">{</span>unicode-math<span class="nb">}</span>
@@ -336,7 +337,7 @@ newtx, newpx, に新しくなったけど、レガシーだから使わないほ
 </span></span></code></pre></div><p>powerdotはdvips経由なので、luaでは動かないようです。</p>
 <h2 id="新しい知識">新しい知識</h2>
 <ul>
-<li>温度記号のcelsiusは\textcelsius, mathcomp読み込むと$20,\tccelsius$。</li>
+<li>温度記号のcelsiusは\textcelsius, mathcomp読み込むと\tccelsius。</li>
 <li>figure環境は\end{figure}%と最後に%をつけて、空白出力抑制</li>
 <li>\hrulefill、\dotfill で横線描画</li>
 <li>ルビは \usepackage{luatexja-ruby}使用。pxrubricaより強力</li>
@@ -358,7 +359,10 @@ newtx, newpx, に新しくなったけど、レガシーだから使わないほ
 <p>とにかくwordはおせっかいなので、文書校正しているのにレイアウト色々勝手に 変更してくるので、集中の妨げになります。 おまけにレイアウト設定(変更)方法を知らないと文書ができないなんて変です。 マークアップ方式を普及させましょう。</p>
 <p>以下大いに同意です。</p>
 <p><a href="https://lualatexlab.blog.fc2.com/blog-entry-82.html">【雑談】MS Wordは文書作成ソフトではないのでは……という話 </a></p>
-<p>LaTeXで文書を作成していると、内容（本文）と構成（章立て）とソースコー ド（プログラミング）と紙面レイアウト（デザイン）をそれぞれ整理する必要 があります。この4要素を一度に整理することはほとんど不可能で、LaTeXコー ドと向き合うときはこのどれに集中しているのかを意識する必要があります。 これは一見して不便なようですが、意識すれば分けられるというのは、むしろ 嬉しい要素です。</p>
+<p>LaTeXで文書を作成していると、内容（本文）と構成（章立て）とソースコー
+ド（プログラミング）と紙面レイアウト（デザイン）をそれぞれ整理する必要
+があります。この4要素を一度に整理することはほとんど不可能で、
+LaTeX文書と向き合うときはこのどれに集中しているのかを意識する必要があります。 これは一見して不便なようですが、意識すれば分けられるというのは、むしろ 嬉しい要素です。</p>
 
     </div>
 <div class="post_comments">
@@ -420,7 +424,7 @@ newtx, newpx, に新しくなったけど、レガシーだから使わないほ
         <a href="http://localhost:1313/post/hugo_clarity/" class="nav-link" title="Hugo themes Clarityの作業備忘録">Hugo themes Clarityの作業備忘録</a>
       </li>
       <li>
-        <a href="http://localhost:1313/post/hugo_howto/" class="nav-link" title="Hugo 備忘録">Hugo 備忘録</a>
+        <a href="http://localhost:1313/post/hugo_howto/" class="nav-link" title="Hugo 作業備忘録">Hugo 作業備忘録</a>
       </li>
       <li>
         <a href="http://localhost:1313/post/linux/ramdisk/" class="nav-link" title="LinuxでRT実験 ramdisk作成">LinuxでRT実験 ramdisk作成</a>

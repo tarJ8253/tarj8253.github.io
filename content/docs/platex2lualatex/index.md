@@ -127,6 +127,9 @@ c& d
 
 -   jlreqはarticle相当。option指定でreport, book
 -   紙サイズはpaper=a5paper,b5jオプションで指定
+	
+	a0paperができる!posterサイズ!
+	
 -   文字サイズ指定は英日別可,fontsize=12pt,jafontscale=0.9247など \
 デフォルトは10pt,1。
 
@@ -149,7 +152,7 @@ unicode-mathの前にinclude。
 -   unicode-mathを読み込まないならlmodernを読み込む。これでフォントは
     LatinModernになる。
 	
--   全部のギリシャ文字をイタリックにしたいときは(p.84) \
+-   全部のギリシャ文字をイタリックにしたいときは(p.84) 
 ```latex
 \usepackage[math-style=ISO,bold-style=ISO]{unicode-math}
 ```
@@ -259,7 +262,7 @@ powerdotはdvips経由なので、luaでは動かないようです。
 
 ## 新しい知識
 
--   温度記号のcelsiusは\textcelsius, mathcomp読み込むと$20\,\tccelsius$。
+-   温度記号のcelsiusは\textcelsius, mathcomp読み込むと\tccelsius。
 -   figure環境は\end{figure}%と最後に%をつけて、空白出力抑制
 -   \hrulefill、\dotfill で横線描画
 -   ルビは \usepackage{luatexja-ruby}使用。pxrubricaより強力
@@ -295,4 +298,7 @@ wysiwyg(what you see is what you get)では、どうしてもレイアウトに�
 
 [【雑談】MS Wordは文書作成ソフトではないのでは……という話 ](https://lualatexlab.blog.fc2.com/blog-entry-82.html)
 
-LaTeXで文書を作成していると、内容（本文）と構成（章立て）とソースコー ド（プログラミング）と紙面レイアウト（デザイン）をそれぞれ整理する必要 があります。この4要素を一度に整理することはほとんど不可能で、LaTeXコー ドと向き合うときはこのどれに集中しているのかを意識する必要があります。 これは一見して不便なようですが、意識すれば分けられるというのは、むしろ 嬉しい要素です。
+LaTeXで文書を作成していると、内容（本文）と構成（章立て）とソースコー
+ド（プログラミング）と紙面レイアウト（デザイン）をそれぞれ整理する必要
+があります。この4要素を一度に整理することはほとんど不可能で、
+LaTeX文書と向き合うときはこのどれに集中しているのかを意識する必要があります。 これは一見して不便なようですが、意識すれば分けられるというのは、むしろ 嬉しい要素です。

@@ -221,6 +221,12 @@ GUIとサンプルソースを示します。参考にしてください。
 
 [[./fig_octave_gui/gui_sample.png]]
 
+
+
+[[https://github.com/tarJ8253/octave/blob/main/oct_gui/oct_gui_sample.m][github/oct_gui_sample.m]]
+
+
+
 #+begin_src octave
 clear all
 close all

@@ -29,12 +29,12 @@ $$G(s)=\frac{{\omega_n}^2}{s^2+2\zeta\omega_n s +{\omega_n}^2}$$
 
 ソースをDLまたはclipboardの内容を保存して、手元のPCでOctaveを起動して確認してください。
 
-<!--
 
-`sys2d_step.m`
 
-[github](http://github.com/tarj8253/control/sys2d_step.m)
--->
+
+
+[github/sys2d_step.m](https://github.com/tarJ8253/octave/tree/main/control/sys2d_step.m)
+
 
 
 ```octave
@@ -175,7 +175,9 @@ update_plot(h.gf,true);
 
 ![](./fig/2d-pole.png)
 
-`sys2d_step_pole.m`
+
+[github/sys2d_step_pole.m](https://github.com/tarJ8253/octave/tree/main/control/sys2d_step_pole.m)
+
 
 上記伝達関数の時間応答と、極位置の関係を示します。
 
@@ -349,9 +351,12 @@ update_plot(h.gf,true);
 複素平面上の任意の点をクリックすれば、そこを極とする二次遅れ要素の時間応答 を示します。
 
 
-![](./fig/pole-clj.png)
+![](./fig/pole-clk.png)
 
-`pole_clk.m`
+
+[github/pole_clk.m](https://github.com/tarJ8253/octave/tree/main/control/pole_clk.m)
+
+
 
 ```octave
 clear all
@@ -426,14 +431,13 @@ close all
 
 ![](./fig/sl-pol.png)
 
-`pole_slide.m`
-[](pole_slide.m)
-
 
 スライダーを動かすと極位置が変化し、その極位置を有する 二次遅れ要素の時間応答を表示します。
 
 `th_const?`をnoのままでは実軸/虚数軸固定、 
 `th_const?`をyesとすると、偏角一定で、極位置が変化します。
+
+[github/pole_slide.m](https://github.com/tarJ8253/octave/tree/main/control/pole_slide.m)
 
 ```octave
 % 極位置指定からstep応答をみる
@@ -853,7 +857,7 @@ update_plot(h.gf,true);
 ```
 
 
-# pid制御シミュレーション
+# PID制御シミュレーション
 
 
 ![](./fig/pid_sim.png)
@@ -872,7 +876,9 @@ $$P3(s)=\dfrac{1}{(s+1)(s+5)}$$
 
 PIDゲインを設定すると閉ループシミュレーションを実行できます。
 
-`pid_sim.m`
+
+[github/pid_sim.m](https://github.com/tarJ8253/octave/tree/main/control/pid_sim.m)
+
 
 ```octave
 %Octave ソース : PID制御系設計

@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "styles.css",
-	"sourceRoot": "/media/takiyama/m2sata/docs/HUGO_202503/tarj8253",
+	"sourceRoot": "/media/takiyama/m2sata/docs/GITHUB_HUGO_202503/tarj8253",
 	"sources": [
 		"/home/takiyama/.cache/hugo_cache/modules/filecache/modules/pkg/mod/github.com/chipzoller/hugo-clarity@v0.0.0-20240429154213-8412edb36941/assets/sass/main.sass",
 		"../../../../../../home/takiyama/.cache/hugo_cache/modules/filecache/modules/pkg/mod/github.com/chipzoller/hugo-clarity@v0.0.0-20240429154213-8412edb36941/assets/sass/_variables.sass",

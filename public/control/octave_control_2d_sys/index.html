@@ -151,12 +151,7 @@ $$G(s)=\frac{{\omega_n}^2}{s^2+2\zeta\omega_n s +{\omega_n}^2}$$
 </figure>
 </p>
 <p>ソースをDLまたはclipboardの内容を保存して、手元のPCでOctaveを起動して確認してください。</p>
-<!--
-
-`sys2d_step.m`
-
-[github](http://github.com/tarj8253/control/sys2d_step.m)
--->
+<p><a href="https://github.com/tarJ8253/octave/tree/main/control/sys2d_step.m">github/sys2d_step.m</a></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-octave" data-lang="octave"><span class="line"><span class="ln">  1</span><span class="cl"><span class="n">clear</span> <span class="nb">all</span><span class="err">
 </span></span></span><span class="line"><span class="ln">  2</span><span class="cl"><span class="err"></span><span class="nb">close</span> <span class="nb">all</span><span class="err">
 </span></span></span><span class="line"><span class="ln">  3</span><span class="cl"><span class="err"></span><span class="nb">clc</span><span class="err">
@@ -314,7 +309,7 @@ $$G(s)=\frac{{\omega_n}^2}{s^2+2\zeta\omega_n s +{\omega_n}^2}$$
     </picture>
 </figure>
 </p>
-<p><code>sys2d_step_pole.m</code></p>
+<p><a href="https://github.com/tarJ8253/octave/tree/main/control/sys2d_step_pole.m">github/sys2d_step_pole.m</a></p>
 <p>上記伝達関数の時間応答と、極位置の関係を示します。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-octave" data-lang="octave"><span class="line"><span class="ln">  1</span><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="ln">  2</span><span class="cl"><span class="err"></span><span class="n">clear</span> <span class="nb">all</span><span class="err">
@@ -479,7 +474,6 @@ $$G(s)=\frac{{\omega_n}^2}{s^2+2\zeta\omega_n s +{\omega_n}^2}$$
 </span></span></span></code></pre></div><h1 id="極位置と応答特性の関係その2">極位置と応答特性の関係(その2)</h1>
 <p>複素平面上の任意の点をクリックすれば、そこを極とする二次遅れ要素の時間応答 を示します。</p>
 <p>
-      
   <figure>
   <picture>
 
@@ -496,8 +490,10 @@ $$G(s)=\frac{{\omega_n}^2}{s^2+2\zeta\omega_n s +{\omega_n}^2}$$
       decoding="async"
       alt=""
       
-        class="image_figure image_internal image_unprocessed"
-        src="/control/octave_control_2d_sys/control/octave_control_2d_sys/fig/pole-clj.png"
+        class="image_figure image_internal image_processed"
+        width="1500"
+        height="906"
+        src="/control/octave_control_2d_sys/fig/pole-clk.png"
       
       
     />
@@ -505,7 +501,7 @@ $$G(s)=\frac{{\omega_n}^2}{s^2+2\zeta\omega_n s +{\omega_n}^2}$$
     </picture>
 </figure>
 </p>
-<p><code>pole_clk.m</code></p>
+<p><a href="https://github.com/tarJ8253/octave/tree/main/control/pole_clk.m">github/pole_clk.m</a></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-octave" data-lang="octave"><span class="line"><span class="ln"> 1</span><span class="cl"><span class="n">clear</span> <span class="nb">all</span><span class="err">
 </span></span></span><span class="line"><span class="ln"> 2</span><span class="cl"><span class="err"></span><span class="nb">close</span> <span class="nb">all</span><span class="err">
 </span></span></span><span class="line"><span class="ln"> 3</span><span class="cl"><span class="err"></span><span class="nb">clc</span><span class="err">
@@ -600,11 +596,10 @@ $$G(s)=\frac{{\omega_n}^2}{s^2+2\zeta\omega_n s +{\omega_n}^2}$$
     </picture>
 </figure>
 </p>
-<p><code>pole_slide.m</code>
-<a href="pole_slide.m"></a></p>
 <p>スライダーを動かすと極位置が変化し、その極位置を有する 二次遅れ要素の時間応答を表示します。</p>
 <p><code>th_const?</code>をnoのままでは実軸/虚数軸固定、
 <code>th_const?</code>をyesとすると、偏角一定で、極位置が変化します。</p>
+<p><a href="https://github.com/tarJ8253/octave/tree/main/control/pole_slide.m">github/pole_slide.m</a></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-octave" data-lang="octave"><span class="line"><span class="ln">  1</span><span class="cl"><span class="c">% 極位置指定からstep応答をみる</span><span class="err">
 </span></span></span><span class="line"><span class="ln">  2</span><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="ln">  3</span><span class="cl"><span class="err"></span><span class="n">clear</span> <span class="nb">all</span><span class="err">
@@ -1054,7 +1049,7 @@ $$G(s)=\frac{{\omega_n}^2}{s^2+2\zeta\omega_n s +{\omega_n}^2}$$
 <p>ボタンで選択します。</p>
 <p>限界感度法やステップ応答を表示できます。</p>
 <p>PIDゲインを設定すると閉ループシミュレーションを実行できます。</p>
-<p><code>pid_sim.m</code></p>
+<p><a href="https://github.com/tarJ8253/octave/tree/main/control/pid_sim.m">github/pid_sim.m</a></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-octave" data-lang="octave"><span class="line"><span class="ln">  1</span><span class="cl"><span class="c">%Octave ソース : PID制御系設計</span><span class="err">
 </span></span></span><span class="line"><span class="ln">  2</span><span class="cl"><span class="err"></span><span class="n">clear</span> <span class="nb">all</span><span class="err">
 </span></span></span><span class="line"><span class="ln">  3</span><span class="cl"><span class="err"></span><span class="nb">close</span> <span class="nb">all</span><span class="err">
@@ -1768,7 +1763,7 @@ $$G(s)=\frac{{\omega_n}^2}{s^2+2\zeta\omega_n s +{\omega_n}^2}$$
         <a href="http://localhost:1313/post/hugo_clarity/" class="nav-link" title="Hugo themes Clarityの作業備忘録">Hugo themes Clarityの作業備忘録</a>
       </li>
       <li>
-        <a href="http://localhost:1313/post/hugo_howto/" class="nav-link" title="Hugo 備忘録">Hugo 備忘録</a>
+        <a href="http://localhost:1313/post/hugo_howto/" class="nav-link" title="Hugo 作業備忘録">Hugo 作業備忘録</a>
       </li>
       <li>
         <a href="http://localhost:1313/post/linux/ramdisk/" class="nav-link" title="LinuxでRT実験 ramdisk作成">LinuxでRT実験 ramdisk作成</a>
