@@ -18,6 +18,14 @@
           
             &lt;p&gt;
 環境はbookwormです&lt;/p&gt;
+&lt;div id=&#34;outline-container-headline-1&#34; class=&#34;outline-2&#34;&gt;
+&lt;h2 id=&#34;headline-1&#34;&gt;
+Eigen Install
+&lt;/h2&gt;
+&lt;div id=&#34;outline-text-headline-1&#34; class=&#34;outline-text-2&#34;&gt;
+&lt;p&gt;
+eigen-5.0.0でました。(2025.10.9)
+Get it hereからtar.bz2をDL&lt;/p&gt;
 &lt;p&gt;
 eigen-3.4.0/INSTALL&lt;/p&gt;
 &lt;p&gt;

@@ -37,11 +37,14 @@ lang: ja
 # *+半角spaceをつけて*の上でshift+#を押せばCOMMENTとなる: yaml error! NG
 ---
 
+iMaximaやTeXmacs上での実行環境がありますが、terminal上で用いています。
 
-** 入力コマンド
 
-- 命令の最後には必ずセミコロン*;*をつける!!
+** 基本
+
+- 命令の最後には必ずセミコロン@@html:<font color="red">@@;@@html:</font>@@をつける!!
   
+これを忘れると、なにも応答しないので、アセります^^;
 
 - 終了は
 
@@ -103,9 +106,6 @@ lang: ja
    #+end_src
 
 ** 行列
-    :PROPERTIES:
-    :CUSTOM_ID: 行列
-    :END:
 1.行列の生成
 
    #+begin_src maxima
@@ -168,7 +168,7 @@ lang: ja
     ^^
    #+end_src
 
-7.行列とベクトルの積はピリオド
+7.行列と行列やベクトルの積はピリオド
 
    #+begin_src maxima
      . 
@@ -176,10 +176,11 @@ lang: ja
 
    を使う
 
+   
+'*'を使うと、要素の積になるので注意。
+
+   
 ** 関数,式,表示
-    :PROPERTIES:
-    :CUSTOM_ID: 関数式表示
-    :END:
 1.関数の定義
 
    #+begin_src maxima
@@ -237,10 +238,44 @@ lang: ja
 
    ただし%pi(円周率)と%i(虚数単位)などはいくつかの文字定数は使用済なので注意!!
 
+9.代入
+
+式の変数を整理するときに使います。
+evやsubstがあります。
+example(ev)やexample(subst)を参照のこと
+
+- ev(整理したい式,式中の変数名と代入する値や変数)
+- subst(代入する値、代入される変数名、式)
+
+
+別行で代入変数指定しても駄目なようで、evやsubstの中で宣言しないと駄目
+なようです。
+
+また、evは代入演算子として=と:両方使えるようですが、substは=だけでした。\\
+substは代入できる変数は一つだけのようですが、subst,evは複数可能なようです。
+
+  #+begin_src maxima
+    a:matrix([x+y , 2],[1,x-z]);
+    /*
+    x:-y; 別行で変数に代入しても、式には反映されない
+    z:2*y;
+    */
+    aa:ev(a,x:-y,z:2*y);/*ev()の中で代入の書式を指定する*/
+    aa2:ev(a,x=-y,z=2*y);/* evは:でも=でも使える*/
+
+    ab:sublis([x=-y,z=2*y],aa);/* sublis使える,subst不可*/
+
+    ee:z*4+s*5;
+    subst(q,z,ee);/*1つの変数に代入するとき*/
+    sublis([z=2,s=4],ee);/*複数の変数に代入するとき*/
+    /*sublis([z:a,s:d],ee); error! sublisは=しか使えない? */
+
+  #+end_src
+
+
+  
 ** miscなこと
-    :PROPERTIES:
-    :CUSTOM_ID: miscなこと
-    :END:
+
 1.helpは
 
    #+begin_src maxima
@@ -253,7 +288,7 @@ lang: ja
 3.保存時に拡張子.tmをつけるとTeXMacs用のいろんなものが入る。
 
    拡張子無しだと、入出力結果だけ保存\\
-   ->次回TeXmcsから読み込んでも使えない ??
+   ->次回TeXmacsから読み込んでも使えない ??
    
 
 4.変数だけ保存する場合は
@@ -272,10 +307,10 @@ lang: ja
     tex(計算式)
    #+end_src
 
-6.バッチファイルの実施は
+6.バッチファイルの実行は
 
    #+begin_src maxima
-    batch(``ファイル名'');
+    batch("ファイル名");
    #+end_src
 
    ファイルの拡張子はmacを使っている例が多いようである。\\
@@ -289,18 +324,16 @@ lang: ja
 
    ファイル名はフルパスで書いたほうが平和\\
    $MAXIMA\_DIRECTORYの　share,share1,share2,tensor
-   から読み込もうとする。
+   から読み込もうとする?。
 
 7.カレントディレクトリは system("pwd");
 
-8.ディレクトリ変更はLispの関数を使用。\\
+8.ディレクトリ変更はLispの関数を使用。
    #+begin_src maxima
    ?xchdir("~/hoge");
    #+end_src
    などとします。 冒頭の?はLispの関数であることを示します。
 
 ** 参考元
-    :PROPERTIES:
-    :CUSTOM_ID: 参考元
-    :END:
-- [[./maxima-nakagawa.pdf][Maxima入門ノート(中川先生)]]
+- Maxima入門ノート(中川先生)\\
+  googleして探してください。(オリジナルの公開場所が不明で、cpが各所にあるようです。)

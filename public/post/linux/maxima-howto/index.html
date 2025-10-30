@@ -141,19 +141,22 @@
 </span>
     <span class="post_date">
       2025-03-04</span>
-    <span class="post_time"> · 3 分で読了</span><span>&nbsp;· <a href='http://localhost:1313/tags/maxima/' title="maxima" class="post_tag button button_translucent">maxima
+    <span class="post_time"> · 5 分で読了</span><span>&nbsp;· <a href='http://localhost:1313/tags/maxima/' title="maxima" class="post_tag button button_translucent">maxima
         </a>
     </span>
   </div>
 
-    <div class="post_body"><div id="outline-container-headline-1" class="outline-3">
+    <div class="post_body"><p>
+iMaximaやTeXmacs上での実行環境がありますが、terminal上で用いています。</p>
+<div id="outline-container-headline-1" class="outline-3">
 <h3 id="headline-1">
-入力コマンド
+基本
 </h3>
 <div id="outline-text-headline-1" class="outline-text-3">
 <ul>
-<li>命令の最後には必ずセミコロン*;*をつける!!</li>
+<li>命令の最後には必ずセミコロン<font color="red">;</font>をつける!!</li>
 </ul>
+<p>これを忘れると、なにも応答しないので、アセります^^;</p>
 <ul>
 <li>
 <p>終了は</p>
@@ -211,11 +214,11 @@ Maximaの作法
 </div>
 </div>
 </div>
-<div id="outline-container-行列" class="outline-3">
-<h3 id="行列">
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
 行列
 </h3>
-<div id="outline-text-行列" class="outline-text-3">
+<div id="outline-text-headline-3" class="outline-text-3">
 <p>1.行列の生成</p>
 <div class="src src-maxima">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl"> A:genmatrix(a,n,m);</span></span></code></pre></div>
@@ -269,19 +272,21 @@ Maximaの作法
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl"> ^^</span></span></code></pre></div>
 </div>
 <p>
-7.行列とベクトルの積はピリオド</p>
+7.行列と行列やベクトルの積はピリオド</p>
 <div class="src src-maxima">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl">  .</span></span></code></pre></div>
 </div>
 <p>
    を使う</p>
+<p>
+&#39;*&#39;を使うと、要素の積になるので注意。</p>
 </div>
 </div>
-<div id="outline-container-関数式表示" class="outline-3">
-<h3 id="関数式表示">
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
 関数,式,表示
 </h3>
-<div id="outline-text-関数式表示" class="outline-text-3">
+<div id="outline-text-headline-4" class="outline-text-3">
 <p>1.関数の定義</p>
 <div class="src src-maxima">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl"> f(x,y,s,t):=x^s*y^t;</span></span></code></pre></div>
@@ -330,14 +335,47 @@ Maximaの作法
 </div>
 <p>
    ただし%pi(円周率)と%i(虚数単位)などはいくつかの文字定数は使用済なので注意!!</p>
+<p>
+9.代入</p>
+<p>
+式の変数を整理するときに使います。
+evやsubstがあります。
+example(ev)やexample(subst)を参照のこと</p>
+<ul>
+<li>ev(整理したい式,式中の変数名と代入する値や変数)</li>
+<li>subst(代入する値、代入される変数名、式)</li>
+</ul>
+<p>
+別行で代入変数指定しても駄目なようで、evやsubstの中で宣言しないと駄目
+なようです。</p>
+<p>
+また、evは代入演算子として=と:両方使えるようですが、substは=だけでした。<br>
+substは代入できる変数は一つだけのようですが、subst,evは複数可能なようです。</p>
+<div class="src src-maxima">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln"> 1</span><span class="cl">  a:matrix([x+y , 2],[1,x-z]);
+</span></span><span class="line"><span class="ln"> 2</span><span class="cl">  /*
+</span></span><span class="line"><span class="ln"> 3</span><span class="cl">  x:-y; 別行で変数に代入しても、式には反映されない
+</span></span><span class="line"><span class="ln"> 4</span><span class="cl">  z:2*y;
+</span></span><span class="line"><span class="ln"> 5</span><span class="cl">  */
+</span></span><span class="line"><span class="ln"> 6</span><span class="cl">  aa:ev(a,x:-y,z:2*y);/*ev()の中で代入の書式を指定する*/
+</span></span><span class="line"><span class="ln"> 7</span><span class="cl">  aa2:ev(a,x=-y,z=2*y);/* evは:でも=でも使える*/
+</span></span><span class="line"><span class="ln"> 8</span><span class="cl">
+</span></span><span class="line"><span class="ln"> 9</span><span class="cl">  ab:sublis([x=-y,z=2*y],aa);/* sublis使える,subst不可*/
+</span></span><span class="line"><span class="ln">10</span><span class="cl">
+</span></span><span class="line"><span class="ln">11</span><span class="cl">  ee:z*4+s*5;
+</span></span><span class="line"><span class="ln">12</span><span class="cl">  subst(q,z,ee);/*1つの変数に代入するとき*/
+</span></span><span class="line"><span class="ln">13</span><span class="cl">  sublis([z=2,s=4],ee);/*複数の変数に代入するとき*/
+</span></span><span class="line"><span class="ln">14</span><span class="cl">  /*sublis([z:a,s:d],ee); error! sublisは=しか使えない? */</span></span></code></pre></div>
 </div>
 </div>
-<div id="outline-container-miscなこと" class="outline-3">
-<h3 id="miscなこと">
+</div>
+<div id="outline-container-headline-5" class="outline-3">
+<h3 id="headline-5">
 miscなこと
 </h3>
-<div id="outline-text-miscなこと" class="outline-text-3">
-<p>1.helpは</p>
+<div id="outline-text-headline-5" class="outline-text-3">
+<p>
+1.helpは</p>
 <div class="src src-maxima">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl">describe(topic) or example(topic)  or ? topic</span></span></code></pre></div>
 </div>
@@ -348,7 +386,7 @@ miscなこと
 3.保存時に拡張子.tmをつけるとTeXMacs用のいろんなものが入る。</p>
 <p>
    拡張子無しだと、入出力結果だけ保存<br>
-   -&gt;次回TeXmcsから読み込んでも使えない ??</p>
+   -&gt;次回TeXmacsから読み込んでも使えない ??</p>
 <p>
 4.変数だけ保存する場合は</p>
 <div class="src src-maxima">
@@ -364,9 +402,9 @@ miscなこと
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl"> tex(計算式)</span></span></code></pre></div>
 </div>
 <p>
-6.バッチファイルの実施は</p>
+6.バッチファイルの実行は</p>
 <div class="src src-maxima">
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl"> batch(``ファイル名&#39;&#39;);</span></span></code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl"> batch(&#34;ファイル名&#34;);</span></span></code></pre></div>
 </div>
 <p>
    ファイルの拡張子はmacを使っている例が多いようである。<br>
@@ -379,24 +417,25 @@ miscなこと
 <p>
    ファイル名はフルパスで書いたほうが平和<br>
    $MAXIMA\_DIRECTORYの　share,share1,share2,tensor
-   から読み込もうとする。</p>
+   から読み込もうとする?。</p>
 <p>
 7.カレントディレクトリは system(&#34;pwd&#34;);</p>
 <p>
-8.ディレクトリ変更はLispの関数を使用。\\</p>
+8.ディレクトリ変更はLispの関数を使用。</p>
 <div class="src src-maxima">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="ln">1</span><span class="cl">?xchdir(&#34;~/hoge&#34;);</span></span></code></pre></div>
 </div>
 <p>などとします。 冒頭の?はLispの関数であることを示します。</p>
 </div>
 </div>
-<div id="outline-container-参考元" class="outline-3">
-<h3 id="参考元">
+<div id="outline-container-headline-6" class="outline-3">
+<h3 id="headline-6">
 参考元
 </h3>
-<div id="outline-text-参考元" class="outline-text-3">
+<div id="outline-text-headline-6" class="outline-text-3">
 <ul>
-<li><a href="./maxima-nakagawa.pdf">Maxima入門ノート(中川先生)</a></li>
+<li>Maxima入門ノート(中川先生)<br>
+googleして探してください。(オリジナルの公開場所が不明で、cpが各所にあるようです。)</li>
 </ul>
 </div>
 </div>

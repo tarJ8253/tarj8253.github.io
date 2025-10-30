@@ -10,10 +10,10 @@ layout: "archives"
 ## 基本
 
 - [Inkscape始めましょう](/docs/inkscape_howto/)
-- [Inkscapeで編集](/docs/inkscape_edit/)
+- [InkscapeでOctaveから出力したsvgファイルを編集](/docs/inkscape_edit/)
 - [VisualStudio Code](/docs/vscode_howto/)
 - [platexからlualatexへ移りましょう](/docs/platex2lualatex/)
-- [markdownの書き方](/post/markdown_howto)
+- [markdownの始め方](/post/markdown_howto)
 - [asciidocの始め方](/docs/asciidoc_howto)
 - [orgの使い方](/post/org_howto)
 
@@ -44,11 +44,11 @@ layout: "archives"
 - [PDF文書を編集する](/post/linux/pdf-edit)
 - [マークアップ形式のテキスト変換](/post/text_trans)
 - [Rの使い方メモ](/post/r-howto)
-- [maximaの使い方メモ](/post/linux/maxima-howto)
-- [Linuxのコマンド](/post/linux/lin_tips)
+- [maximaおぼえがき](/post/linux/maxima-howto)
+- [Linuxのコマンドtips](/post/linux/lin_tips)
 - [LinuxNOTEのバッテリメンテ](/post/linux/batt_care)
 - [Emacs ScratchBufferで計算](/post/linux/scratch_buffer)
 - [cmakeの使い方](/post/linux/cmake_howto)
 - [Eigenをinstall](/post/linux/eigen_install)
-- [magitの簡単ガイド](/post/linux/magit_howto)
-- [ramdiskの作成](/post/linux/ramdisk)
+- [magitのつかいかた,簡単ガイド](/post/linux/magit_howto)
+- [Linuxでramdisk作成](/post/linux/ramdisk)

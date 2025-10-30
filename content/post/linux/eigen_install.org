@@ -37,8 +37,12 @@ lang: ja
 
 環境はbookwormです
 
+* Eigen Install
 
-eigen-3.4.0/INSTALL
+eigen-5.0.0でました。(2025.10.9)
+
+[[http://eigen.tuxfamily.org][表紙のページ]] のGet it からtar.bz2をDL
+
 
 cmakeいります(apt install)。
 
@@ -46,9 +50,8 @@ userのままでok。
 
 <!--more-->
 
-** DL
 
-[[http://eigen.tuxfamily.org/index.php?title=Main_Page#Download]]
+
 
 @@html:<!--@@
 #+begin_comment
@@ -57,7 +60,36 @@ git clone https://github.com/PX4/eigen.git:119M!
 @@html:-->@@
 
 
-** cmakeなしのinstall
+** cmakeを用いたEigenのinstall
+
+eigen-x.y.z.tar.bz2を展開したらeigen-x.y.zができる。
+
+このeigen-x.y.zの下に<build dir>を作成してcmakeで作業。
+HOME(~/)の下に任意の名前のdirectory(<install_dir>)を作成して、そこにEigenのpackageをinstallします。
+
+#+begin_src bash
+  $ mkdir <install_dir>(なくても勝手に作成してくれるようです)
+  $ tar jxvf eigen-3.4.0.tar.bz2
+  $ cd eigen-3.4.0
+  $ mkdir <build dir>
+  $ cd <build dir>
+  $ cmake -DCMAKE_INSTALL_PREFIX=$HOME/<install_dir> ..
+  $ make install
+#+end_src
+
+-DCMAKE_INSTALL_PREFIXを指定しないと、
+/usr/local/include/eigen3  
+に入れようとするので、rootでないとNG
+
+make installすることで、希望の<install_dir>に<include>と<share>ができる。
+
+eigen-x.y.zは削除してok
+
+引用元https://qiita.com/kkoba775/items/405e178f04730094b161
+
+*** cmakeなしのinstall
+
+directoryごとに個別に展開しても使用できるようです。
 
 tar.bz2を展開して、Eigen/を任意の場所にcp
 
@@ -74,40 +106,15 @@ unsupportedを使いたい時は、unsupported/subdirectoryをcp
 
 引用元:https://qiita.com/MusicScience37/items/13fefa6bed25ab8fb6e9
 
+ただ、これをするとEigenを無数にcpするのと、Include pathをその度に書く
+必要があります。趣味の問題で、どぞ。
 
 
-** cmakeを用いたinstall
-
-eigen-3.4.0.tar.bz2を展開したらeigen-3.4.0ができる。
-
-このeigen-3.4.0の下にbuildを作成してcmakeで作業。
-HOME(~/)の下に任意の名前のdirectory(<install_dir>)を作成して、そこにEigenのpackageをinstallします。
-
-#+begin_src bash
-  $ mkdir <install_dir>
-  $ tar jxvf eigen-3.4.0.tar.bz2
-  $ cd eigen-3.4.0
-  $ mkdir build
-  $ cd build
-  $ cmake -DCMAKE_INSTALL_PREFIX=$HOME/<install_dir> ..
-  $ make install
-#+end_src
-
--DCMAKE_INSTALL_PREFIXを指定しないと、
-/usr/local/include/eigen3  
-に入れようとするので、rootでないとNG
-
-make installすることで、希望の<install_dir>に<include>と<share>ができる。
-
-eigen-3.4.0は削除してok
-
-引用元https://qiita.com/kkoba775/items/405e178f04730094b161
-
-* Eigenの場所をcmakeに教える
+** Eigenの場所をcmakeに教える
 
 ~/Eigenにinstallした場合です。
 
-~/.bash.rcに以下追加。
+~/.bashrcに以下追加。
 #+begin_src bash
 export CMAKE_PREFIX_PATH=$HOME/Eigen:$CMAKE_PREFIX_PATH
 #+end_src
@@ -130,7 +137,8 @@ CMAKE_PREFIX_PATH or  "Eigen3_DIR"
 Eigen本体(Eigen/{include,share})だけは9MB
 
 
-* cmakeを使ってcompile
+
+** Eigenを利用::cmakeを使ってcompile
 
 引用元:
 Ubuntu で Eigen-3.4.0 を CMake から利用する。 \\
@@ -170,9 +178,7 @@ iostremは/usr/include/c++/{12,10}/iostremにあり
 
 
 ** 手順の少ないcmake
-cmakeの使い方
-[[https://qiita.com/shohirose/items/45fb49c6b429e8b204ac]]
-に書いてあったとおり
+[[[[https://qiita.com/shohirose/items/45fb49c6b429e8b204ac]]][cmakeの使い方に書いてあったとおり]]
 
 #+begin_src bash
     $ cmake -S . -B build
@@ -182,9 +188,9 @@ cmakeの使い方
 
 mkdir,cd不要
 
-** 手順の多いcmake
-[[https://qiita.com/kkoba775/items/405e178f04730094b161]]
-に書いてあった通り
+*** 手順の多いcmake
+
+[[https://qiita.com/kkoba775/items/405e178f04730094b161]][[ここに書いてあった通り]]
    
    #+begin_src bash
      $ mkdir build
@@ -193,3 +199,30 @@ mkdir,cd不要
      $ make 
      $ ./test
    #+end_src
+
+お好きな方をどぞ
+
+** Eigenのdocument
+
+eigen-5.0.0/README.mdには
+https://eigen.tuxfamily.org/
+と
+https://libeigen.gitlab.io/docs/.
+と書いてますが、gitlabはaccountいるのと、いつの間にかコンテンツなくなってました。
+
+[[https://libeigen.gitlab.io/eigen/docs-5.0/][ここは、documentの表紙のようです。]]
+
+1行目のdownloadのとこをclickするとwebと同じ内容をDLできるようです。
+
+- [[https://libeigen.gitlab.io/eigen/docs-5.0/GettingStarted.html][GettingStart]]
+- [[https://libeigen.gitlab.io/eigen/docs-5.0/group__QuickRefPage.html][[QuickRef]Dense matrix and array manipulations]]
+- [[https://libeigen.gitlab.io/eigen/docs-5.0/group__SparseQuickRefPage.html][[QuickRef]Sparse linear algebra]]
+
+    
+
+- 参考サイト
+
+ - [[https://qiita.com/kenichi-t/items/616b50e8366d5d341db9][Qiita:Eigen関数一覧]]
+
+ - [[https://www.insilico.jp/blog/2022/05/08/lalibrary_eigen_part1/][In Silico 創薬C++の線型代数ライブラリEigenの使い方備忘録　〜基本編〜]]
+

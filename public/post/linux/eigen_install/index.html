@@ -141,39 +141,68 @@
 </span>
     <span class="post_date">
       2025-05-27</span>
-    <span class="post_time"> · 3 分で読了</span><span>&nbsp;· <a href='http://localhost:1313/tags/eigen/' title="Eigen" class="post_tag button button_translucent">Eigen
+    <span class="post_time"> · 4 分で読了</span><span>&nbsp;· <a href='http://localhost:1313/tags/eigen/' title="Eigen" class="post_tag button button_translucent">Eigen
         </a>
     </span>
   </div>
 
     <div class="post_body"><p>
 環境はbookwormです</p>
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+Eigen Install
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
 <p>
-eigen-3.4.0/INSTALL</p>
+eigen-5.0.0でました。(2025.10.9)</p>
+<p>
+<a href="http://eigen.tuxfamily.org">表紙のページ</a> のGet it からtar.bz2をDL</p>
 <p>
 cmakeいります(apt install)。</p>
 <p>
 userのままでok。</p>
-<div id="outline-container-headline-1" class="outline-3">
-<h3 id="headline-1">
-DL
-</h3>
-<div id="outline-text-headline-1" class="outline-text-3">
-<p>
-<a href="http://eigen.tuxfamily.org/index.php?title=Main_Page#Download">http://eigen.tuxfamily.org/index.php?title=Main_Page#Download</a></p>
 <p>
 <!--</p>
 <div class="comment-block">
 <p>git clone <a href="https://github.com/PX4/eigen.git:119M!">https://github.com/PX4/eigen.git:119M!</a></p>
 </div>
 <p>--></p>
-</div>
-</div>
 <div id="outline-container-headline-2" class="outline-3">
 <h3 id="headline-2">
-cmakeなしのinstall
+cmakeを用いたEigenのinstall
 </h3>
 <div id="outline-text-headline-2" class="outline-text-3">
+<p>
+eigen-x.y.z.tar.bz2を展開したらeigen-x.y.zができる。</p>
+<p>
+このeigen-x.y.zの下に&lt;build dir&gt;を作成してcmakeで作業。
+HOME(~/)の下に任意の名前のdirectory(&lt;install_dir&gt;)を作成して、そこにEigenのpackageをinstallします。</p>
+<div class="src src-bash">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">  $ mkdir &lt;install_dir&gt;<span class="o">(</span>なくても勝手に作成してくれるようです<span class="o">)</span>
+</span></span><span class="line"><span class="ln">2</span><span class="cl">  $ tar jxvf eigen-3.4.0.tar.bz2
+</span></span><span class="line"><span class="ln">3</span><span class="cl">  $ <span class="nb">cd</span> eigen-3.4.0
+</span></span><span class="line"><span class="ln">4</span><span class="cl">  $ mkdir &lt;build dir&gt;
+</span></span><span class="line"><span class="ln">5</span><span class="cl">  $ <span class="nb">cd</span> &lt;build dir&gt;
+</span></span><span class="line"><span class="ln">6</span><span class="cl">  $ cmake -DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$HOME</span>/&lt;install_dir&gt; ..
+</span></span><span class="line"><span class="ln">7</span><span class="cl">  $ make install</span></span></code></pre></div>
+</div>
+<p>
+-DCMAKE_INSTALL_PREFIXを指定しないと、
+/usr/local/include/eigen3  
+に入れようとするので、rootでないとNG</p>
+<p>
+make installすることで、希望の&lt;install_dir&gt;に&lt;include&gt;と&lt;share&gt;ができる。</p>
+<p>
+eigen-x.y.zは削除してok</p>
+<p>
+引用元<a href="https://qiita.com/kkoba775/items/405e178f04730094b161">https://qiita.com/kkoba775/items/405e178f04730094b161</a></p>
+<div id="outline-container-headline-3" class="outline-4">
+<h4 id="headline-3">
+cmakeなしのinstall
+</h4>
+<div id="outline-text-headline-3" class="outline-text-4">
+<p>
+directoryごとに個別に展開しても使用できるようです。</p>
 <p>
 tar.bz2を展開して、Eigen/を任意の場所にcp</p>
 <p>
@@ -187,48 +216,22 @@ unsupportedを使いたい時は、unsupported/subdirectoryをcp</p>
 -isystemのほうが、平和です。</p>
 <p>
 引用元:<a href="https://qiita.com/MusicScience37/items/13fefa6bed25ab8fb6e9">https://qiita.com/MusicScience37/items/13fefa6bed25ab8fb6e9</a></p>
+<p>
+ただ、これをするとEigenを無数にcpするのと、Include pathをその度に書く
+必要があります。趣味の問題で、どぞ。</p>
 </div>
 </div>
-<div id="outline-container-headline-3" class="outline-3">
-<h3 id="headline-3">
-cmakeを用いたinstall
-</h3>
-<div id="outline-text-headline-3" class="outline-text-3">
-<p>
-eigen-3.4.0.tar.bz2を展開したらeigen-3.4.0ができる。</p>
-<p>
-このeigen-3.4.0の下にbuildを作成してcmakeで作業。
-HOME(~/)の下に任意の名前のdirectory(&lt;install_dir&gt;)を作成して、そこにEigenのpackageをinstallします。</p>
-<div class="src src-bash">
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">  $ mkdir &lt;install_dir&gt;
-</span></span><span class="line"><span class="ln">2</span><span class="cl">  $ tar jxvf eigen-3.4.0.tar.bz2
-</span></span><span class="line"><span class="ln">3</span><span class="cl">  $ <span class="nb">cd</span> eigen-3.4.0
-</span></span><span class="line"><span class="ln">4</span><span class="cl">  $ mkdir build
-</span></span><span class="line"><span class="ln">5</span><span class="cl">  $ <span class="nb">cd</span> build
-</span></span><span class="line"><span class="ln">6</span><span class="cl">  $ cmake -DCMAKE_INSTALL_PREFIX<span class="o">=</span><span class="nv">$HOME</span>/&lt;install_dir&gt; ..
-</span></span><span class="line"><span class="ln">7</span><span class="cl">  $ make install</span></span></code></pre></div>
-</div>
-<p>
--DCMAKE_INSTALL_PREFIXを指定しないと、
-/usr/local/include/eigen3  
-に入れようとするので、rootでないとNG</p>
-<p>
-make installすることで、希望の&lt;install_dir&gt;に&lt;include&gt;と&lt;share&gt;ができる。</p>
-<p>
-eigen-3.4.0は削除してok</p>
-<p>
-引用元<a href="https://qiita.com/kkoba775/items/405e178f04730094b161">https://qiita.com/kkoba775/items/405e178f04730094b161</a></p>
 </div>
 </div>
-<div id="outline-container-headline-4" class="outline-2">
-<h2 id="headline-4">
+<div id="outline-container-headline-4" class="outline-3">
+<h3 id="headline-4">
 Eigenの場所をcmakeに教える
-</h2>
-<div id="outline-text-headline-4" class="outline-text-2">
+</h3>
+<div id="outline-text-headline-4" class="outline-text-3">
 <p>
 ~/Eigenにinstallした場合です。</p>
 <p>
-~/.bash.rcに以下追加。</p>
+~/.bashrcに以下追加。</p>
 <div class="src src-bash">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl"><span class="nb">export</span> <span class="nv">CMAKE_PREFIX_PATH</span><span class="o">=</span><span class="nv">$HOME</span>/Eigen:<span class="nv">$CMAKE_PREFIX_PATH</span></span></span></code></pre></div>
 </div>
@@ -250,11 +253,11 @@ CMAKE_PREFIX_PATH or  &#34;Eigen3_DIR&#34;
 Eigen本体(Eigen/{include,share})だけは9MB</p>
 </div>
 </div>
-<div id="outline-container-headline-5" class="outline-2">
-<h2 id="headline-5">
-cmakeを使ってcompile
-</h2>
-<div id="outline-text-headline-5" class="outline-text-2">
+<div id="outline-container-headline-5" class="outline-3">
+<h3 id="headline-5">
+Eigenを利用::cmakeを使ってcompile
+</h3>
+<div id="outline-text-headline-5" class="outline-text-3">
 <p>
 引用元:
 Ubuntu で Eigen-3.4.0 を CMake から利用する。 <br>
@@ -290,14 +293,14 @@ test.cpp</p>
 </div>
 <p>
 iostremは/usr/include/c++/{12,10}/iostremにあり</p>
+</div>
+</div>
 <div id="outline-container-headline-6" class="outline-3">
 <h3 id="headline-6">
 手順の少ないcmake
 </h3>
 <div id="outline-text-headline-6" class="outline-text-3">
-<p>cmakeの使い方
-<a href="https://qiita.com/shohirose/items/45fb49c6b429e8b204ac">https://qiita.com/shohirose/items/45fb49c6b429e8b204ac</a>
-に書いてあったとおり</p>
+<p>[[<a href="https://qiita.com/shohirose/items/45fb49c6b429e8b204ac">https://qiita.com/shohirose/items/45fb49c6b429e8b204ac</a>][cmakeの使い方に書いてあったとおり]]</p>
 <div class="src src-bash">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">    $ cmake -S . -B build
 </span></span><span class="line"><span class="ln">2</span><span class="cl">    $ cmake --build build
@@ -305,15 +308,13 @@ iostremは/usr/include/c++/{12,10}/iostremにあり</p>
 </div>
 <p>
 mkdir,cd不要</p>
-</div>
-</div>
-<div id="outline-container-headline-7" class="outline-3">
-<h3 id="headline-7">
+<div id="outline-container-headline-7" class="outline-4">
+<h4 id="headline-7">
 手順の多いcmake
-</h3>
-<div id="outline-text-headline-7" class="outline-text-3">
-<p><a href="https://qiita.com/kkoba775/items/405e178f04730094b161">https://qiita.com/kkoba775/items/405e178f04730094b161</a>
-に書いてあった通り</p>
+</h4>
+<div id="outline-text-headline-7" class="outline-text-4">
+<p>
+<a href="https://qiita.com/kkoba775/items/405e178f04730094b161">https://qiita.com/kkoba775/items/405e178f04730094b161</a><a href="ここに書いてあった通り">ここに書いてあった通り</a></p>
 <div class="src src-bash">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="ln">1</span><span class="cl">  $ mkdir build
 </span></span><span class="line"><span class="ln">2</span><span class="cl">  $ <span class="nb">cd</span> build
@@ -321,6 +322,41 @@ mkdir,cd不要</p>
 </span></span><span class="line"><span class="ln">4</span><span class="cl">  $ make 
 </span></span><span class="line"><span class="ln">5</span><span class="cl">  $ ./test</span></span></code></pre></div>
 </div>
+<p>
+お好きな方をどぞ</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-8" class="outline-3">
+<h3 id="headline-8">
+Eigenのdocument
+</h3>
+<div id="outline-text-headline-8" class="outline-text-3">
+<p>
+eigen-5.0.0/README.mdには
+<a href="https://eigen.tuxfamily.org/">https://eigen.tuxfamily.org/</a>
+と
+<a href="https://libeigen.gitlab.io/docs/.">https://libeigen.gitlab.io/docs/.</a>
+と書いてますが、gitlabはaccountいるのと、いつの間にかコンテンツなくなってました。</p>
+<p>
+<a href="https://libeigen.gitlab.io/eigen/docs-5.0/">ここは、documentの表紙のようです。</a></p>
+<p>
+1行目のdownloadのとこをclickするとwebと同じ内容をDLできるようです。</p>
+<ul>
+<li><a href="https://libeigen.gitlab.io/eigen/docs-5.0/GettingStarted.html">GettingStart</a></li>
+<li><a href="https://libeigen.gitlab.io/eigen/docs-5.0/group__QuickRefPage.html">[QuickRef]Dense matrix and array manipulations</a></li>
+<li><a href="https://libeigen.gitlab.io/eigen/docs-5.0/group__SparseQuickRefPage.html">[QuickRef]Sparse linear algebra</a></li>
+</ul>
+<ul>
+<li>
+<p>参考サイト</p>
+<ul>
+<li><a href="https://qiita.com/kenichi-t/items/616b50e8366d5d341db9">Qiita:Eigen関数一覧</a></li>
+<li><a href="https://www.insilico.jp/blog/2022/05/08/lalibrary_eigen_part1/">In Silico 創薬C++の線型代数ライブラリEigenの使い方備忘録　〜基本編〜</a></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 </div>
