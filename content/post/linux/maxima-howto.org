@@ -37,14 +37,14 @@ lang: ja
 # *+半角spaceをつけて*の上でshift+#を押せばCOMMENTとなる: yaml error! NG
 ---
 
-iMaximaやTeXmacs上での実行環境がありますが、terminal上で用いています。
+iMaximaやTeXmacs上などでの実行環境がありますが、terminal上で用いています。
 
 
 ** 基本
 
-- 命令の最後には必ずセミコロン@@html:<font color="red">@@;@@html:</font>@@をつける!!
+- 命令の最後には必ずセミコロン@@html:<font color="red">@@ ; @@html:</font>@@をつける!!
   
-これを忘れると、なにも応答しないので、アセります^^;
+これを忘れると、なにも反応がないので、アセります^^;
 
 - 終了は
 
@@ -55,7 +55,7 @@ iMaximaやTeXmacs上での実行環境がありますが、terminal上で用い�
  <!--more-->
   
 ** Maximaの作法
-1.命令の最後には必ずセミコロン@@html:<font color="red">@@;@@html:</font>@@をつける!!
+1.命令の最後には必ずセミコロン@@html:<font color="red">@@ ; @@html:</font>@@をつける!!
 
    #+begin_src maxima
    ;
@@ -69,7 +69,7 @@ iMaximaやTeXmacs上での実行環境がありますが、terminal上で用い�
    $をつけると、outputは表示されないが、batch実行時のinputは表示される(勘違いしないこと)。
    
 
-3.コロン@@html:<font color="red">@@:@@html:</font>@@ が代入演算子や変数の定義など
+3.コロン@@html:<font color="red">@@ : @@html:</font>@@ が代入演算子や変数の定義など
 
    #+begin_src maxima
    変数名: 変数の内容;
@@ -77,7 +77,7 @@ iMaximaやTeXmacs上での実行環境がありますが、terminal上で用い�
    #+end_src
 
    
-4.関数の定義は@@html:<font color="red">@@:=@@html:</font>@@
+4.関数の定義は@@html:<font color="red">@@ := @@html:</font>@@
 
    #+begin_src maxima
    勘数名f(x):=x^2+x+1;
@@ -121,7 +121,7 @@ iMaximaやTeXmacs上での実行環境がありますが、terminal上で用い�
 
    となる。
 
-2.要素への代入は(代入演算子は*:*)
+2.要素への代入は(代入演算子は@@html:<font color="red">@@ : @@html:</font>@@)
 
    #+begin_src maxima
     A[1][1]:5;
@@ -177,7 +177,7 @@ iMaximaやTeXmacs上での実行環境がありますが、terminal上で用い�
    を使う
 
    
-'*'を使うと、要素の積になるので注意。
+@@html:<font color='red'>@@ * @@html:</font>@@(アスタリスク)を使うと、要素毎の積になるので注意。
 
    
 ** 関数,式,表示
@@ -187,7 +187,9 @@ iMaximaやTeXmacs上での実行環境がありますが、terminal上で用い�
     f(x,y,s,t):=x^s*y^t;
    #+end_src
 
-2.表示 分数のまま表示されるが、展開したいときは
+2.表示
+
+分数のまま表示されるが、展開したいときは
 
    #+begin_src maxima
     float(数値評価する式);
@@ -229,7 +231,9 @@ iMaximaやTeXmacs上での実行環境がありますが、terminal上で用い�
 7.%piで円周率は定義されている。
    
 
-8.文字で解きたい 連立方程式の解を求める時など、文字のまま扱いたい時は、
+8.文字で解きたい 
+
+連立方程式の解を求める時など、文字のまま扱いたい時は、
    %を文字の前につける。 例えば
 
    #+begin_src maxima
@@ -244,15 +248,15 @@ iMaximaやTeXmacs上での実行環境がありますが、terminal上で用い�
 evやsubstがあります。
 example(ev)やexample(subst)を参照のこと
 
-- ev(整理したい式,式中の変数名と代入する値や変数)
-- subst(代入する値、代入される変数名、式)
+- ev(整理したい式, 式中の変数名と代入する値や変数)
+- subst(代入する値, 代入される変数名, 式)
 
 
-別行で代入変数指定しても駄目なようで、evやsubstの中で宣言しないと駄目
-なようです。
+別行で代入変数指定しても効かないようで、
+evやsubstの引数中で宣言しないと反映されないようです。
 
 また、evは代入演算子として=と:両方使えるようですが、substは=だけでした。\\
-substは代入できる変数は一つだけのようですが、subst,evは複数可能なようです。
+そして、substは代入できる変数は一つだけのようですが、sublis,evは複数可能なようです。
 
   #+begin_src maxima
     a:matrix([x+y , 2],[1,x-z]);
