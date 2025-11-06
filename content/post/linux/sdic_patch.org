@@ -326,7 +326,7 @@ dictやsdic設定elは以前の流用
 Happy!!
 
 
-sdic.elはこちら
+emacs側設定ファイル(50-sdic-set.el)はこちら
 
 参考サイト:
 [[https://aikotobaha.blogspot.com/2011/10/emacs-sdic-sary.html][OSSはアルミニウムの翼で飛ぶ /Emacs 英辞郎 + sdic + sary]]
