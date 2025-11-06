@@ -1,0 +1,382 @@
+---
+#content/post/に置くファイルの雛形!
+#---はyamlの書式.+++はtoml
+title: "SDICを動かす, ispellも" # Title of the blog post.
+date: 2025-11-05T15:46:46+09:00 # Date of post creation.
+description: "sdic sary ispell" # Description used for search engine.
+featured: false #true # sidebarのおすすめの投稿, sets if post is a featured post, making appear on the home page side bar.
+draft: false #true # Sets whether to render this page. Draft of true will not be rendered.
+toc: false # Controls if a table of contents should be generated for first-level links automatically.
+# menu: main # when uncomment, display on manu bar
+usePageBundles: false # Set to true to group assets like images in the same folder as this post.
+#featureImage: "/images/path/file.jpg" # Sets featured image on blog post.
+#featureImageAlt: 'Description of image' # Alternative text for featured image.
+#featureImageCap: 'This is the featured image.' # Caption (optional).
+#thumbnailはstatic/images/*.pngを
+#thumbnail: "/images/path/thumbnail.png" # Sets thumbnail image appearing inside card on homepage.
+#shareImage: "/images/path/share.png" # Designate a separate image for social media sharing.
+codeMaxLines: 10 # Override global value for how many lines within a code block before auto-collapsing.
+codeLineNumbers: false # Override global value for showing of line numbers within code block.
+figurePositionShow: true # Override global value for showing the figure label.
+# hugo.tomlのtaxonomiesで分類あり
+categories:
+  - tool
+tags:
+  - sdic
+  - sary
+  - ispell
+  - emacs  
+#series :
+#  - Enjoy Linux
+#aliases : 
+#  - migrate-from-jekyl
+# Create redirects from old URLs to new URLs with aliases:
+
+# comment: false # Disable comment if false.
+lang: ja
+
+#+title: SDICを動かす, ispellも
+#+language: ja
+#+OPTIONS: toc:nil timestamp:nil ^:{}
+
+# 2023.2.27 for hunspell\\
+# 2022.4.7 for bullseye(d11)\\
+# 2020.1.17
+
+# 新buster下では
+# saryもsdicもmakeが通らないので、以下を修正\\
+# 2021.4,bullseye deb11 Emacs27\\
+# libglib2.0-dev, libglib2.0-dev-bin, が必要for sary
+---
+
+Emacs上で
+英単語を検索したりスペルチェックする、昔ながらの英作文編集環境構築方法です。
+
+
+** saryをinstall&修正
+
+saryは高速なテキスト検索を可能にするライブラリです。\\
+saryはなくてもsdicは動作しますが、圧倒的に高速なそうです。\\
+ただし、作成されたのが随分昔なので、最近の環境で使うにはいくつか手入れ
+が必要です。
+
+saryはここにあります。
+[[https://sary.sourceforge.net/][https://sary.sourceforge.net/]]
+
+
++ パッケージにlibglib2.0-dev, libglib2.0-dev-binが必要です。aptします。
+
++ 関数indexがconflictします。(strings.hでindex使っているので. 最近??,2021.4:bullseye/emacs27)
+
+  sary/builder.c,src/mksary.cで定義している関数indexをs_index(適当な名前)と改名
+
++ src/sary.cのStrncompFuncの3番目の引数の型
+  size_tと unsigned intの型が合わないと怒られます。(2025.9: trixie/emacs30, gcc14.2?)\\
+  StrncompFuncを適当な名前にcp-renameして、対応。
+
+  
+  以下saryに関するdiffです。
+
+ 
+#+begin_src C
+  diff -Naru ./sary-1.2.0/sary/builder.c ./sary-1.2.0_rev/sary/builder.c
+--- ./sary-1.2.0/sary/builder.c	2005-01-28 17:50:24.000000000 +0900
++++ ./sary-1.2.0_rev/sary/builder.c	2025-10-02 09:31:48.970512307 +0900
+@@ -45,7 +45,7 @@
+     gpointer		progress_func_data;
+ };
+ 
+-static SaryInt	index		(SaryBuilder	*builder, 
++static SaryInt	s_index		(SaryBuilder	*builder, 
+ 				 SaryProgress	*progress,
+ 				 SaryWriter	*writer);
+ static void	progress_quiet	(SaryProgress	*progress);
+@@ -124,7 +124,7 @@
+ 			  builder->progress_func, 
+ 			  builder->progress_func_data);
+ 
+-    count = index(builder, progress, writer);
++    count = s_index(builder, progress, writer);
+ 
+     sary_progress_destroy(progress);
+     sary_writer_destroy(writer);
+@@ -219,7 +219,7 @@
+ }
+ 
+ static SaryInt
+-index (SaryBuilder *builder, SaryProgress *progress, SaryWriter *writer)
++s_index (SaryBuilder *builder, SaryProgress *progress, SaryWriter *writer)
+ {
+     gchar *bof, *cursor;
+     SaryInt count;
+diff -Naru ./sary-1.2.0/src/mksary.c ./sary-1.2.0_rev/src/mksary.c
+--- ./sary-1.2.0/src/mksary.c	2004-06-12 03:57:28.000000000 +0900
++++ ./sary-1.2.0_rev/src/mksary.c	2025-10-02 09:42:30.280153828 +0900
+@@ -59,7 +59,7 @@
+ static SaryIpointFunc	dispatch_codeset_func	(const gchar *codeset);
+ static SaryBuilder*	new_builder		(const gchar *file_name, 
+ 						 const gchar *array_name);
+-static void		index			(SaryBuilder *builder,
++static void		s_index			(SaryBuilder *builder,
+ 						 const gchar *file_name,
+ 						 const gchar *array_name);
+ static void		sort			(SaryBuilder *builder,
+@@ -149,7 +149,7 @@
+ }
+ 
+ static void
+-index (SaryBuilder *builder,
++s_index (SaryBuilder *builder,
+        const gchar *file_name, 
+        const gchar *array_name)
+ {
+@@ -186,7 +186,7 @@
+ 		const gchar *file_name, 
+ 		const gchar *array_name)
+ {
+-    index(builder, file_name, array_name);
++    s_index(builder, file_name, array_name);
+     sort(builder, file_name, array_name);
+ }
+ 
+@@ -358,7 +358,7 @@
+ 	    show_help();
+ 	    break;
+ 	case 'i':
+-	    process = index;
++	    process = s_index;
+ 	    break;
+ 	case 'l':
+ 	    ipoint_func = sary_ipoint_line;
+diff -Naru ./sary-1.2.0/src/sary.c ./sary-1.2.0_rev/src/sary.c
+--- ./sary-1.2.0/src/sary.c	2004-06-12 03:57:28.000000000 +0900
++++ ./sary-1.2.0_rev/src/sary.c	2025-10-02 09:45:13.226900979 +0900
+@@ -38,6 +38,11 @@
+ typedef int	 	(*StrncmpFunc)	(const gchar *s1, 
+                                          const gchar *s2, 
+                                          size_t n);
++/*size_t to unsigned int*/
++typedef int	 	(*StrncmpFunc_r)	(const gchar *s1, 
++                                         const gchar *s2, 
++                                         unsigned int n);
++
+ typedef gboolean 	(*SearchFunc)	(SarySearcher *searcher, 
+                                          const gchar *pattern);
+ typedef void 		(*PrintFunc)	(const gchar *text,
+@@ -213,7 +218,26 @@
+         }
+     }
+ }
+-
++/*tak add*/
++static void
++print_highlight_internal_r (const gchar *text, int len, const gchar *pattern, 
++                          StrncmpFunc_r cmpfunc)
++{
++    int i, patlen;
++    patlen = strlen(pattern);
++    for (i = 0; i < len;) {
++        if (cmpfunc(text + i, pattern, patlen) == 0) {
++            printf("\x1b[7m");
++            fwrite(text + i, sizeof(gchar), patlen, stdout);
++            printf("\x1b[0m");
++            i += patlen;
++        } else {
++            fwrite(text + i, sizeof(gchar), 1, stdout);
++            i++;
++        }
++    }
++}
++/* end here */
+ static void
+ print_highlight (const gchar *text, int len, const gchar *pattern)
+ {
+@@ -223,7 +247,8 @@
+ static void
+ print_highlight_icase (const gchar *text, int len, const gchar *pattern)
+ {
+-    print_highlight_internal(text, len, pattern, g_strncasecmp);
++  // tak   print_highlight_internal(text, len, pattern, g_strncasecmp);
++    print_highlight_internal_r(text, len, pattern, g_strncasecmp);
+ }
+ 
+ static void
+
+#+end_src
+
+** sdicを修正
+sdicは土屋さんのとこにあります。
+[[http://www.namazu.org/~tsuchiya/sdic/#download][http://www.namazu.org/~tsuchiya/sdic/#download]]
+
+
+./configureしないとsdic.elが生成されないので注意!\\
+またconfigureすると上書きされるので、下記修正を行ったときは注意!\\
+permissionも+wすること!(他のelも)
+
+- (a)文法chkがきつくなったそうな\\
+  stem.el,sdic-compat.el,sdic-gene.elの
+  '(lambdaとなっている  'を全部消去。\\
+  つまり'(lambdaを(lambdaと修正！\\
+  ,)も修正::全部削除
+
+- (b) default-fill-column が未定義と怒られるので、setqします。
+
+  #+begin_src emacs-lisp
+  (if (not (boundp 'default-fill-column))
+      (setq default-fill-column (default-value 'fill-column)))
+  #+end_src
+
+  または
+
+  #+begin_src emacs-lisp
+  (if (string-match "26" emacs-version)
+      (setq default-fill-column (default-value 'fill-column)))
+  #+end_src
+
+  をsdic.el冒頭に追加
+  [[http://tarancho.hatenablog.com/entry/2018/11/06/200511][こちらの情報です。]]\\
+  コンパイルしないときは.emacsに書いてました。
+  
+
+
+- sdic.elのold-style backquoteを手動修正!! bullseye(d11),Emacs27で必要になりました。
+
+  
+  旧スタイルの
+#+begin_src emacs-lisp
+; Source - https://stackoverflow.com/questions/8109665/how-fix-emacs-error-old-style-backquotes-detected'
+; Posted by Drew
+; Retrieved 2025/11/5, License - CC-BY-SA 4.0
+
+(` (foo (, bar) (,@ toto)))
+#+end_src
+を
+
+新スタイル
+
+#+begin_src emacs-lisp
+; Source - https://stackoverflow.com/questions/8109665/how-fix-emacs-error-old-style-backquotes-detected'
+; Posted by Drew
+; Retrieved 2025/11/5, License - CC-BY-SA 4.0
+
+`(foo ,bar ,@toto)
+#+end_src
+
+に変更します。
+
+[[https://stackoverflow.com/questions/8109665/how-fix-emacs-error-old-style-backquotes-detected'][修正の仕方参考サイト]]
+
+以下sdic.elのdiffです
+
+  #+begin_src emacs-lisp
+  --- ./lisp/sdic.el  2023-02-24 14:39:35.446144218 +0900
+  +++ ../sdic-2.1.3_rev/lisp/sdic.el  2022-04-06 15:01:33.820311317 +0900
+  @@ -89,6 +89,9 @@
+   (require 'sdicf)
+   (require 'stem)
+   
+  +;;2022.4.7 tak add and old-style backquote modify
+  +(if (not (boundp 'default-fill-column))
+  +    (setq default-fill-column (default-value 'fill-column)))
+   
+   ;;;----------------------------------------------------------------------
+   ;;;        カスタマイズ用変数
+  @@ -362,27 +365,27 @@
+   QUERY に検索形式を指定する構造が含まれていない場合は、default の動作と
+   して SEXP を評価する。通常の検索の場合は、検索された見出し語のリストを
+   返す。"
+  -  (` (cond
+  +  `(cond
+         ;; 検索語が '' で囲まれている場合 -> 完全一致検索
+  -      ((and (equal ?' (string-to-char (, query)))
+  -       (equal "'" (substring (, query) -1)))
+  +      ((and (equal ?' (string-to-char  query))
+  +       (equal "'" (substring  query -1)))
+          (sdic-insert-entry-list
+  -   (sdic-search-multi-dictionaries (, dic-list) (substring (, query) 1 -1) 'lambda)))
+  +   (sdic-search-multi-dictionaries  dic-list (substring  query 1 -1) 'lambda)))
+         ;; 検索語の先頭に / がある場合 -> 全文検索
+  -      ((equal ?/ (string-to-char (, query)))
+  +      ((equal ?/ (string-to-char  query))
+          (sdic-insert-entry-list
+  -   (sdic-search-multi-dictionaries (, dic-list) (substring (, query) 1) 0)))
+  +   (sdic-search-multi-dictionaries  dic-list (substring  query 1) 0)))
+         ;; 検索語の先頭に * がある場合 -> 後方一致検索
+  -      ((equal ?* (string-to-char (, query)))
+  +      ((equal ?* (string-to-char  query))
+          (sdic-insert-entry-list
+  -   (sdic-search-multi-dictionaries (, dic-list) (substring (, query) 1) t)))
+  +   (sdic-search-multi-dictionaries  dic-list (substring  query 1) t)))
+         ;; 検索語の末尾に * がある場合 -> 前方一致検索
+  -      ((equal "*" (substring (, query) -1))
+  +      ((equal "*" (substring  query -1))
+          (sdic-insert-entry-list
+  -   (sdic-search-multi-dictionaries (, dic-list) (substring (, query) 0 -1))))
+  +   (sdic-search-multi-dictionaries  dic-list (substring  query 0 -1))))
+         ;; 特に指定がない場合 -> 指定された S 式を評価
+         (t
+  -       (,@ sexp)))))
+  +       ,@ sexp)))
+  #+end_src 
+
+dictやsdic設定elは以前の流用
+
+以上の修正で、 make, make installでsdic動くようになった!
+
+Happy!!
+
+
+sdic.elはこちら
+
+参考サイト:
+[[https://aikotobaha.blogspot.com/2011/10/emacs-sdic-sary.html][OSSはアルミニウムの翼で飛ぶ /Emacs 英辞郎 + sdic + sary]]
+
+** ispellを動かす,2023.hunspellを使う
+
+本体と辞書をapt
+
+#+begin_src shell
+apt install hunspell
+apt install hunspell-en-us
+#+end_src
+
+bashrcへの設定は不要でした。
+
+1. 端末で使うとき
+
+   -dで使用辞書を指定します。
+
+   #+begin_src shell
+   hunspell -D
+   #+end_src
+
+   で辞書サーチパスを示します。
+
+2. emacsから使う。
+
+   init.elに以下指定を追加します。
+
+#+begin_src emacs-lisp
+(setq ispell-program-name "hunspell")
+(setq ispell-really-hunspell t)
+(setenv "DICTIONARY" "en_US")
+(setenv "WORDLIST" "$HOME/.hunspell_personal_dictionary")
+
+;;ispell を使う場合、日本語混じりのファイルのスペルチェックをすることができます。
+(eval-after-load "ispell"
+ '(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
+#+end_src
+
+
+HAPPY!
+
+
+** ispellを動かす(aspel):OSOLETEです。
+
+Error: No word lists can be found for the language "ja_JP"\\
+といわれる。\\
+処置\\
+~/.aspell.confに\\
+lang en_US\\
+と書く。=入れたらだめ！\\
+Thanks [[http://mux03.panda64.net/diary/20071221.html][muneda's diary]]
