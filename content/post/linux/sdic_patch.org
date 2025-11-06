@@ -70,8 +70,9 @@ saryはここにあります。
 
   sary/builder.c,src/mksary.cで定義している関数indexをs_index(適当な名前)と改名
 
-+ src/sary.cのStrncompFuncの3番目の引数の型
-  size_tと unsigned intの型が合わないと怒られます。(2025.9: trixie/emacs30, gcc14.2?)\\
++ src/sary.cでStrncompFuncの呼び出し側が、
+  3番目の引数の型を size_tと unsigned intを混在していて、
+  型が合わないと怒られるようになりました。(2025.9: trixie/emacs30, gcc14.2?)\\
   StrncompFuncを適当な名前にcp-renameして、対応。
 
   
