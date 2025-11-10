@@ -85,10 +85,13 @@ Emergency (magit): Magit requires ‘seq’ >= 2.24,
    #+end_src
 
     と指定すること
+    
 2. M-x magit-status
 
    通常magitへの入口
 
+   git管理下のdirで実行したらmagitのbufferが開く。
+   
    #+begin_example
    Untracked files
    Unstaged changes
@@ -109,7 +112,7 @@ Emergency (magit): Magit requires ‘seq’ >= 2.24,
    Untrackedにカーソル動かして
    tabキー押すと、untrack新規ファイルが表示される。
 
-   1つずつしかstagingできないようである。
+   1つずつしかstagingできない?ようである。
    ファイル名表記部にカーソル動かして、sキー(staging)を押す。
    
    Staged changesに
@@ -151,6 +154,7 @@ Emergency (magit): Magit requires ‘seq’ >= 2.24,
 
 8. ファイル削除@@html:<br>@@
    magit-file-delete
+   
 9. ブランチ作成@@html:<br>@@
     M-x magit-status@@html:<br>@@
     としたあと、
@@ -245,10 +249,21 @@ https://qiita.com/ignorant/items/86d353e3ada299f12836
 ## git公式ドキュメント\\
 https://git-scm.com/book/ja/v2
 
+
 ## magitざっくりチートシート\\
 https://qiita.com/yoshikyoto/items/fffbe1d46953d020939e
 
 amendは c a (commitはc cなので2つめのcをaにする)
+
+
+##EmacsでMagitを使う\\
+https://iriya-ufo.net/blog/2022/02/22/magit/
+
+##Emacsの最強GitクライアントMagitの使い方(Joppot)\\
+https://joppot.info/posts/f2721fb2-0942-4c4e-90e2-0dbdbb329bce
+
+##試行錯誤な日々/emacsでmagitを使ってタイプ数を減らす話\\
+https://asukiaaa.blogspot.com/2017/09/emacsmagit.html
 
 ## magit 覚書\\
 http://tanehp.ec-net.jp/heppoko-lab/prog/resource/magit/magit_memo.html
