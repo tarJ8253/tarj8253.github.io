@@ -221,7 +221,30 @@ math.htmlは、DLした themes/clarity/からcpする。
 
 [[https://worklifefun.net/katex-inline-problem/][webからの情報]]
 
+以下math.htmlの追記を含むヘッダ以降の内容です
+#+begin_src
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+    });
+</script>
+
+#+end_src
+
+
 [[https://katex.org/docs/autorender.html][katexのサイト]]の内容をmath.htmlとしてもok
+
 
 =$= 1つで囲むとinline数式
 
